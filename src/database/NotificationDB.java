@@ -1,6 +1,4 @@
-package sendNotification;
-
-import sendNotification.Notification;
+package database;
 
 /**
  * This is the sendNotification.NotificationDB class that will retrieve information needed to send notifications like
@@ -9,6 +7,8 @@ import sendNotification.Notification;
  * @author John Christian
  * @version 2022.01.26
  */
+import logic.Notification;
+
 import java.util.ArrayList;
 
 public class NotificationDB {
