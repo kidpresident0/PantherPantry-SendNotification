@@ -1,4 +1,4 @@
-package sendNotification;
+package main;
 
 /**
  * This is the main class for the Panther Pantry Create sendNotification.Notification application
