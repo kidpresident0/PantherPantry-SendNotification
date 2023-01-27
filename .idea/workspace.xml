@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4abb89b4-f4a9-4877-8848-65921b85a811" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/jtds-1.3.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/notification.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/CreateNotification.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/CreateNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Notification.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/NotificationDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +48,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
     "last_opened_file_path": "C:/PCC/CIS234A.RealWorldProgramming/Projects/Notification/lib",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"

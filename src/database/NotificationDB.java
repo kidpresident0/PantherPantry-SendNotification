@@ -18,9 +18,9 @@ import java.sql.SQLException;
 
 public class NotificationDB {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://cisdbss.pcc.edu:3306/234a_Null";
+        String url = "jdbc:jtds:sqlserver://cisdbss.pcc.edu/234a_Null";
         String username = "234a_Null";
-        String password = "456_$%^234a_Null";
+        String password = "456$%^234a_Null";
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             System.out.println("connected to db");
