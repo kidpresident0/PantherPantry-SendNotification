@@ -7,14 +7,13 @@ package database;
  * @author John Christian
  * @version 2022.01.26
  */
-import logic.Notification;
 
-import java.util.ArrayList;
+import logic.Notification;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class NotificationDB {
     public static void main(String[] args) {
