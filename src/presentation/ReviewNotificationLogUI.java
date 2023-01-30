@@ -12,9 +12,6 @@ public class ReviewNotificationLogUI {
     private JLabel endDate;
     private JLabel startDate;
 
-    public ReviewNotificationLogUI() {
-        rootPanel = new JPanel();
-    }
     public JPanel getRootPanel() {
         return rootPanel;
     }

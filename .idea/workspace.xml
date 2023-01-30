@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4abb89b4-f4a9-4877-8848-65921b85a811" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/NotificationDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/CreateNotification.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/CreateNotification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/template.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +46,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "137",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "258",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "278",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
     "last_opened_file_path": "C:/Users/bmkin/OneDrive/Desktop/School backup/2023/Winter/Real World Programming/Week 1/GUI's/Notification System GUI",
@@ -73,7 +66,7 @@
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\src\database" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NotificationDB">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CreateNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="presentation.CreateNotification" />
       <module name="Notification" />
@@ -115,8 +108,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NotificationDB" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.NotificationDB" />
         <item itemvalue="Application.CreateNotification" />
       </list>
     </recent_temporary>
