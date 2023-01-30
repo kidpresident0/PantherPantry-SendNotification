@@ -1,7 +1,11 @@
 ### IntelliJ IDEA ###
 out/
+!out/.gitkeep
 !**/src/main/**/out/
 !**/src/test/**/out/
+
+### File-based project format
+*.iws
 
 ### Eclipse ###
 .apt_generated
@@ -27,7 +31,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
 
 ### Java files ###
 *.class

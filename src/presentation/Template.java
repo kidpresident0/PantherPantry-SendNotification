@@ -1,10 +1,12 @@
+package presentation;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 
-public class template {
+public class Template {
     private JFormattedTextField titleTextField;
     private JTextField textField1;
     private JTextField textField2;
@@ -20,23 +22,14 @@ public class template {
     private JLabel staffNameLabel;
     private JTextField textField7;
     private JTextArea textArea;
-    private JPanel mainPanel;
+    private JPanel rootPanel;
     private JPanel topPanel;
     private JPanel messagePanel;
     private JPanel blocksTextPanel;
     private JPanel buttonPanel;
     private JButton previewButton;
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Template Name");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(new template().mainPanel);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-    }
-
-    public template() {
+      public Template() {
         previewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,11 +39,15 @@ public class template {
                 UIManager.put("Button.background", Color.decode("#9B9B9B"));
 
                 Object[] buttons = {"Back", "Create"};
-                int option = JOptionPane.showOptionDialog(mainPanel, textArea.getText(),
+                int option = JOptionPane.showOptionDialog(rootPanel, textArea.getText(),
                         "Template Name", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE,
                         null, buttons, buttons[0]);
             }
         });
+    }
+
+    public JPanel getRootPanel() {
+        return rootPanel;
     }
 }
 

@@ -1,5 +1,6 @@
 package logic;
 
+import database.tempCreationDB;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,15 +8,15 @@ import java.util.List;
  * This is a class for a notification that can be sent to multiple subscribers from different staff
  * staff members of Panther Pantry at PCC.
  * @author John Christian
- * @version 2023.01.26
+ * @version 2023.01.30
  */
-public class Notification {
+public class templateCreation {
     private String subject;
     private String body;
     private String sender;
     private List<String> subscribers;
 
-    public Notification(String subject, String body, String sender) {
+    public templateCreation (String subject, String body, String sender) {
         this.subject = subject;
         this.body = body;
         this.sender = sender;
@@ -38,7 +39,7 @@ public class Notification {
                     ". This notification was sent to: " + count + " subscribers.");
 
         }
-        Notification notification = new Notification("Hello", "We have this food, come pick it up " +
+        templateCreation notification = new templateCreation("Hello", "We have this food, come pick it up " +
                 "at this campus at this this time,", "Pantry Dude");
         notification.addSubscriber("Hungry Joe");
         notification.addSubscriber("Hungry Jane");
