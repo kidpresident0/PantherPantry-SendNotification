@@ -63,6 +63,8 @@ public class ShowTemplate {
                 Template template = new Template(subject.getText(), templateText.getText(), campus.getText(), foodItems.getText(),
                         startTime.getText(), endTime.getText(), term.getText(), staffName.getText());
                 template.create();
+
+                JOptionPane.showMessageDialog(rootPanel, "The template has been created");
             }
         });
     }
