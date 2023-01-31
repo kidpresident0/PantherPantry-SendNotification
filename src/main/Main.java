@@ -1,18 +1,16 @@
 package main;
 
 /**
- * This is the main class for the Panther Pantry Create sendNotification.Notification application
- * @author John Christian
- * @version 2022.01.30
+ * This is the main class for the Panther Pantry creates Template presentation application
+ * @author Kate White
+ * @version 2023.01.30
  */
 
-import presentation.Template;
+import presentation.ShowTemplate;
 import javax.swing.*;
 
 /**
  * Main entry point for the program.
- * <p>
- * Kick off the application by calling the start method of the Controller class.
  */
 public class Main {
     public static void main(String[] args) {
@@ -20,12 +18,6 @@ public class Main {
             @Override
             public void run() {
                 createGUI();
-                /*
-                ArrayList<Show> shows = Show.findShows();
-                for (Show show: shows) {
-                    System.out.println(show.getID() + ": " + show.getTitle());
-                }
-                 */
             }
         });
     }
@@ -41,7 +33,7 @@ public class Main {
 
         // Makes the application close when the window goes away.
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Template app = new Template();
+        ShowTemplate app = new ShowTemplate();
 
         JPanel root = app.getRootPanel();
 
