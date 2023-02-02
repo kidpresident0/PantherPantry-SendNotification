@@ -35,25 +35,6 @@ public class Database {
             System.err.println("Error! Couldn't connect to the database!");
             e.printStackTrace();
         }
-
-        try {
-            Statement stmt = conn.createStatement();
-            String sql = "CREATE TABLE TEMPLATES " +
-                    "(id INTEGER NOT NULL IDENTITY PRIMARY KEY," +
-                    " subject VARCHAR(255), " +
-                    " templateText TEXT, " +
-                    " campus VARCHAR(255), " +
-                    " foodItems VARCHAR(255)," +
-                    " startTime VARCHAR(255)," +
-                    " endTime VARCHAR(255)," +
-                    " term VARCHAR(255)," +
-                    " staffName VARCHAR(255)" +
-                    ")";
-
-            stmt.executeUpdate(sql);
-        } catch (SQLException e) {
-
-        }
     }
 
     // adding text to the table in database
