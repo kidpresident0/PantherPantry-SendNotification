@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4abb89b4-f4a9-4877-8848-65921b85a811" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/presentation/LogUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/notification.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Notification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/ReviewNotificationLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/ReviewNotificationLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/ReviewNotificationLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/LogUI.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/ReviewNotificationLogUI.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +73,7 @@
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\src\database" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NotificationDB">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CreateNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="presentation.CreateNotification" />
       <module name="Notification" />
@@ -113,8 +115,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NotificationDB" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.NotificationDB" />
         <item itemvalue="Application.CreateNotification" />
       </list>
     </recent_temporary>

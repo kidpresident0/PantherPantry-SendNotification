@@ -1,6 +1,6 @@
 package main;
 
-import presentation.ReviewNotificationLogUI;
+import presentation.LogUI;
 
 import javax.swing.*;
 
@@ -19,12 +19,21 @@ public class Main {
         });
     }
 
-    private static void createGUI() {
-        ReviewNotificationLogUI ui = new ReviewNotificationLogUI();
-        JPanel root = ui.getRootPanel();
+    public static void createGUI() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(root);
+        LogUI app = new LogUI();
+
+        JPanel root = app.getRootPanel();
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(root);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

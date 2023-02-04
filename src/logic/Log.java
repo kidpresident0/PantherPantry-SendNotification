@@ -11,14 +11,14 @@ import java.util.ArrayList;
  * @version 2023.02.23
  */
 
-public class ReviewNotificationLog {
+public class Log {
     private String m_userID;
     private Integer m_dateTime;
     private String m_subject;
     private String m_messageBody;
     private Integer m_subscriberAmount;
 
-    public ReviewNotificationLog (String userID, Integer dateTime, String subject, String messageBody, Integer subscriberAmount) {
+    public Log(String userID, Integer dateTime, String subject, String messageBody, Integer subscriberAmount) {
         m_userID = userID;
         m_dateTime = dateTime;
         m_subject = subject;
@@ -26,8 +26,8 @@ public class ReviewNotificationLog {
         m_subscriberAmount = subscriberAmount;
     }
 
-    public static ArrayList<ReviewNotificationLog> reviewNotifications() {
-        return Database.reviewNotifications();
+    public static ArrayList<Log> findLogs() {
+        return Database.findLogs();
     }
 
     public String getUserID() {

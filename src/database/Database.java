@@ -1,6 +1,6 @@
 package database;
 
-import logic.ReviewNotificationLog;
+import logic.Log;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,9 +46,9 @@ public class Database {
      * @param
      * @return
      */
-    public static ArrayList<ReviewNotificationLog> reviewNotifications() {
+    public static ArrayList<Log> findLogs() {
         ResultSet rs = null;
-        ArrayList<ReviewNotificationLog> notifications = new ArrayList<>();
+        ArrayList<Log> logs = new ArrayList<>();
         PreparedStatement stmt;
 
         try {
@@ -64,7 +64,7 @@ public class Database {
             //For each row in the result set, create a new Notification object with the provided values
             // and add it to the list of notifications
             while (rs.next()) {
-                notifications.add(new ReviewNotificationLog(
+                logs.add(new Log(
                         rs.getString("userID"),
                         rs.getInt("dateTime"),
                         rs.getString("subject"),
@@ -78,7 +78,7 @@ public class Database {
             return null;
         }
         //Returns list of results
-        return notifications;
+        return logs;
     }
 }
 
