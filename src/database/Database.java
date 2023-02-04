@@ -1,5 +1,10 @@
 package database;
 
+import logic.ReviewNotificationLog;
+
+import java.sql.*;
+import java.util.ArrayList;
+
 /**
  * This is the Database class that will retrieve information needed to send and retrieve
  * information from the database.  It will communicate with the logic layer that will then
@@ -7,9 +12,6 @@ package database;
  * @author Brandon King
  * @version 2022.02.04
  */
-
-import java.sql.*;
-import java.util.ArrayList;
 
 public class Database {
 
@@ -44,9 +46,9 @@ public class Database {
      * @param
      * @return
      */
-    public static ArrayList<ReviewNotification> reviewNotifications() {
+    public static ArrayList<ReviewNotificationLog> reviewNotifications() {
         ResultSet rs = null;
-        ArrayList<ReviewNotification> notifications = new ArrayList<>();
+        ArrayList<ReviewNotificationLog> notifications = new ArrayList<>();
         PreparedStatement stmt;
 
         try {
@@ -54,7 +56,7 @@ public class Database {
             connect();
 
             //Prepare sql statement
-            stmt = m_Connection.preparedStatement(FIND_REVIEW_NOTIFICATION_QUERY);
+            stmt = m_Connection.prepareStatement(FIND_REVIEW_NOTIFICATION_QUERY);
 
             //Execute the query
             rs = stmt.executeQuery();
@@ -62,12 +64,12 @@ public class Database {
             //For each row in the result set, create a new Notification object with the provided values
             // and add it to the list of notifications
             while (rs.next()) {
-                notifications.add(new ReviewNotification(
+                notifications.add(new ReviewNotificationLog(
                         rs.getString("userID"),
                         rs.getInt("dateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
-                        rs.getString("subscriberAmount")
+                        rs.getInt("subscriberAmount")
                 ));
             }
         } catch (Exception e) {
