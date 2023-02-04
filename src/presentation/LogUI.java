@@ -69,14 +69,15 @@ public class LogUI {
     private void fetchData() {
         setupTable();
         ArrayList<Log> logs = Log.findLogs();
-        for (Log reviewNotificationLog: reviewNotificationLogs) {
+        for (Log log: logs) {
             m_LogTableModel.addRow(new Object[]{
-                    reviewNotificationLog.getUserID(),
-                    reviewNotificationLog.getUserID(),
-                    reviewNotificationLog.getUserID(),
-                    reviewNotificationLog.getUserID(),
-                    reviewNotificationLog.getUserID(),
+                    Log.getUserID(),
+                    Log.getDateTime(),
+                    Log.getSubject(),
+                    Log.getMessageBody(),
+                    Log.getSubscriberAmount()
             });
         }
     }
 }
+

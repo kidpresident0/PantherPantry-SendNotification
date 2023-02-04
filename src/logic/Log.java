@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 
 public class Log {
-    private String m_userID;
-    private Integer m_dateTime;
-    private String m_subject;
-    private String m_messageBody;
-    private Integer m_subscriberAmount;
+    private static String m_userID;
+    private static Integer m_dateTime;
+    private static String m_subject;
+    private static String m_messageBody;
+    private static Integer m_subscriberAmount;
 
     public Log(String userID, Integer dateTime, String subject, String messageBody, Integer subscriberAmount) {
         m_userID = userID;
@@ -30,22 +30,22 @@ public class Log {
         return Database.findLogs();
     }
 
-    public String getUserID() {
+    public static String getUserID() {
         return m_userID;
     }
-    public Integer getDateTime() {
+    public static Integer getDateTime() {
         return m_dateTime;
     }
 
-    public String getSubject() {
+    public static String getSubject() {
         return m_subject;
     }
 
-    public String getMessageBody() {
+    public static String getMessageBody() {
         return m_messageBody;
     }
 
-    public Integer getSubscriberAmount() {
+    public static Integer getSubscriberAmount() {
         return m_subscriberAmount;
     }
 }
