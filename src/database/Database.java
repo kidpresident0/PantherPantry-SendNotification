@@ -14,7 +14,7 @@ public class Database {
     static String url = "jdbc:jtds:sqlserver://cisdbss.pcc.edu/234a_Null";
     static String username = "234a_Null";
     static String password = "456$%^234a_Null";
-    static String GET_SUBSCRIBER_EMAIL = "SELECT [userEmail] FROM [234a_Null].[dbo].[USERS] WHERE userRole = subscriber";
+    static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber'";
 
     static String GET_ALL_SUBSCRIBER_INFO = "SELECT [userID] ,[username] ,[firstName] ,[lastName] ,[userEmail] ,[userPassword] ,[salt] ,[userRole]FROM [234a_Null].[dbo].[USERS]";
 

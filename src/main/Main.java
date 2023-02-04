@@ -25,6 +25,9 @@ public class Main {
         Database subEmails = new Database();
         ArrayList<Users> subscribers = subEmails.getGetSubscriberEmail();
         System.out.println(subscribers);
+        for (Users user : subscribers) {
+            System.out.println(user.getEmail());
+        }
     }
 
     private static void createGUI() {
