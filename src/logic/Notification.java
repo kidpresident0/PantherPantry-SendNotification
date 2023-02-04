@@ -1,11 +1,13 @@
 package logic;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * This is a class for a notification that can be sent to multiple subscribers from different staff
- * staff members of Panther Pantry at PCC.
+ * members of Panther Pantry at PCC.
  * @author John Christian
  * @version 2023.01.26
  */
@@ -46,12 +48,11 @@ public class Notification {
         notification.send();
 
         //System.out.println("sendNotification.Notification sent to " + count + " subscriber(s).");
-
-
-
     }
 
-
+    public int getCount(ArrayList<Users> users){
+        return users.size();
+    }
 
 }
 

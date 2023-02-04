@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4abb89b4-f4a9-4877-8848-65921b85a811" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/logic/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/SendNotificationGUI.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/SendNotificationGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Notification.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/NotificationDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/notification.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/notification.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/CreateNotification.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/CreateNotification.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +54,12 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "105",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "351",
     "jdk.selected.JAVA_MODULE": "openjdk-18",
-    "last_opened_file_path": "C:/PCC/CIS234A.RealWorldProgramming/Projects/Notification/lib",
+    "last_opened_file_path": "C:/PCC/CIS234A.RealWorldProgramming/Projects/FoodPantry",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -55,6 +67,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="presentation" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\lib" />
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification" />
@@ -64,9 +79,22 @@
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\src\database" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NotificationDB">
-    <configuration name="CreateNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="presentation.CreateNotification" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="Notification" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="presentation.NotificationGUI" />
       <module name="Notification" />
       <extension name="coverage">
         <pattern>
@@ -78,12 +106,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NotificationDB" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="database.NotificationDB" />
+    <configuration name="SendNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="presentation.SendNotification" />
       <module name="Notification" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="database.*" />
+          <option name="PATTERN" value="presentation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SendNotificationGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="presentation.SendNotificationGUI" />
+      <module name="Notification" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="presentation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="createNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="presentation.createNotification" />
+      <module name="Notification" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="presentation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="presentation.createNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="presentation.createNotification" />
+      <module name="Notification" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="presentation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,8 +160,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NotificationDB" />
-        <item itemvalue="Application.CreateNotification" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.SendNotificationGUI" />
+        <item itemvalue="Application.NotificationGUI" />
+        <item itemvalue="Application.SendNotification" />
+        <item itemvalue="Application.presentation.createNotification" />
       </list>
     </recent_temporary>
   </component>
