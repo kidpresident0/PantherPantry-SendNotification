@@ -1,5 +1,7 @@
 package logic;
 
+import presentation.SendNotificationGUI;
+
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -20,11 +22,12 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendEmail {
 
-    public static void main(String[] args) {
+    public static void sendEmail() {
 
+        SendNotificationGUI gui = new SendNotificationGUI();
 
         final String username = "TeamNull234@gmail.com";
-        final String password = "CIS234A!";
+        final String password = "zmjmnszsetntvcxq";
 
         Properties props = new Properties();
 
@@ -46,8 +49,8 @@ public class SendEmail {
             message.setFrom(new InternetAddress("TeamNull234@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("flanwithaplan0@gmail.com"));
-            message.setSubject("Testing Subject");
-            message.setContent("<p>This is a <b>bold</b> test of formatted messages.</p>", "text/html");
+            message.setSubject(gui.getSubject());
+            message.setContent(gui.getBody(), "text/html");
 
             Transport.send(message);
 
