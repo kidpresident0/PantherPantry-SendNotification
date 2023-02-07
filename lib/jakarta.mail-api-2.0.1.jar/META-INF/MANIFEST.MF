@@ -1,0 +1,39 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk-Spec: 11
+Extension-Name: jakarta.mail
+Implementation-Title: jakarta.mail.jakarta.mail-api
+Implementation-Vendor: Oracle
+Implementation-Vendor-Id: com.sun
+Implementation-Version: 2.0.1
+Probe-Provider-XML-File-Names: 
+Specification-Title: jakarta.mail.jakarta.mail-api
+Specification-Vendor: Oracle
+Specification-Version: 2.0
+Bnd-LastModified: 1615231690116
+Bundle-Description: Jakarta Mail API jar
+Bundle-DocURL: http://www.oracle.com
+Bundle-License: http://www.eclipse.org/legal/epl-2.0, https://www.gnu.or
+ g/software/classpath/license.html, http://www.eclipse.org/org/documents
+ /edl-v10.php
+Bundle-ManifestVersion: 2
+Bundle-Name: Jakarta Mail API jar
+Bundle-SymbolicName: jakarta.mail-api
+Bundle-Vendor: Oracle
+Bundle-Version: 2.0.1
+DynamicImport-Package: *
+Export-Package: jakarta.mail;uses:="jakarta.activation,jakarta.mail.even
+ t,jakarta.mail.search";version="2.0",jakarta.mail.event;uses:="jakarta.
+ mail";version="2.0",jakarta.mail.internet;uses:="jakarta.activation,jak
+ arta.mail";version="2.0",jakarta.mail.search;uses:="jakarta.mail";versi
+ on="2.0",jakarta.mail.util;uses:="jakarta.activation,jakarta.mail.inter
+ net";version="2.0"
+Import-Package: jakarta.activation,jakarta.mail.event;version="[2.0,3)",
+ jakarta.mail.search;version="[2.0,3)",jakarta.mail.util;version="[2.0,3
+ )",javax.crypto,javax.crypto.spec,javax.net,javax.net.ssl,javax.securit
+ y.auth.callback,javax.security.auth.x500,javax.security.sasl;resolution
+ :=optional,javax.xml.transform,javax.xml.transform.stream,sun.security.
+ util;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-5.1.1.202006162103
+

@@ -25,6 +25,8 @@ public class Database {
      */
     public Database(){
         subscribers = readSubscribersEmail();
+        int subCount = subCount();
+
     }
     /**
      * Creates a connection to the database.
@@ -62,12 +64,22 @@ public class Database {
     }
 
     /**
-     * Returns the list of subscriber email addresses
+     * Makes the subscriber email addresses publicly available for other classes.
      *
-     * @return
+     * @return the list of subscriber email addresses
      */
     public ArrayList<Users> getGetSubscriberEmail() {
         return subscribers;
     }
+    /**
+     * Counts the number of subscribers that will receive a notification
+     *
+     * @return a count for subscribers.
+     */
+    public int subCount() {
+
+        return this.subscribers.size();
+    }
+
 }
 

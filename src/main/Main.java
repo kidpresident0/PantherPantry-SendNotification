@@ -22,18 +22,20 @@ public class Main {
                 createGUI();
             }
         });
-        Database subEmails = new Database();
-        ArrayList<Users> subscribers = subEmails.getGetSubscriberEmail();
-        System.out.println(subscribers);
-        for (Users user : subscribers) {
-            System.out.println(user.getEmail());
-        }
+//        Database subEmails = new Database();
+//        ArrayList<Users> subscribers = subEmails.getGetSubscriberEmail();
+//
+//        System.out.println(subscribers);
+//        for (Users user : subscribers) {
+//            System.out.println(user.getEmail());
+//        }
     }
 
     private static void createGUI() {
         SendNotificationGUI ui = new SendNotificationGUI();
         JPanel root = ui.getRootPanel();
         JFrame frame = new JFrame();
+
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,10 +45,15 @@ public class Main {
         frame.setVisible(true);
 
 
-
-
-
-
+    }
+    public ArrayList<Users> subscriberEmails(){
+        Database subEmails = new Database();
+        ArrayList<Users> subscribers = subEmails.getGetSubscriberEmail();
+        System.out.println(subscribers);
+        for (Users user : subscribers) {
+            System.out.println(user.getEmail());
+        }
+        return subscribers;
     }
 
 

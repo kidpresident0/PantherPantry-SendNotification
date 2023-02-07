@@ -120,6 +120,7 @@
         <properties>
           <editable value="false"/>
           <horizontalAlignment value="10"/>
+          <text value=""/>
         </properties>
       </component>
       <hspacer id="e265e">

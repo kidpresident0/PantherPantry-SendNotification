@@ -1,7 +1,6 @@
 package logic;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +47,6 @@ public class Notification {
         notification.send();
 
         //System.out.println("sendNotification.Notification sent to " + count + " subscriber(s).");
-    }
-
-    public int getCount(ArrayList<Users> users){
-        return users.size();
     }
 
 }

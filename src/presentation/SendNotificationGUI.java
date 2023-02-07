@@ -1,7 +1,8 @@
 package presentation;
 
+import database.Database;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,8 +22,8 @@ public class SendNotificationGUI extends JFrame implements ActionListener {
 
 
     public SendNotificationGUI() {
-
-
+        Database db = new Database();
+        subscriberField.setText(String.valueOf(db.subCount()));
 
 
 
