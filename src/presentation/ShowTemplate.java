@@ -6,7 +6,7 @@ package presentation;
  * with the generated text (a message to a Food Pantry subscribers) in the template, and the
  * create button allows the user to save all completed text in the text fields of the application.
  * @author Kate White
- * @version 2023.01.30
+ * @version 2023.07.02
  */
 
 import logic.Template;

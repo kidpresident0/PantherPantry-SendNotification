@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * This logic.Template.java file gets the text from the application form and creates a new template in the database.
  * @author Kate White
- * @version 2023.01.30
+ * @version 2023.07.02
  */
 public class Template {
     private int UserID;

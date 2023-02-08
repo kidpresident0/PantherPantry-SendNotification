@@ -5,7 +5,7 @@ package database;
  * with given columns in the database, and adds the new template to the table
  * in the database with one created query (so far).
  * @author Kate White
- * @version 2023.01.30
+ * @version 2023.07.02
  */
 
 import logic.Template;
