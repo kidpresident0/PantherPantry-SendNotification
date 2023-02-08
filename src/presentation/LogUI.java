@@ -1,5 +1,6 @@
 package presentation;
 
+import com.toedter.calendar.JDateChooser;
 import logic.Log;
 
 import javax.swing.*;
@@ -17,11 +18,11 @@ public class LogUI {
     private JTable logTable;
     private JButton submitButton;
     private JButton closeButton;
-    private JTextField enterStartDate;
-    private JTextField enterEndDate;
-    private JLabel endDate;
-    private JLabel startDate;
+    private JLabel endLabel;
+    private JLabel startLabel;
     private DefaultTableModel m_LogTableModel;
+
+
 
     public LogUI() {
         fetchData();
@@ -30,6 +31,7 @@ public class LogUI {
     public JPanel getRootPanel() {
         return rootPanel;
     }
+
 
     private void setupTable () {
         //Create a default table model with 5 columns named UserID, Date/Time, Subject, Message, Subscribers
@@ -72,7 +74,7 @@ public class LogUI {
         for (Log log: logs) {
             m_LogTableModel.addRow(new Object[]{
                     Log.getUserID(),
-                    Log.getDateTime(),
+                    Log.getDate(),
                     Log.getSubject(),
                     Log.getMessageBody(),
                     Log.getSubscriberAmount()

@@ -21,7 +21,7 @@ public class Database {
 
     //sql queries
     private static final String FIND_REVIEW_NOTIFICATION_QUERY =
-            "need to insert a query here";
+            "SELECT userID, date, time, subject, messageBody,subscriberAmount FROM NOTIFICATIONS WHERE subscriberAmount = '2';";
 
     //the connection object
     private static Connection m_Connection = null;
@@ -43,11 +43,11 @@ public class Database {
     /**
      * Fetches the information for the ReviewNotificationLog
      *
-     * @param
-     * @return
+     * @param date  The date to search for
+     * @return The requested notification log query
      */
     public static ArrayList<Log> findLogs() {
-        ResultSet rs = null;
+        ResultSet rs;
         ArrayList<Log> logs = new ArrayList<>();
         PreparedStatement stmt;
 
@@ -66,14 +66,14 @@ public class Database {
             while (rs.next()) {
                 logs.add(new Log(
                         rs.getString("userID"),
-                        rs.getInt("dateTime"),
+                        rs.getString("date"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
                         rs.getInt("subscriberAmount")
                 ));
             }
         } catch (Exception e) {
-            System.err.println("Error: could not connect to database.");
+            System.err.println("ERROR: Your query is not working.");
             e.printStackTrace();
             return null;
         }

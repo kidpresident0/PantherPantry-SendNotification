@@ -1,8 +1,11 @@
 package main;
 
+import com.toedter.calendar.JDateChooser;
 import presentation.LogUI;
+import database.Database;
 
 import javax.swing.*;
+
 
 /**
  * This is the main class for the Panther Pantry Create sendNotification.Notification application
@@ -30,8 +33,9 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         LogUI app = new LogUI();
 
-        JPanel root = app.getRootPanel();
 
+
+        JPanel root = app.getRootPanel();
         frame.getContentPane().removeAll();
         frame.getContentPane().add(root);
         frame.pack();
