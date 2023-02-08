@@ -19,8 +19,8 @@ public class Database {
 
     // creates a query
     private static final String createTemplateSql = "INSERT INTO TEMPLATES " +
-            "(subject, templateText, campus, foodItems, startTime, endTime, term, staffName) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            "(UserID, TemplateName, Subject, TemplateText) " +
+            "VALUES (?, ?, ?, ?)";
 
     // The one and only connection object
     private static Connection conn = null;
@@ -37,24 +37,16 @@ public class Database {
         }
     }
 
-    // adding text to the table in database
-    // addTemplate("Healthy Food Items", "Our mission to develop healthy eating habits in you!", "PCC, Sylvania Campus", "Veggies and fruits",
-    //            "Jan 20, 2023 12:00:00", "Jan 20, 2023 2:00:00", "Spring Term", "Jenny P");
-
     // Adds a new template to the table in database.
     public static void createTemplate(Template template) {
         connect();
 
         try {
             PreparedStatement stmt = conn.prepareStatement(createTemplateSql);
-            stmt.setString(1, template.getSubject());
-            stmt.setString(2, template.getTemplateText());
-            stmt.setString(3, template.getCampus());
-            stmt.setString(4, template.getFoodItems());
-            stmt.setString(5, template.getStartTime());
-            stmt.setString(6, template.getEndTime());
-            stmt.setString(7, template.getTerm());
-            stmt.setString(8, template.getStaffName());
+            stmt.setInt(1, template.getUserID());
+            stmt.setString(2, template.getTemplateName());
+            stmt.setString(3, template.getSubject());
+            stmt.setString(4, template.getTemplateText());
 
             stmt.executeUpdate();
         } catch (SQLException e) {

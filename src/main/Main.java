@@ -8,6 +8,7 @@ package main;
 
 import presentation.ShowTemplate;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Main entry point for the program.
@@ -21,7 +22,6 @@ public class Main {
             }
         });
     }
-
     public static void createGUI() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -29,10 +29,10 @@ public class Main {
             e.printStackTrace();
         }
         // Create a JFrame to show our form in, and display the UsersTableGUI form.
-        JFrame frame = new JFrame("Template Name");
+        JFrame frame = new JFrame("Template");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Makes the application close when the window goes away.
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ShowTemplate app = new ShowTemplate();
 
         JPanel root = app.getRootPanel();
@@ -40,8 +40,11 @@ public class Main {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(root);
         frame.pack();
-        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+
+        ImageIcon image = new ImageIcon("Logo.png");
+        frame.setIconImage(image.getImage());
     }
 }
 

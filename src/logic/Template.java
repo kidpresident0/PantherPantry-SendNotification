@@ -9,63 +9,38 @@ import java.util.List;
  * @version 2023.01.30
  */
 public class Template {
-    private String subject;
-    private String templateText;
-    private String campus;
-    private String foodItems;
-    private String startTime;
-    private String endTime;
-    private String term;
-    private String staffName;
+    private int UserID;
+    private String TemplateName;
+    private String Subject;
+    private String TemplateText;
 
-    public Template(String subject, String templateText, String campus, String foodItems,
-                    String startTime, String endTime, String term, String staffName) {
-        this.subject = subject;
-        this.templateText = templateText;
-        this.campus = campus;
-        this.foodItems = foodItems;
-        this.startTime= startTime;
-        this.endTime = endTime;
-        this.term = term;
-        this.staffName = staffName;
+    public Template(int UserID, String TemplateName, String Subject, String TemplateText) {
+        this.UserID = UserID;
+        this.TemplateName = TemplateName;
+        this.Subject = Subject;
+        this.TemplateText = TemplateText;
     }
 
     // create a new Template in the database
     public void create() {
         Database.createTemplate(this);
     }
+    public int getUserID() {
+        return UserID;
+    }
+
+    public String getTemplateName() {
+        return TemplateName;
+    }
 
     public String getSubject() {
-        return subject;
+        return Subject;
     }
 
     public String getTemplateText() {
-        return templateText;
+        return TemplateText;
     }
 
-    public String getCampus() {
-        return campus;
-    }
-
-    public String getFoodItems() {
-        return foodItems;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public String getTerm() {
-        return term;
-    }
-
-    public String getStaffName() {
-        return staffName;
-    }
 }
 
 
