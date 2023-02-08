@@ -12,18 +12,18 @@ import java.util.ArrayList;
  */
 
 public class Log {
-    private static String m_userID;
-    private static String m_date;
-    private static String m_subject;
-    private static String m_messageBody;
-    private static Integer m_subscriberAmount;
+    private static String mUserID;
+    private static String mDate;
+    private static String mSubject;
+    private static String mMessageBody;
+    private static Integer mSubscriberAmount;
 
     public Log(String userID, String date, String subject, String messageBody, Integer subscriberAmount) {
-        m_userID = userID;
-        m_date = date;
-        m_subject = subject;
-        m_messageBody = messageBody;
-        m_subscriberAmount = subscriberAmount;
+        mUserID = userID;
+        mDate = date;
+        mSubject = subject;
+        mMessageBody = messageBody;
+        mSubscriberAmount = subscriberAmount;
     }
 
     public static ArrayList<Log> findLogs() {
@@ -31,22 +31,22 @@ public class Log {
     }
 
     public static String getUserID() {
-        return m_userID;
+        return mUserID;
     }
     public static String getDate() {
-        return m_date;
+        return mDate;
     }
 
     public static String getSubject() {
-        return m_subject;
+        return mSubject;
     }
 
     public static String getMessageBody() {
-        return m_messageBody;
+        return mMessageBody;
     }
 
     public static Integer getSubscriberAmount() {
-        return m_subscriberAmount;
+        return mSubscriberAmount;
     }
 }
 

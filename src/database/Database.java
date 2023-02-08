@@ -24,17 +24,17 @@ public class Database {
             "SELECT userID, date, time, subject, messageBody,subscriberAmount FROM NOTIFICATIONS WHERE subscriberAmount = '2';";
 
     //the connection object
-    private static Connection m_Connection = null;
+    private static Connection mConnection = null;
 
     /**
      * Creates the connection to the database
      */
     private static void connect() {
-        if (m_Connection != null)
+        if (mConnection != null)
             return;
         try {
             //creates database connection
-            m_Connection = DriverManager.getConnection(CONNECTION_STRING, USERNAME, PASSWORD);
+            mConnection = DriverManager.getConnection(CONNECTION_STRING, USERNAME, PASSWORD);
         } catch (Exception e) {
             System.err.println("ERROR: You could not connect to the database");
         }
@@ -56,7 +56,7 @@ public class Database {
             connect();
 
             //Prepare sql statement
-            stmt = m_Connection.prepareStatement(FIND_REVIEW_NOTIFICATION_QUERY);
+            stmt = mConnection.prepareStatement(FIND_REVIEW_NOTIFICATION_QUERY);
 
             //Execute the query
             rs = stmt.executeQuery();
