@@ -2,12 +2,23 @@ package presentation;
 
 import database.Database;
 import logic.SendEmail;
+import logic.Users;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class SendNotificationGUI extends JFrame implements ActionListener {
+/**
+ * This is the GUI class for the Send Notification story for the PCC Panther Pantry.
+ * @author John Christian
+ * @version 2023.02.07
+ */
+public class SendNotificationGUI extends JFrame{
 
 
     JPanel rootPanel;
@@ -27,11 +38,7 @@ public class SendNotificationGUI extends JFrame implements ActionListener {
         Database db = new Database();
         SendEmail sendEmail = new SendEmail();
 
-
-
         subscriberField.setText(String.valueOf(db.subCount()));
-
-
 
         sendButton.addActionListener(new ActionListener() {
             @Override
@@ -43,16 +50,21 @@ public class SendNotificationGUI extends JFrame implements ActionListener {
         });
 
     }
-
     private void buttonSendActionPerformed(ActionEvent event) {
         SendEmail sendEmail = new SendEmail();
         if (!validateFields()) {
             return;
         }
+        String subscribers = "flanwithaplan0@gmail.com";
+        //ArrayList<Users> subscribers = subscriberEmails();
         String subject = subjectField.getText();
         String body = bodyArea.getText();
         try {
-            sendEmail.sendEmail();
+            sendEmail.sendEmail(subscribers,subject, body);
+            recordTime();
+
+            JOptionPane.showMessageDialog(this,
+                    "The notification has been sent successfully!");
 
 
         } catch (Exception e) {
@@ -61,8 +73,6 @@ public class SendNotificationGUI extends JFrame implements ActionListener {
                     "Please try again", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
     private boolean validateFields () {
 //            if (senderField.getText().equals("")) {
 //                JOptionPane.showMessageDialog(this,
@@ -92,10 +102,7 @@ public class SendNotificationGUI extends JFrame implements ActionListener {
         }
 
 
-        @Override
-        public void actionPerformed (ActionEvent e){
 
-        }
     public String getSubject () {
         return subjectField.getText();
     }
@@ -103,10 +110,27 @@ public class SendNotificationGUI extends JFrame implements ActionListener {
     public String getBody () {
         return bodyArea.getText();
     }
+    public String recordTime(){
+        Calendar now = Calendar.getInstance();
+        DateFormat df = new SimpleDateFormat("ddMMyyyyHHmm");
+        String result = df.format(now.getTime());
+        System.out.println(result);
 
-    public JPanel getRootPanel () {
+        return result;
 
-        return rootPanel;
     }
+
+    public ArrayList<Users> subscriberEmails(){
+        Database subEmails = new Database();
+        ArrayList<Users> subscribers = subEmails.getGetSubscriberEmail();
+        System.out.println(subscribers);
+        for (Users user : subscribers) {
+            System.out.println(user.getEmail());
+        }
+        return subscribers;
+    }
+
+    public JPanel getRootPanel () { return rootPanel;}
+
 
 }

@@ -20,6 +20,8 @@ public class Main {
             @Override
             public void run() {
                 createGUI();
+//                SendNotificationGUI test = new SendNotificationGUI();
+//                test.recordTime();
             }
         });
 //        Database subEmails = new Database();

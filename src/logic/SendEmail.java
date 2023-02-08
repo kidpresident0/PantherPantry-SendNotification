@@ -4,7 +4,6 @@ import presentation.SendNotificationGUI;
 
 import java.util.Properties;
 
-import javax.activation.DataHandler;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -22,7 +21,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendEmail {
 
-    public static void sendEmail() {
+
+    public static void sendEmail(String subscribers, String subject, String body ) {
 
         SendNotificationGUI gui = new SendNotificationGUI();
 
@@ -49,8 +49,8 @@ public class SendEmail {
             message.setFrom(new InternetAddress("TeamNull234@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("flanwithaplan0@gmail.com"));
-            message.setSubject(gui.getSubject());
-            message.setContent(gui.getBody(), "text/html");
+            message.setSubject(subject);
+            message.setContent(body, "text/html");
 
             Transport.send(message);
 
