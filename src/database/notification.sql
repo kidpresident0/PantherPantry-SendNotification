@@ -10,12 +10,13 @@
 --INSERT INTO USERS (ID, USERNAME, FIRST_NAME, LAST_NAME, EMAIL, ROLE) VALUES (6,'FirstSubscriber','Hungry'
 --                    , 'Joe,', 'P@ssw0rd', 'ImhungryJoe@whensdinner.com', 'SUBSCRIBER');
 
-SELECT TOP (20) [userID]
-      ,[username]
-      ,[firstName]
-      ,[lastName]
-      ,[userEmail]
-      ,[userPassword]
-      ,[salt]
-      ,[userRole]
-  FROM [234a_Null].[dbo].[USERS]
+-- Delete Table --
+  DROP TABLE NOTIFICATIONS;
+-- Create Table --
+  CREATE TABLE NOTIFICATIONS (
+  notificationID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+  Subject NVARCHAR(255),
+  MessageBody NVARCHAR(255),
+  SentBy NVARCHAR(255),
+  SentDateTime DATETIME,
+  SubscriberCount int);

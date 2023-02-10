@@ -1,13 +1,12 @@
 package presentation;
 
 import database.Database;
-import logic.SendEmail;
-import logic.Users;
+import logic.SendNotification;
+import logic.User;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,15 +14,14 @@ import java.util.ArrayList;
 
 /**
  * This is the GUI class for the Send Notification story for the PCC Panther Pantry.
+ *
  * @author John Christian
  * @version 2023.02.07
  */
-public class SendNotificationGUI extends JFrame{
+public class SendNotificationGUI extends JFrame {
 
 
     JPanel rootPanel;
-    JLabel senderLabel;
-    JTextField senderField;
     JTextField subjectField;
     JLabel subjectLabel;
     JTextArea bodyArea;
@@ -36,7 +34,6 @@ public class SendNotificationGUI extends JFrame{
 
     public SendNotificationGUI() {
         Database db = new Database();
-        SendEmail sendEmail = new SendEmail();
 
         subscriberField.setText(String.valueOf(db.subCount()));
 
@@ -46,22 +43,30 @@ public class SendNotificationGUI extends JFrame{
                 buttonSendActionPerformed(event);
             }
 
-            ;
         });
 
     }
+
     private void buttonSendActionPerformed(ActionEvent event) {
-        SendEmail sendEmail = new SendEmail();
+        SendNotification sendNotification = new SendNotification();
+        Database db = new Database();
         if (!validateFields()) {
             return;
         }
         String subscribers = "flanwithaplan0@gmail.com";
-        //ArrayList<Users> subscribers = subscriberEmails();
+        //ArrayList<User> subscribers = subscriberEmails();
+        String fromEmail = sendNotification.getUsername();
         String subject = subjectField.getText();
         String body = bodyArea.getText();
+        int subscriberCount = db.subCount();
         try {
-            sendEmail.sendEmail(subscribers,subject, body);
+            SendNotification.sendEmail(subscribers, subject, body);
+            subjectField.setText("");
+            bodyArea.setText("");
             recordTime();
+            db.setNotificationInfo(subject, body, fromEmail, subscriberCount);
+            System.exit(0);
+
 
             JOptionPane.showMessageDialog(this,
                     "The notification has been sent successfully!");
@@ -69,68 +74,51 @@ public class SendNotificationGUI extends JFrame{
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
-                    "Error sending Email.",
-                    "Please try again", JOptionPane.ERROR_MESSAGE);
+                    "Error sending Email." ,
+                    "Please try again" , JOptionPane.ERROR_MESSAGE);
         }
     }
-    private boolean validateFields () {
-//            if (senderField.getText().equals("")) {
-//                JOptionPane.showMessageDialog(this,
-//                        "Please enter a Sender" ,
-//                        "Error" , JOptionPane.ERROR_MESSAGE);
-//                senderField.requestFocus();
-//                return false;
-//            }
 
-            if (subjectField.getText().equals("")) {
-                JOptionPane.showMessageDialog(this,
-                        "Please enter a subject!" ,
-                        "Error" , JOptionPane.ERROR_MESSAGE);
-                subjectField.requestFocus();
-                return false;
-            }
-
-            if (bodyArea.getText().equals("")) {
-                JOptionPane.showMessageDialog(this,
-                        "Please enter message!" ,
-                        "Error" , JOptionPane.ERROR_MESSAGE);
-                bodyArea.requestFocus();
-                return false;
-            }
-
-            return true;
+    private boolean validateFields() {
+        if (subjectField.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a subject!" ,
+                    "Error" , JOptionPane.ERROR_MESSAGE);
+            subjectField.requestFocus();
+            return false;
+        }
+        if (bodyArea.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a message!" ,
+                    "Error" , JOptionPane.ERROR_MESSAGE);
+            bodyArea.requestFocus();
+            return false;
         }
 
-
-
-    public String getSubject () {
-        return subjectField.getText();
+        return true;
     }
 
-    public String getBody () {
-        return bodyArea.getText();
-    }
-    public String recordTime(){
+    public void recordTime() {
         Calendar now = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("ddMMyyyyHHmm");
         String result = df.format(now.getTime());
         System.out.println(result);
 
-        return result;
-
     }
 
-    public ArrayList<Users> subscriberEmails(){
+    public ArrayList<User> subscriberEmails() {
         Database subEmails = new Database();
-        ArrayList<Users> subscribers = subEmails.getGetSubscriberEmail();
+        ArrayList<User> subscribers = subEmails.getGetSubscriberEmail();
         System.out.println(subscribers);
-        for (Users user : subscribers) {
+        for (User user : subscribers) {
             System.out.println(user.getEmail());
         }
         return subscribers;
     }
 
-    public JPanel getRootPanel () { return rootPanel;}
+    public JPanel getRootPanel() {
+        return rootPanel;
+    }
 
 
 }

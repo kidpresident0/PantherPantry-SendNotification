@@ -1,9 +1,6 @@
 package logic;
 
-import presentation.SendNotificationGUI;
-
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -15,26 +12,22 @@ import javax.mail.internet.MimeMessage;
 /**
  * This is the class responsible for sending email notifications to subscribers of the Panther Pantry.
  *
- * @author Marc Goodman
+ * @author Marc Goodman, John Christian
  * @version 2023.02.06
- *
  */
-public class SendEmail {
+public class SendNotification {
 
-
-    public static void sendEmail(String subscribers, String subject, String body ) {
-
-        SendNotificationGUI gui = new SendNotificationGUI();
+    public static void sendEmail(String subscribers, String subject, String body) {
 
         final String username = "TeamNull234@gmail.com";
         final String password = "zmjmnszsetntvcxq";
 
         Properties props = new Properties();
 
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth" , "true");
+        props.put("mail.smtp.starttls.enable" , "true");
+        props.put("mail.smtp.host" , "smtp.gmail.com");
+        props.put("mail.smtp.port" , "587");
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
@@ -44,7 +37,6 @@ public class SendEmail {
                 });
 
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("TeamNull234@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
@@ -61,5 +53,10 @@ public class SendEmail {
         } catch (javax.mail.MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getUsername() {
+        String publicUsername = "TeamNull234@gmail.com";
+        return publicUsername;
     }
 }
