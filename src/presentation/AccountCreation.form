@@ -61,7 +61,7 @@
               <text value="Create a username:"/>
             </properties>
           </component>
-          <component id="842c1" class="javax.swing.JTextField" binding="CreateUsernameInput">
+          <component id="842c1" class="javax.swing.JTextField" binding="username">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -112,7 +112,7 @@
               <text value="Enter your name:"/>
             </properties>
           </component>
-          <component id="c369" class="javax.swing.JTextField" binding="CreateEmailInput">
+          <component id="c369" class="javax.swing.JTextField" binding="email">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -123,7 +123,7 @@
               <foreground color="-16777216"/>
             </properties>
           </component>
-          <component id="1dba5" class="javax.swing.JTextField" binding="CreatePasswordInput">
+          <component id="1dba5" class="javax.swing.JTextField" binding="password">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -134,7 +134,7 @@
               <foreground color="-16777216"/>
             </properties>
           </component>
-          <component id="983ca" class="javax.swing.JTextField" binding="CreateVerificationInput">
+          <component id="983ca" class="javax.swing.JTextField" binding="verification">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -145,7 +145,7 @@
               <foreground color="-16777216"/>
             </properties>
           </component>
-          <component id="b320f" class="javax.swing.JTextField" binding="CreateNameInput">
+          <component id="b320f" class="javax.swing.JTextField" binding="name">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>

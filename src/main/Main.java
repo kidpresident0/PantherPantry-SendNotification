@@ -4,7 +4,6 @@ import presentation.AccountCreation;
 import presentation.AccountLogin;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Main entry point for the program.

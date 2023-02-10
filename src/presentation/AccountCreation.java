@@ -1,6 +1,7 @@
 package presentation;
 
 import main.Main;
+import logic.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,11 +13,11 @@ import java.awt.event.MouseEvent;
 
 public class AccountCreation {
      JPanel rootPanel;
-     JTextField CreateUsernameInput;
-     JTextField CreateEmailInput;
-     JTextField CreatePasswordInput;
-     JTextField CreateVerificationInput;
-     JTextField CreateNameInput;
+     JTextField username;
+     JTextField email;
+     JTextField password;
+     JTextField verification;
+     JTextField name;
      JTextArea CreateIntroText;
      JTextArea CreateBottomText;
      JButton CreateSubmitButton;
@@ -28,25 +29,45 @@ public class AccountCreation {
      JLabel CreateEmailText;
      JLabel CreateToLoginButton;
 
-    public JPanel getRootPanel() {
-        return rootPanel;
-    }
-
     public AccountCreation() {
         CreateToLoginButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 Main.AccountLogin();
             }
         });
-
         CreateSubmitButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         CreateToLoginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
         CreateSubmitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Wow you really clicked that.", "Thanks", JOptionPane.INFORMATION_MESSAGE);
+                validateCreation();
+                JOptionPane.showMessageDialog(null, "Wow you really clicked that.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
+
+    public JPanel getRootPanel() {
+        return rootPanel;
+    }
+
+    /**
+     * When the create account button is clicked, this sequence will begin to verify that all fields are correct before writing to the database.
+     */
+    public static void validateCreation() {
+        // email = getEmail()
+        // username = getUsername()
+        // password = getPassword()
+        // passwordVerify = getPasswordVerify()
+        // name = getName()
+        // if (email != null && username != null && password != null && passwordVerify != null && name != null)
+        //     if (isEmail(email) == true)
+        //         if (compareString(password, passwordVerify) == true)
+        //              splitNames(name)
+        //              Database.addSubscriber()
+        //
+        //
+        //
+    }
+
+
 
 }
