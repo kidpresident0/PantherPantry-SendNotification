@@ -1,8 +1,6 @@
 package main;
 
-import com.toedter.calendar.JDateChooser;
 import presentation.LogUI;
-import database.Database;
 
 import javax.swing.*;
 
@@ -32,9 +30,6 @@ public class Main {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         LogUI app = new LogUI();
-
-
-
         JPanel root = app.getRootPanel();
         frame.getContentPane().removeAll();
         frame.getContentPane().add(root);

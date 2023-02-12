@@ -13,14 +13,14 @@ import java.util.ArrayList;
 
 public class Log {
     private static String mUserID;
-    private static String mDate;
+    private static String mDateTime;
     private static String mSubject;
     private static String mMessageBody;
     private static Integer mSubscriberAmount;
 
-    public Log(String userID, String date, String subject, String messageBody, Integer subscriberAmount) {
+    public Log(String userID, String dateTime, String subject, String messageBody, Integer subscriberAmount) {
         mUserID = userID;
-        mDate = date;
+        mDateTime = dateTime;
         mSubject = subject;
         mMessageBody = messageBody;
         mSubscriberAmount = subscriberAmount;
@@ -34,7 +34,7 @@ public class Log {
         return mUserID;
     }
     public static String getDate() {
-        return mDate;
+        return mDateTime;
     }
 
     public static String getSubject() {

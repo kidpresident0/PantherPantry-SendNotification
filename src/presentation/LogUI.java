@@ -1,12 +1,18 @@
 package presentation;
 
-import com.toedter.calendar.JDateChooser;
 import logic.Log;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Properties;
+
 /**
  * This is the ReviewNotificationLog Graphic User Interface Class that will launch its application
  * @author Brandon King
@@ -20,18 +26,27 @@ public class LogUI {
     private JButton closeButton;
     private JLabel endLabel;
     private JLabel startLabel;
+    private JDatePickerImpl startDatePicker;
     private DefaultTableModel m_LogTableModel;
-
-
 
     public LogUI() {
         fetchData();
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
     }
 
     public JPanel getRootPanel() {
         return rootPanel;
     }
-
 
     private void setupTable () {
         //Create a default table model with 5 columns named UserID, Date/Time, Subject, Message, Subscribers
@@ -39,7 +54,7 @@ public class LogUI {
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
-                new Object[] {"User ID", "Date", "Subject", "Message", "Subscribers"}
+                new Object[] {"User ID", "Date/Time", "Subject", "Message", "Subscribers"}
         ) {
             //stops user from editing the table
             @Override
@@ -80,6 +95,14 @@ public class LogUI {
                     Log.getSubscriberAmount()
             });
         }
+    }
+
+    private void createUIComponents() {
+        Properties p = new Properties();
+        p.put("text.today", "Today");
+        p.put("text.month", "Month");
+        p.put("text.year", "Year");
+        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
     }
 }
 

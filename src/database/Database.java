@@ -21,7 +21,9 @@ public class Database {
 
     //sql queries
     private static final String FIND_REVIEW_NOTIFICATION_QUERY =
-            "SELECT userID, date, time, subject, messageBody,subscriberAmount FROM NOTIFICATIONS WHERE subscriberAmount = '2';";
+            "SELECT userID, dateTime, subject, messageBody,subscriberAmount " +
+                    "FROM NOTIFICATIONS " +
+                    "WHERE dateTime BETWEEN ? and ?;";
 
     //the connection object
     private static Connection mConnection = null;
@@ -66,7 +68,7 @@ public class Database {
             while (rs.next()) {
                 logs.add(new Log(
                         rs.getString("userID"),
-                        rs.getString("date"),
+                        rs.getString("dateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
                         rs.getInt("subscriberAmount")
