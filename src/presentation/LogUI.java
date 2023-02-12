@@ -1,16 +1,17 @@
 package presentation;
 
 import logic.Log;
-import org.jdatepicker.impl.JDatePanelImpl;
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
+import org.jdatepicker.DateModel;
+import org.jdatepicker.JDatePicker;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Properties;
 
 /**
@@ -26,15 +27,17 @@ public class LogUI {
     private JButton closeButton;
     private JLabel endLabel;
     private JLabel startLabel;
-    private JDatePickerImpl startDatePicker;
+    private JDatePicker startDatePicker;
+    private JDatePicker endDatePicker;
     private DefaultTableModel m_LogTableModel;
 
     public LogUI() {
+        startDatePicker.getModel().setDate(2022, 10, 1);
         fetchData();
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                fetchData();
             }
         });
         closeButton.addActionListener(new ActionListener() {
@@ -85,7 +88,11 @@ public class LogUI {
 
     private void fetchData() {
         setupTable();
-        ArrayList<Log> logs = Log.findLogs();
+        DateModel startCal = startDatePicker.getModel();
+        String startDateString = (1 + startCal.getMonth()) + "/" + startCal.getDay() + "/" + startCal.getYear();
+        DateModel endCal = endDatePicker.getModel();
+        String endDateString = (1 + endCal.getMonth()) + "/" + endCal.getDay() + "/" + endCal.getYear();
+        ArrayList<Log> logs = Log.findLogs(startDateString, endDateString);
         for (Log log: logs) {
             m_LogTableModel.addRow(new Object[]{
                     Log.getUserID(),
@@ -95,14 +102,6 @@ public class LogUI {
                     Log.getSubscriberAmount()
             });
         }
-    }
-
-    private void createUIComponents() {
-        Properties p = new Properties();
-        p.put("text.today", "Today");
-        p.put("text.month", "Month");
-        p.put("text.year", "Year");
-        JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
     }
 }
 

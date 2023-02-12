@@ -26,8 +26,8 @@ public class Log {
         mSubscriberAmount = subscriberAmount;
     }
 
-    public static ArrayList<Log> findLogs() {
-        return Database.findLogs();
+    public static ArrayList<Log> findLogs(String startDate, String endDate) {
+        return Database.findLogs(startDate, endDate);
     }
 
     public static String getUserID() {

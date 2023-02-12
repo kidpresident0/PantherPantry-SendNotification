@@ -21,9 +21,9 @@ public class Database {
 
     //sql queries
     private static final String FIND_REVIEW_NOTIFICATION_QUERY =
-            "SELECT userID, dateTime, subject, messageBody,subscriberAmount " +
+            "SELECT SentBy, SentDateTime, Subject, MessageBody, SubscriberCount " +
                     "FROM NOTIFICATIONS " +
-                    "WHERE dateTime BETWEEN ? and ?;";
+                    "WHERE SentDateTime BETWEEN ? AND ?;";
 
     //the connection object
     private static Connection mConnection = null;
@@ -48,7 +48,7 @@ public class Database {
      * @param date  The date to search for
      * @return The requested notification log query
      */
-    public static ArrayList<Log> findLogs() {
+    public static ArrayList<Log> findLogs(String startDate, String endDate) {
         ResultSet rs;
         ArrayList<Log> logs = new ArrayList<>();
         PreparedStatement stmt;
@@ -59,7 +59,8 @@ public class Database {
 
             //Prepare sql statement
             stmt = mConnection.prepareStatement(FIND_REVIEW_NOTIFICATION_QUERY);
-
+            stmt.setString(1, startDate + " 00:00:00");
+            stmt.setString(2, endDate + " 23:59:59");
             //Execute the query
             rs = stmt.executeQuery();
 
@@ -67,11 +68,11 @@ public class Database {
             // and add it to the list of notifications
             while (rs.next()) {
                 logs.add(new Log(
-                        rs.getString("userID"),
-                        rs.getString("dateTime"),
-                        rs.getString("subject"),
-                        rs.getString("messageBody"),
-                        rs.getInt("subscriberAmount")
+                        rs.getString("SentBy"),
+                        rs.getString("SentDateTime"),
+                        rs.getString("Subject"),
+                        rs.getString("MessageBody"),
+                        rs.getInt("SubscriberCount")
                 ));
             }
         } catch (Exception e) {
