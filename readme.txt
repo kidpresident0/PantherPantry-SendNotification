@@ -1,5 +1,1 @@
-Acceptance Criteria:
- Manager can enter subject and message which is emailed to everyone on the subscriber list
- The message will be straight text in sprint 1. For sprint 2, the message could be built from a template
- Message data (subject and message sent, staff who sent, date and time sent, number of subscribers the
-message was sent to) is written to a notification log
+This is the Send Notification for the Portland Panther Pantry. It can be used to send email notifications(through GMAIL) about food availability at various PCC campus to all Panther Pantry subscribers. The details for each notification are recorded to a log in a database for further review by staff.
