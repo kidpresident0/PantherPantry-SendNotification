@@ -21,9 +21,8 @@ public class Database {
 
     //sql queries
     private static final String FIND_REVIEW_NOTIFICATION_QUERY =
-            "SELECT SentBy, SentDateTime, Subject, MessageBody, SubscriberCount " +
-                    "FROM NOTIFICATIONS " +
-                    "WHERE SentDateTime BETWEEN ? AND ?;";
+            "SELECT userID, dateTime, subject, messageBody, subscriberAmount " + "FROM NOTIFICATIONS " +
+                    "WHERE dateTime BETWEEN ? AND ?;";
 
     //the connection object
     private static Connection mConnection = null;
@@ -68,11 +67,11 @@ public class Database {
             // and add it to the list of notifications
             while (rs.next()) {
                 logs.add(new Log(
-                        rs.getString("SentBy"),
-                        rs.getString("SentDateTime"),
-                        rs.getString("Subject"),
-                        rs.getString("MessageBody"),
-                        rs.getInt("SubscriberCount")
+                        rs.getString("userID"),
+                        rs.getString("dateTime"),
+                        rs.getString("subject"),
+                        rs.getString("messageBody"),
+                        rs.getInt("subscriberAmount")
                 ));
             }
         } catch (Exception e) {

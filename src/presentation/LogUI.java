@@ -9,10 +9,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Properties;
+
 
 /**
  * This is the ReviewNotificationLog Graphic User Interface Class that will launch its application
@@ -43,6 +41,7 @@ public class LogUI {
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.exit(0);
             }
         });
     }
