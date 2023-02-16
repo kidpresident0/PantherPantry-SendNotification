@@ -1,12 +1,12 @@
 package presentation;
 
 /**
- * This presentation.Template.java file handles the action events of the preview
+ * This presentation.CreateTemplate.java file handles the action events of the preview
  * and create buttons in this application. The preview button displays a dialog box
  * with the generated text (a message to a Food Pantry subscribers) in the template, and the
  * create button allows the user to save all completed text in the text fields of the application.
  * @author Kate White
- * @version 2023.07.02
+ * @version 2023.15.02
  */
 
 import logic.Template;
@@ -14,8 +14,9 @@ import logic.Template;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JScrollPane;
 
-public class ShowTemplate {
+public class CreateTemplate {
     private JTextArea templateText;
     private JPanel rootPanel;
     private JPanel topPanel;
@@ -27,8 +28,9 @@ public class ShowTemplate {
     private JLabel SubjectLabel;
     private JLabel TextLabel;
     private JPanel bottomPanel;
+    private JScrollPane ScrollPane;
 
-    public ShowTemplate() {
+    public CreateTemplate() {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

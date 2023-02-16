@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="presentation.EditTemplate">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="true" same-size-vertically="false" hgap="10" vgap="10">
+    <margin top="10" left="0" bottom="10" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="508" height="473"/>
+    </constraints>
+    <properties>
+      <background color="-6579301"/>
+    </properties>
+    <border type="line"/>
+    <children>
+      <grid id="e4300" binding="topPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="10" bottom="0" right="10"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="10" height="10"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-6579301"/>
+          <enabled value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="95e62" class="javax.swing.JLabel" binding="labelAnnouncement">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="10" height="69"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Cooper Black" size="18" style="0"/>
+              <foreground color="-16777216"/>
+              <text value="Food Pantry Announcement"/>
+            </properties>
+          </component>
+          <component id="f8998" class="javax.swing.JLabel" binding="temp">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="84" height="59"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Cooper Black" size="14" style="0"/>
+              <foreground color="-16777216"/>
+              <text value="Template Name"/>
+            </properties>
+          </component>
+          <component id="e21a3" class="javax.swing.JComboBox" binding="templateNameComboBox">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <model/>
+            </properties>
+          </component>
+          <component id="554eb" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="39" height="26"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Cooper Black" size="14"/>
+              <foreground color="-16777216"/>
+              <text value="Subject"/>
+            </properties>
+          </component>
+          <component id="7872" class="javax.swing.JTextField" binding="subjectTextField">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="26"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Fira Code" size="12" style="1"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="9d754" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Cooper Black" size="14" style="0"/>
+          <foreground color="-16777216"/>
+          <text value="Announcement Message"/>
+        </properties>
+      </component>
+      <grid id="fcb24" binding="textPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="53802">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalScrollBarPolicy value="31"/>
+              <verticalScrollBarPolicy value="22"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="2c460" class="javax.swing.JTextArea" binding="textArea">
+                <constraints/>
+                <properties>
+                  <background color="-4473925"/>
+                  <font name="Fira Code" size="12" style="1"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+      <component id="a2ce5" class="javax.swing.JButton" binding="saveButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4473925"/>
+          <font name="Cooper Black" size="14" style="0"/>
+          <foreground color="-16777216"/>
+          <text value="Save"/>
+        </properties>
+      </component>
+      <component id="b006a" class="javax.swing.JButton" binding="clearButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4473925"/>
+          <font name="Cooper Black" size="14" style="0"/>
+          <foreground color="-16777216"/>
+          <text value="Clear"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

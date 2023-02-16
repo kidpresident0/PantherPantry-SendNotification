@@ -6,9 +6,9 @@ package main;
  * @version 2023.07.02
  */
 
-import presentation.ShowTemplate;
+import presentation.TabbedPaneFrame;
+
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Main entry point for the program.
@@ -33,7 +33,7 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Makes the application close when the window goes away.
-        ShowTemplate app = new ShowTemplate();
+        TabbedPaneFrame app = new TabbedPaneFrame();
 
         JPanel root = app.getRootPanel();
 

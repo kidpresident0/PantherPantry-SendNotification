@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="presentation.ShowTemplate">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="presentation.CreateTemplate">
   <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="0" y="0" width="974" height="7303"/>
@@ -87,17 +87,26 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="967bc" class="javax.swing.JTextArea" binding="templateText">
-            <constraints border-constraint="Center"/>
+          <scrollpane id="a4d32" binding="ScrollPane">
+            <constraints border-constraint="North"/>
             <properties>
-              <background color="-2500135"/>
-              <font name="Constantia" size="14" style="0"/>
-              <foreground color="-16777216"/>
-              <lineWrap value="true"/>
-              <text value="Dear {campus} Panther Pantry Subscriber,  &#10;&#10;Our mission is to develop healthy eating habits in you!&#10;&#10;Let's we meet your at {campus} pantry between {start time} and {end time} and you  can try to eat a variety of {food items} instead of the same thing all the time.&#10;&#10;Please don't forget your ID, along with proof of enrollment in {term} classes.&#10;&#10;Sincerely,&#10;{staff name}&#10;{campus}&#10;Panther Pantry "/>
-              <wrapStyleWord value="true"/>
+              <verticalScrollBarPolicy value="20"/>
             </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <component id="967bc" class="javax.swing.JTextArea" binding="templateText">
+                <constraints/>
+                <properties>
+                  <background color="-2500135"/>
+                  <font name="Constantia" size="14" style="0"/>
+                  <foreground color="-16777216"/>
+                  <lineWrap value="true"/>
+                  <text value="Dear {campus} Panther Pantry Subscriber,  &#10;&#10;Our mission is to develop healthy eating habits in you!&#10;&#10;Let's we meet your at {campus} pantry between {start time} and {end time} and you  can try to eat a variety of {food items} instead of the same thing all the time.&#10;&#10;Please don't forget your ID, along with proof of enrollment in {term} classes.&#10;&#10;Sincerely,&#10;{staff name}&#10;{campus}&#10;Panther Pantry "/>
+                  <wrapStyleWord value="true"/>
+                </properties>
+              </component>
+            </children>
+          </scrollpane>
         </children>
       </grid>
       <grid id="457d" binding="bottomPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

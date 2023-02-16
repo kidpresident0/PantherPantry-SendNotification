@@ -1,12 +1,14 @@
 package logic;
 
 import database.Database;
+
+import java.awt.*;
 import java.util.List;
 
 /**
  * This logic.Template.java file gets the text from the application form and creates a new template in the database.
  * @author Kate White
- * @version 2023.07.02
+ * @version 2023.15.02
  */
 public class Template {
     private int UserID;
@@ -25,6 +27,11 @@ public class Template {
     public void create() {
         Database.createTemplate(this);
     }
+
+    public static Template getTemplate(int id) {
+        return Database.getTemplate(id);
+    }
+
     public int getUserID() {
         return UserID;
     }
