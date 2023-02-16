@@ -11,6 +11,7 @@ import javax.mail.internet.MimeMessage;
 
 /**
  * This is the class responsible for sending email notifications to subscribers of the Panther Pantry.
+ * It uses the Javax.mail library to log in to Gmail and send email notifications to Panther Pantry subscribers.
  *
  * @author Marc Goodman, John Christian
  * @version 2023.02.06

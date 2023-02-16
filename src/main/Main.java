@@ -29,7 +29,6 @@ public class Main {
         JPanel root = ui.getRootPanel();
         JFrame frame = new JFrame();
 
-
         frame.setTitle("Send Notification");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(root);

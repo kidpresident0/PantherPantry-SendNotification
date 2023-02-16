@@ -4,13 +4,13 @@ import database.Database;
 import logic.SendNotification;
 import logic.User;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * This is the GUI class for the Send Notification story for the PCC Panther Pantry.
@@ -19,8 +19,6 @@ import java.util.ArrayList;
  * @version 2023.02.07
  */
 public class SendNotificationGUI extends JFrame {
-
-
     JPanel rootPanel;
     JTextField subjectField;
     JLabel subjectLabel;
@@ -36,7 +34,6 @@ public class SendNotificationGUI extends JFrame {
         Database db = new Database();
 
         subscriberField.setText(String.valueOf(db.subCount()));
-
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -97,7 +94,7 @@ public class SendNotificationGUI extends JFrame {
 
         return true;
     }
-
+    //Display the local time when the notification is sent to the terminal
     public void recordTime() {
         Calendar now = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("ddMMyyyyHHmm");
@@ -105,7 +102,6 @@ public class SendNotificationGUI extends JFrame {
         System.out.println(result);
 
     }
-
     public ArrayList<User> subscriberEmails() {
         Database subEmails = new Database();
         ArrayList<User> subscribers = subEmails.getGetSubscriberEmail();
@@ -119,6 +115,5 @@ public class SendNotificationGUI extends JFrame {
     public JPanel getRootPanel() {
         return rootPanel;
     }
-
 
 }
