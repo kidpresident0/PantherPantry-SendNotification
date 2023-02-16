@@ -1,5 +1,4 @@
 package database;
-import logic.User;
 import java.sql.*;
 
 /**
@@ -16,14 +15,14 @@ public class Database {
     private static final String password = "456$%^234a_Null";
 
     // Queries
-    private static final String createUserAccount = "INSERT INTO USERS " +
+    private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
             "(username, firstName, lastName, userEmail, userPassword, userRole) " +
             "VALUES (?, ?, ?, ?, ?, ?)";
 
-    private static final String getEmail = "SELECT userEmail FROM USERS WHERE userEmail = ?";
+    private static final String GET_EMAIL = "SELECT userEmail FROM USERS WHERE userEmail = ?";
     private static final String GET_USERNAME = "SELECT username FROM USERS WHERE username = ?";
-    private static final String getPasswordUsername = "SELECT userPassword FROM USERS WHERE username = ?";
-    private static final String getPasswordEmail = "SELECT userPassword FROM USERS WHERE userEmail = ?";
+    private static final String GET_PASSWORD_USERNAME = "SELECT userPassword FROM USERS WHERE username = ?";
+    private static final String GET_PASSWORD_EMAIL = "SELECT userPassword FROM USERS WHERE userEmail = ?";
 
     // The one and only connection object
     private static Connection conn = null;
@@ -41,16 +40,16 @@ public class Database {
     }
 
     // Adds a new subscriber to the Users table.
-    public static void addSubscriber(User user) {
+    public static void addSubscriber(String username, String firstName, String lastName, String email, String password) {
         connect();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(createUserAccount);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getFirstName());
-            stmt.setString(3, user.getLastName());
-            stmt.setString(4, user.getEmail());
-            stmt.setString(5, user.getPassword());
+            PreparedStatement stmt = conn.prepareStatement(CREATE_USER_ACCOUNT);
+            stmt.setString(1, username);
+            stmt.setString(2, firstName);
+            stmt.setString(3, lastName);
+            stmt.setString(4, email);
+            stmt.setString(5, password);
             stmt.setString(6, "subscriber");
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -63,7 +62,7 @@ public class Database {
         connect();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(getEmail);
+            PreparedStatement stmt = conn.prepareStatement(GET_EMAIL);
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             return rs.next();
@@ -95,7 +94,7 @@ public class Database {
         connect();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(getPasswordEmail);
+            PreparedStatement stmt = conn.prepareStatement(GET_PASSWORD_EMAIL);
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
@@ -113,7 +112,7 @@ public class Database {
         connect();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(getPasswordUsername);
+            PreparedStatement stmt = conn.prepareStatement(GET_PASSWORD_USERNAME);
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

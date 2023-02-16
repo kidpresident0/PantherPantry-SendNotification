@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0be4603-e068-4412-8924-b8bc8d696308" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/logic/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/BCrypt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/notification.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logic/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/AccountCreation.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/AccountCreation.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/AccountCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/AccountCreation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/AccountLogin.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/AccountLogin.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/AccountLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/AccountLogin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,9 +25,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2KtsX99NunP29IPy4VNl3gqUMiw" />
   <component name="ProjectLevelVcsManager">
@@ -48,6 +43,11 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\webbs\Documents\school stuff\CIS234A\git\Null\src\logic" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

@@ -6,10 +6,11 @@ import presentation.AccountLogin;
 import javax.swing.*;
 
 /**
- * Main entry point for the program.
- * <p>
- * Kick off the application by calling the start method of the Controller class.
+ * Main class for the Panther Pantry account creation and login application
+ * @author Sevin Webb
+ * @version 2023.02.13
  */
+
 public class Main {
     private static JFrame frame = null;
 

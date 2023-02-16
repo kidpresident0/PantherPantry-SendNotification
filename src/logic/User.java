@@ -1,20 +1,19 @@
 package logic;
 import database.Database;
-import presentation.AccountCreation;
-import presentation.AccountLogin;
 import java.util.regex.Pattern;
 
+/**
+ * User class for Panther Pantry login and account creation. This class creates User objects that can be used to pass information to and from the database to the presentation layer.
+ * @author Sevin Webb
+ * @version 2023.02.13
+ */
+
 public class User {
-
-
     String email;
     String username;
     String password;
     String firstName;
     String lastName;
-
-
-
 
     public User(String email, String username, String password, String firstName, String lastName) {
         this.email = email;
@@ -49,16 +48,6 @@ public class User {
             return false;
     }
 
-    /**
-     * Takes the given name from account creation and splits it into first and last by a space character
-     */
-    public static void splitNames(String name){
-        String[] names = name.split(" ");
-         String firstName = names[0];
-         String lastName = names[1];
-
-    }
-
     public static boolean checkUsername(String name) {
          return Database.checkUsername(name);
     }
@@ -75,25 +64,7 @@ public class User {
         return Database.checkPasswordUsername(name);
     }
 
-
-    public String getUsername() {
-         return username;
+    public static void addUser(String firstName, String lastName, String password, String email, String username) {
+        Database.addSubscriber(username, firstName, lastName, email, password);
     }
-
-    public String getFirstName() {
-         return firstName;
-    }
-
-    public String getLastName() {
-         return lastName;
-    }
-
-    public String getEmail() {
-         return email;
-    }
-
-    public String getPassword() {
-         return password;
-    }
-
 }

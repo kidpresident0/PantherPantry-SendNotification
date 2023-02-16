@@ -2,6 +2,7 @@ package presentation;
 
 import logic.User;
 import main.Main;
+import logic.BCrypt;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+
+/**
+ * GUI class for displaying the account login screen as well as functionality needed to move data throughout the application.
+ * @author Sevin Webb
+ * @version 2023.02.13
+ */
 
 public class AccountLogin {
      JPanel rootPanel;
@@ -47,31 +55,36 @@ public class AccountLogin {
         String passwordCheck = "";
         String name = emailOrUsername.getText();
         String password = loginPasswordField.getText();
+
+        //checks that fields are filled in
         if (name.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(null, "Username and Password must be supplied", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         isUsername = User.checkUsername(name);
         if (!isUsername) {
-            emailCheck = User.isEmail(name);
+            emailCheck = User.checkEmail(name);
             if (!emailCheck) {
-                JOptionPane.showMessageDialog(null, "Email or Username is not valid.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Login failed, check information and try again.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
             passwordCheck = User.getPasswordEmail(name);
-            if(password.equals(passwordCheck)) {
+            String passwordErrorCorrect = "$2a" + passwordCheck.substring(3);
+            if (BCrypt.checkpw(password, passwordErrorCorrect)) {
                 JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            JOptionPane.showMessageDialog(null, "Email and Password do not match.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Login failed, check information and try again.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         passwordCheck = User.getPasswordUsername(name);
-        if(password.equals(passwordCheck)) {
+        String passwordErrorCorrect = "$2a" + passwordCheck.substring(3);
+        if (BCrypt.checkpw(password, passwordErrorCorrect)) {
             JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(null, "Username and Password do not match.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Login failed, check information and try again.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
+        return;
     }
 
 }
