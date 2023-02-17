@@ -29,7 +29,6 @@ public class SendNotificationGUI extends JFrame {
     JPanel topPanel;
     JPanel bottomPanel;
 
-
     public SendNotificationGUI() {
         Database db = new Database();
 
@@ -37,16 +36,17 @@ public class SendNotificationGUI extends JFrame {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                buttonSendActionPerformed(event);
+                buttonSendActionPerformed();
             }
 
         });
 
     }
 
-    private void buttonSendActionPerformed(ActionEvent event) {
+    // If the subject/body fields have content send the notification and pass its details along to the logic layer.
+    private void buttonSendActionPerformed() {
         SendNotification sendNotification = new SendNotification();
-        Database db = new Database();
+
         if (!validateFields()) {
             return;
         }
@@ -55,19 +55,16 @@ public class SendNotificationGUI extends JFrame {
         String fromEmail = sendNotification.getUsername();
         String subject = subjectField.getText();
         String body = bodyArea.getText();
-        int subscriberCount = db.subCount();
+        int subscriberCount = SendNotification.getSubscriberCount();
         try {
-            SendNotification.sendEmail(subscribers, subject, body);
+            SendNotification.sendNotification(subscribers, subject, body);
             subjectField.setText("");
             bodyArea.setText("");
             recordTime();
-            db.setNotificationInfo(subject, body, fromEmail, subscriberCount);
-            System.exit(0);
-
-
+            SendNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
             JOptionPane.showMessageDialog(this,
                     "The notification has been sent successfully!");
-
+            System.exit(0);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
@@ -75,7 +72,7 @@ public class SendNotificationGUI extends JFrame {
                     "Please try again" , JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    // Check that the subject and body are not empty
     private boolean validateFields() {
         if (subjectField.getText().equals("")) {
             JOptionPane.showMessageDialog(this,
@@ -94,7 +91,7 @@ public class SendNotificationGUI extends JFrame {
 
         return true;
     }
-    //Display the local time when the notification is sent to the terminal
+    //Display the local time for when the notification is sent to the terminal
     public void recordTime() {
         Calendar now = Calendar.getInstance();
         DateFormat df = new SimpleDateFormat("ddMMyyyyHHmm");
@@ -102,16 +99,13 @@ public class SendNotificationGUI extends JFrame {
         System.out.println(result);
 
     }
+    //Only on subscriber is present for presentation purposes
     public ArrayList<User> subscriberEmails() {
-        Database subEmails = new Database();
-        ArrayList<User> subscribers = subEmails.getGetSubscriberEmail();
-        System.out.println(subscribers);
-        for (User user : subscribers) {
-            System.out.println(user.getEmail());
-        }
-        return subscribers;
-    }
+        ArrayList<User> subEmails = new SendNotification().subscriberEmails();
 
+        return subEmails;
+    }
+    //root GUI panel that hold all the Swing components
     public JPanel getRootPanel() {
         return rootPanel;
     }

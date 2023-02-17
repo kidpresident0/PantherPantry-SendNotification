@@ -15,8 +15,8 @@
 -- Create Table --
   CREATE TABLE NOTIFICATIONS (
   notificationID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  Subject NVARCHAR(255),
-  MessageBody NVARCHAR(255),
-  SentBy NVARCHAR(255),
-  SentDateTime DATETIME,
-  SubscriberCount int);
+  subject NVARCHAR(255),
+  messageBody NVARCHAR(255),
+  sentBy NVARCHAR(255),
+  sentDateTime DATETIME,
+  subscriberCount int);

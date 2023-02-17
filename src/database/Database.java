@@ -21,8 +21,8 @@ public class Database {
 
     static String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
         + ", salt , userRole FROM 234a_Null.dbo.USERS";
-    static String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (Subject, MessageBody, SentBy, SentDateTime,"
-        + "SubscriberCount) VALUES (?,?,?,?,?)";
+    static String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
+        + "subscriberCount) VALUES (?,?,?,?,?)";
 
 
     private final ArrayList<User> subscribers;
@@ -120,7 +120,7 @@ public class Database {
     }
 
     /**
-     * Public method to be called by the SendNotificationGUI so that notification details
+     * Public method to be called by the SendNotification so that notification details
      * can be recorded in the database.
      *
      * @param subject         the subject of the notification
@@ -128,7 +128,7 @@ public class Database {
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
      */
-    public void setNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
+    public void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
         writeNotificationInfo(subject, messageBody, sentBy, subscriberCount);
     }
 }

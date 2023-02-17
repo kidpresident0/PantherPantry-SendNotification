@@ -1,5 +1,8 @@
 package logic;
 
+import database.Database;
+
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -18,7 +21,13 @@ import javax.mail.internet.MimeMessage;
  */
 public class SendNotification {
 
-    public static void sendEmail(String subscribers, String subject, String body) {
+    /**
+     * Create a sendNotification object
+     * @param subscribers the email addresses of the subscribers
+     * @param subject the subject of the notification
+     * @param body the message body of the notification
+     */
+    public static void sendNotification(String subscribers, String subject, String body) {
 
         final String username = "TeamNull234@gmail.com";
         final String password = "zmjmnszsetntvcxq";
@@ -56,8 +65,49 @@ public class SendNotification {
         }
     }
 
+    /**
+     * Pass along the current Panther Pantry subscriber account to the GUI
+     * @return subscriber count
+     */
+    public static int getSubscriberCount() {
+
+        return new Database().subCount();
+    }
+
+    /**
+     * Get the email address of the panther pantry staff sending the email. For demonstration purposes
+     * this value is currently hardcoded.
+     * @return sender's email address
+     */
     public String getUsername() {
         String publicUsername = "TeamNull234@gmail.com";
         return publicUsername;
+    }
+
+    /**
+     * Make a list of subscriber emails
+     *
+     * @return a list of subscriber email addresses.
+     */
+    public ArrayList<User> subscriberEmails() {
+        Database subEmails = new Database();
+        ArrayList<User> subscribers = subEmails.getGetSubscriberEmail();
+        System.out.println(subscribers);
+        for (User user : subscribers) {
+            System.out.println(user.getEmail());
+        }
+        return subscribers;
+    }
+
+    /**
+     * Pass the details of a single notification along to the database.
+     * @param subject subject of the notification
+     * @param messageBody message body of the notification
+     * @param sentBy panther pantry staff member who sent the notification
+     * @param subscriberCount the number of subscribers that received the notification
+     */
+    public static void setNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
+        Database db = new Database();
+        db.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount);
     }
 }
