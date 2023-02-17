@@ -33,6 +33,8 @@ public class SendNotificationGUI extends JFrame {
         Database db = new Database();
 
         subscriberField.setText(String.valueOf(db.subCount()));
+
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
