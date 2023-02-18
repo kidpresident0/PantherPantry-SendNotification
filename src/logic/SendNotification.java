@@ -29,8 +29,8 @@ public class SendNotification {
      */
     public static void sendNotification(String subscribers, String subject, String body) {
 
-        final String username = "TeamNull954@gmail.com";
-        final String password = "drqvdiwdbdnmyhtd";
+        final String username = "TeamNullTest@gmail.com";
+        final String password = "jpolvslgeuawbsum";
 
         Properties props = new Properties();
 
@@ -48,7 +48,7 @@ public class SendNotification {
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("TeamNull954@gmail.com"));
+            message.setFrom(new InternetAddress("TeamNullTest@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("flanwithaplan0@gmail.com"));
             message.setSubject(subject);
@@ -80,7 +80,7 @@ public class SendNotification {
      * @return sender's email address
      */
     public String getUsername() {
-        String publicUsername = "TeamNull954@gmail.com";
+        String publicUsername = "TeamNullTest@gmail.com";
         return publicUsername;
     }
 
