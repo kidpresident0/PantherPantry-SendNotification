@@ -94,11 +94,11 @@ public class LogUI {
         ArrayList<Log> logs = Log.findLogs(startDateString, endDateString);
         for (Log log: logs) {
             m_LogTableModel.addRow(new Object[]{
-                    Log.getSentBy(),
-                    Log.getSentDateTime(),
-                    Log.getSubject(),
-                    Log.getMessageBody(),
-                    Log.getSubscriberCount()
+                    log.getSentBy(),
+                    log.getSentDateTime(),
+                    log.getSubject(),
+                    log.getMessageBody(),
+                    log.getSubscriberCount()
             });
         }
     }

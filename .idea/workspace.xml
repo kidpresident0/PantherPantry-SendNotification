@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4abb89b4-f4a9-4877-8848-65921b85a811" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/Sprint1ResetDB.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/Log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/presentation/LogUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/LogUI.java" afterDir="false" />
     </list>
@@ -165,6 +163,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/presentation/LogUI.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

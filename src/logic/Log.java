@@ -12,11 +12,11 @@ import java.util.ArrayList;
  */
 
 public class Log {
-    private static String mSentBy;
-    private static String mSentDateTime;
-    private static String mSubject;
-    private static String mMessageBody;
-    private static Integer mSubscriberCount;
+    private String mSentBy;
+    private String mSentDateTime;
+    private String mSubject;
+    private String mMessageBody;
+    private Integer mSubscriberCount;
 
     public Log(String sentBy, String sentDateTime, String subject, String messageBody, Integer subscriberCount) {
         mSentBy = sentBy;
@@ -30,21 +30,21 @@ public class Log {
         return Database.findLogs(startDate, endDate);
     }
 
-    public static String getSentBy() {
+    public String getSentBy() {
         return mSentBy;
     }
 
-    public static String getSentDateTime() {
+    public String getSentDateTime() {
         return mSentDateTime;
     }
 
-    public static String getSubject() { return mSubject;}
+    public String getSubject() { return mSubject;}
 
-    public static String getMessageBody() {
+    public String getMessageBody() {
         return mMessageBody;
     }
 
-    public static Integer getSubscriberCount() {
+    public Integer getSubscriberCount() {
         return mSubscriberCount;
     }
 }
