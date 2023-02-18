@@ -12,41 +12,40 @@ import java.util.ArrayList;
  */
 
 public class Log {
-    private static String mUserID;
-    private static String mDateTime;
+    private static String mSentBy;
+    private static String mSentDateTime;
     private static String mSubject;
     private static String mMessageBody;
-    private static Integer mSubscriberAmount;
+    private static Integer mSubscriberCount;
 
-    public Log(String userID, String dateTime, String subject, String messageBody, Integer subscriberAmount) {
-        mUserID = userID;
-        mDateTime = dateTime;
+    public Log(String sentBy, String sentDateTime, String subject, String messageBody, Integer subscriberCount) {
+        mSentBy = sentBy;
+        mSentDateTime = sentDateTime;
         mSubject = subject;
         mMessageBody = messageBody;
-        mSubscriberAmount = subscriberAmount;
+        mSubscriberCount = subscriberCount;
     }
 
     public static ArrayList<Log> findLogs(String startDate, String endDate) {
         return Database.findLogs(startDate, endDate);
     }
 
-    public static String getUserID() {
-        return mUserID;
-    }
-    public static String getDate() {
-        return mDateTime;
+    public static String getSentBy() {
+        return mSentBy;
     }
 
-    public static String getSubject() {
-        return mSubject;
+    public static String getSentDateTime() {
+        return mSentDateTime;
     }
+
+    public static String getSubject() { return mSubject;}
 
     public static String getMessageBody() {
         return mMessageBody;
     }
 
-    public static Integer getSubscriberAmount() {
-        return mSubscriberAmount;
+    public static Integer getSubscriberCount() {
+        return mSubscriberCount;
     }
 }
 

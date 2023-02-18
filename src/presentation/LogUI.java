@@ -30,7 +30,7 @@ public class LogUI {
     private DefaultTableModel m_LogTableModel;
 
     public LogUI() {
-        startDatePicker.getModel().setDate(2022, 10, 1);
+        startDatePicker.getModel().setDate(2023, 1, 1);
         fetchData();
         submitButton.addActionListener(new ActionListener() {
             @Override
@@ -51,12 +51,12 @@ public class LogUI {
     }
 
     private void setupTable () {
-        //Create a default table model with 5 columns named UserID, Date/Time, Subject, Message, Subscribers
+        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
         m_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
-                new Object[] {"User ID", "Date/Time", "Subject", "Message", "Subscribers"}
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
         ) {
             //stops user from editing the table
             @Override
@@ -94,11 +94,11 @@ public class LogUI {
         ArrayList<Log> logs = Log.findLogs(startDateString, endDateString);
         for (Log log: logs) {
             m_LogTableModel.addRow(new Object[]{
-                    Log.getUserID(),
-                    Log.getDate(),
+                    Log.getSentBy(),
+                    Log.getSentDateTime(),
                     Log.getSubject(),
                     Log.getMessageBody(),
-                    Log.getSubscriberAmount()
+                    Log.getSubscriberCount()
             });
         }
     }
