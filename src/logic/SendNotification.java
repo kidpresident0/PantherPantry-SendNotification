@@ -1,16 +1,13 @@
 package logic;
 
 import database.Database;
+import jakarta.mail.*;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 import java.util.ArrayList;
 import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 /**
  * This is the class responsible for sending email notifications to subscribers of the Panther Pantry.
@@ -40,7 +37,7 @@ public class SendNotification {
         props.put("mail.smtp.port" , "587");
 
         Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
+                new jakarta.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
@@ -60,7 +57,7 @@ public class SendNotification {
 
         } catch (AddressException e) {
             throw new RuntimeException(e);
-        } catch (javax.mail.MessagingException e) {
+        } catch (jakarta.mail.MessagingException e) {
             e.printStackTrace();
         }
     }
