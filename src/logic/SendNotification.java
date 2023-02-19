@@ -37,7 +37,7 @@ public class SendNotification {
         props.put("mail.smtp.port" , "587");
 
         Session session = Session.getInstance(props,
-                new jakarta.mail.Authenticator() {
+                new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }
@@ -57,7 +57,7 @@ public class SendNotification {
 
         } catch (AddressException e) {
             throw new RuntimeException(e);
-        } catch (jakarta.mail.MessagingException e) {
+        } catch (MessagingException e) {
             e.printStackTrace();
         }
     }
