@@ -1,16 +1,18 @@
 package main;
 
-import presentation.LogUI;
-
+import presentation.*;
 import javax.swing.*;
 
 
 /**
- * This is the main class for the Panther Pantry Create sendNotification.Notification application
- * @author John Christian
- * @version 2022.01.26
+ * Main class for the Panther Pantry application
+ * @author Sevin Webb, John Christian, Kate White
+ * @version 2023.02.18
  */
+
 public class Main {
+    private static JFrame frame = null;
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -20,21 +22,82 @@ public class Main {
         });
     }
 
+    /*
     public static void createGUI() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                 UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        JFrame frame = new JFrame();
+        // Create a JFrame to show our form in, and display the UsersTableGUI form.
+        JFrame frame = new JFrame("Template");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        LogUI app = new LogUI();
+
+        // Makes the application close when the window goes away.
+        TabbedPaneFrame app = new TabbedPaneFrame();
+
         JPanel root = app.getRootPanel();
+
         frame.getContentPane().removeAll();
         frame.getContentPane().add(root);
         frame.pack();
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+
+        ImageIcon image = new ImageIcon("Logo.png");
+        frame.setIconImage(image.getImage());
+    }
+     */
+
+    public static void createGUI() {
+        frame = new JFrame("Panther Pantry Account Creation");
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        logUI();
+    }
+
+    public static void logUI() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
+    public static void sendNotification() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new SendNotificationGUI().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
+    public static void createTemplate() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new CreateTemplate().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
+    public static void accountCreate() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new AccountCreation().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
+    public static void accountLogin() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new AccountLogin().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Login");
     }
 }
+
