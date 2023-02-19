@@ -5,9 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4abb89b4-f4a9-4877-8848-65921b85a811" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Notification.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/NotificationDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.activation-2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.mail-2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/SendNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/SendNotificationGUI.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/SendNotificationGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/NotificationDB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Notification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/CreateNotification.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/CreateNotification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/template.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/template.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,36 +52,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "openjdk-18",
-    "last_opened_file_path": "C:/PCC/CIS234A.RealWorldProgramming/Projects/Notification/lib",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marcg\Downloads\Repos5\backup\Null\src" />
+      <recent name="C:\Users\marcg\Downloads\Repos5\backup\Null\src\logic" />
+      <recent name="C:\Users\marcg\Downloads\Repos5\backup\Null\src\database" />
+      <recent name="C:\Users\marcg\Downloads\Repos5\backup\Null\lib" />
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\lib" />
-      <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification" />
-      <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\src\presentation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\PCC\CIS234A.RealWorldProgramming\Projects\Notification\src\database" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="main" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.NotificationDB">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CreateNotification" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="presentation.CreateNotification" />
       <module name="Notification" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="presentation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="Notification" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,6 +116,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.NotificationDB" />
         <item itemvalue="Application.CreateNotification" />
       </list>
@@ -106,8 +130,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1674763143650</updated>
+      <workItem from="1676765638169" duration="172000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -119,6 +147,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
