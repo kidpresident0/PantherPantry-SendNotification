@@ -30,7 +30,7 @@ public class AccountLogin {
     public AccountLogin() {
         loginToCreateButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                Main.AccountCreate();
+                Main.accountCreate();
             }
         });
         loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

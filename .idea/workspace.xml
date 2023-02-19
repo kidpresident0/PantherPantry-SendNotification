@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0be4603-e068-4412-8924-b8bc8d696308" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.activation-2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jakarta.mail-2.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logic/SendNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/SendNotificationGUI.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/presentation/SendNotificationGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Notification.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Notification.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/notification.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/notification.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/Notification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logic/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674805253087</updated>
       <workItem from="1676766755904" duration="59000" />
-      <workItem from="1676766825115" duration="250000" />
+      <workItem from="1676766825115" duration="2220000" />
     </task>
     <servers />
   </component>

@@ -39,7 +39,7 @@ public class AccountCreation {
     public AccountCreation() {
         createToLoginButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                Main.AccountLogin();
+                Main.accountLogin();
             }
         });
         createSubmitButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

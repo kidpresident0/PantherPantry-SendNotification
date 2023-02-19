@@ -1,4 +1,5 @@
 package logic;
+
 import database.Database;
 import java.util.regex.Pattern;
 
@@ -9,18 +10,24 @@ import java.util.regex.Pattern;
  */
 
 public class User {
-    String email;
-    String username;
-    String password;
-    String firstName;
-    String lastName;
+    private String email;
+    private String username;
+    private String password;
+    private String subscriberName;
+    private String firstName;
+    private String lastName;
+    private String role;
+    private Integer userID;
 
-    public User(String email, String username, String password, String firstName, String lastName) {
+    public User(String email, String username, String password, String subscriberName, String firstName, String lastName, String role, Integer userID) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.subscriberName = subscriberName;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.role = role;
+        this.userID = userID;
     }
 
     /**
@@ -66,5 +73,45 @@ public class User {
 
     public static void addUser(String firstName, String lastName, String password, String email, String username) {
         Database.addSubscriber(username, firstName, lastName, email, password);
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
+    public String getUsername() {
+        return subscriberName;
+    }
+
+    public void setUsername(String subscriberName) {
+        this.subscriberName = subscriberName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
