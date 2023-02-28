@@ -10,7 +10,8 @@ import javax.swing.*;
  * @version 2023.02.18
  */
 
-public class Main {
+public class
+Main {
     private static JFrame frame = null;
 
     public static void main(String[] args) {
@@ -18,8 +19,10 @@ public class Main {
             @Override
             public void run() {
                 createGUI();
+
             }
         });
+
     }
 
     /*
@@ -52,7 +55,9 @@ public class Main {
     public static void createGUI() {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        logUI();
+        //logUI();
+        sendNotification();
+
     }
 
     public static void logUI() {
@@ -70,7 +75,7 @@ public class Main {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Panther Pantry Account Creation");
+        frame.setTitle("Send Notification");
     }
 
     public static void createTemplate() {
