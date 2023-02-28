@@ -1,7 +1,7 @@
 package presentation;
 
 import database.Database;
-import logic.SendNotification;
+import logic.SendEmailNotification;
 import logic.User;
 
 import javax.swing.*;
@@ -59,7 +59,7 @@ public class SendNotificationGUI extends JFrame {
 
     public SendNotificationGUI() {
 
-        emailSubCountField.setText(String.valueOf(Database.subCount()));
+        emailSubCountField.setText(String.valueOf(Database.emailSubCount()));
 
         emailBottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
         emailSendButton.addActionListener(new ActionListener() {
@@ -74,23 +74,23 @@ public class SendNotificationGUI extends JFrame {
 
     // If the subject/body fields have content send the notification and pass its details along to the logic layer.
     private void buttonSendActionPerformed() {
-        SendNotification sendNotification = new SendNotification();
+        SendEmailNotification sendEmailNotification = new SendEmailNotification();
 
         if (!validateFields()) {
             return;
         }
         String subscribers = "flanwithaplan0@gmail.com";
         //ArrayList<User> subscribers = subscriberEmails();
-        String fromEmail = sendNotification.getUsername();
+        String fromEmail = sendEmailNotification.getUsername();
         String subject = emailSubjectField.getText();
         String body = emailBodyArea.getText();
-        int subscriberCount = SendNotification.getSubscriberCount();
+        int subscriberCount = SendEmailNotification.getSubscriberCount();
         try {
-            SendNotification.sendNotification(subscribers, subject, body);
+            SendEmailNotification.sendNotification(subscribers, subject, body);
             emailSubjectField.setText("");
             emailBodyArea.setText("");
             recordTime();
-            SendNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
+            SendEmailNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
             JOptionPane.showMessageDialog(this,
                     "The notification has been sent successfully!");
             System.exit(0);
@@ -128,9 +128,9 @@ public class SendNotificationGUI extends JFrame {
         System.out.println(result);
 
     }
-    //Only on subscriber is present for presentation purposes
+    //Only one subscriber is present for presentation purposes
     public ArrayList<User> subscriberEmails() {
-        ArrayList<User> subEmails = new SendNotification().subscriberEmails();
+        ArrayList<User> subEmails = new SendEmailNotification().subscriberEmails();
 
         return subEmails;
     }
