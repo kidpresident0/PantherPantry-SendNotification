@@ -16,7 +16,7 @@ import java.util.Properties;
  * @author Marc Goodman, John Christian
  * @version 2023.02.06
  */
-public class SendNotification {
+public class SendEmailNotification {
 
     /**
      * Create a sendNotification object
@@ -68,7 +68,7 @@ public class SendNotification {
      */
     public static int getSubscriberCount() {
 
-        return new Database().subCount();
+        return new Database().emailSubCount();
     }
 
     /**

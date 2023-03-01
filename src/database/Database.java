@@ -36,6 +36,8 @@ public class Database {
 
     private static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber'";
 
+    private static String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber'";
+
     private static String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
     private static String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
@@ -53,7 +55,7 @@ public class Database {
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
                     "WHERE  sentDateTime BETWEEN ? AND ?;";
 
-    private static ArrayList<User> subscribers = null;
+    private static ArrayList<User> subscribersEmails = null;
     private static Integer currentSubscriberCount = 0;
 
     // The one and only connection object
@@ -230,7 +232,7 @@ public class Database {
      * @return a list of subscriber email addresses.
      */
     private static ArrayList<User> readSubscribersEmail() {
-        ArrayList<User> subscribers = new ArrayList<>();
+        ArrayList<User> subscriberEmails = new ArrayList<>();
 
         connect();
         try (
@@ -246,9 +248,10 @@ public class Database {
                         null,
                         null,
                         null,
+                        null,
                         0
                 );
-                subscribers.add(user);
+                subscriberEmails.add(user);
             }
         } catch (SQLException e) {
             // Handle errors for JDBC
@@ -256,7 +259,7 @@ public class Database {
             e.printStackTrace();
         }
 
-        return subscribers;
+        return subscriberEmails;
 
     }
 
@@ -265,21 +268,66 @@ public class Database {
      *
      * @return the list of subscriber email addresses
      */
-    public static ArrayList<User> getGetSubscriberEmail() {
-        subscribers = readSubscribersEmail();
-        currentSubscriberCount = subscribers.size();
-        return subscribers;
-    }
+    public static ArrayList<User> getGetSubscriberEmail() { return readSubscribersEmail(); }
 
     /**
-     * Counts the number of subscribers that will receive a notification
+     * Counts the number of subscribers that will receive an email notification
      *
      * @return a count for subscribers.
      */
-    public static int subCount() {
-        getGetSubscriberEmail();
-        return currentSubscriberCount;
+    public static int emailSubCount() { return getGetSubscriberEmail().size();}
+
+    /**
+     * Returns a list of subscriber phone numbers from the USERS database. If an error occurs, a stack
+     * trace is printed to standard error and an empty list is returned.
+     *
+     * @return a list of subscriber phone numbers.
+     */
+    private static ArrayList<User> readSubscriberPhone() {
+        ArrayList<User> subscriberPhones = new ArrayList<>();
+
+        connect();
+        try (
+                PreparedStatement stmt = conn.prepareStatement(GET_SUBSCRIBER_PHONE);
+                ResultSet rs = stmt.executeQuery()) {
+            // Iterate through subscribers in the database and add their phone numbers to a list.
+            while (rs.next()) {
+                User user = new User(
+                        rs.getString("userPhone"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0
+                );
+                subscriberPhones.add(user);
+            }
+        } catch (SQLException e) {
+            // Handle errors for JDBC
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return subscriberPhones;
+
     }
+
+    /**
+     * Makes the subscriber phone numbers publicly available for other classes.
+     *
+     * @return the list of subscriber phone numbers.
+     */
+    public static ArrayList<User> getGetSubscriberPhone() { return readSubscriberPhone(); }
+
+    /**
+     * Counts the number of subscribers that will receive an SMS notification
+     *
+     * @return a count for subscribers.
+     */
+    public static int smsSubCount() { return getGetSubscriberPhone().size();}
 
     /**
      * Writes the details of each notification to the notification log database.
@@ -310,9 +358,8 @@ public class Database {
         }
     }
 
-
     /**
-     * Public method to be called by the SendNotification so that notification details
+     * Public method to be called by the SendEmailNotification so that notification details
      * can be recorded in the database.
      *
      * @param subject         the subject of the notification
@@ -328,7 +375,8 @@ public class Database {
     /**
      * Fetches the information for the ReviewNotificationLog
      *
-     * @param date  The date to search for
+     * @param startDate  The start date to search for
+     * @param endDate The end date to search for
      * @return The requested notification log query
      */
     public static ArrayList<Log> findLogs(String startDate, String endDate) {

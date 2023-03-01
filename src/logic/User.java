@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 public class User {
     private String email;
+
+    private String phone;
     private String username;
     private String password;
     private String subscriberName;
@@ -19,8 +21,9 @@ public class User {
     private String role;
     private Integer userID;
 
-    public User(String email, String username, String password, String subscriberName, String firstName, String lastName, String role, Integer userID) {
+    public User(String email, String phone, String username, String password, String subscriberName, String firstName, String lastName, String role, Integer userID) {
         this.email = email;
+        this.phone = phone;
         this.username = username;
         this.password = password;
         this.subscriberName = subscriberName;

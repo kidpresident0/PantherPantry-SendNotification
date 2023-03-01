@@ -1,7 +1,7 @@
 package presentation;
 
 import database.Database;
-import logic.SendNotification;
+import logic.SendEmailNotification;
 import logic.User;
 
 import javax.swing.*;
@@ -19,22 +19,50 @@ import java.util.Calendar;
  * @version 2023.02.07
  */
 public class SendNotificationGUI extends JFrame {
-    JPanel rootPanel;
-    JTextField subjectField;
-    JLabel subjectLabel;
-    JTextArea bodyArea;
-    JButton sendButton;
-    JLabel subscriberLabel;
-    JTextField subscriberField;
-    JPanel topPanel;
-    JPanel bottomPanel;
+
+    private JPanel rootPanel;
+    JTextField emailSubjectField;
+
+    JLabel emailSubjectLabel;
+    JTextArea emailBodyArea;
+    JLabel emailSubscriberCountLabel;
+    private JTextField emailSubCountField;
+    JButton emailSendButton;
+    JPanel emailTopPanel;
+    JPanel emailBottomPanel;
+    private JTabbedPane notificationChoiceTabbedPane;
+    private JPanel emailTabPanel;
+    private JLabel subjectLabel;
+
+    private JTextArea bodyArea;
+
+    private JButton sendButton;
+
+    private JLabel subscriberLabel;
+    private JPanel smsTabPanel;
+    private JPanel smsTopPanel;
+    private JLabel smsMessageLabel;
+    private JPanel smsMiddlePanel;
+    private JTextArea smsMessageArea;
+    private JPanel smsBottomPanel;
+    private JTextField smsSubCountField;
+    private JLabel smsSubCountLabel;
+    private JButton smsSendButton;
+    private JPanel smsBottomRightPanel;
+    private JPanel smsBottomLeftPanel;
+    private JPanel smsBottomMiddlePanel;
+    private JPanel smsMiddleLeftPanel;
+    private JPanel smsMiddleRightPanel;
+    private JScrollPane messageScrollPane;
+    private JCheckBox emailSMSbothCheckBox;
+
 
     public SendNotificationGUI() {
 
-        subscriberField.setText(String.valueOf(Database.subCount()));
+        emailSubCountField.setText(String.valueOf(Database.emailSubCount()));
 
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
-        sendButton.addActionListener(new ActionListener() {
+        emailBottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
+        emailSendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
                 buttonSendActionPerformed();
@@ -46,23 +74,23 @@ public class SendNotificationGUI extends JFrame {
 
     // If the subject/body fields have content send the notification and pass its details along to the logic layer.
     private void buttonSendActionPerformed() {
-        SendNotification sendNotification = new SendNotification();
+        SendEmailNotification sendEmailNotification = new SendEmailNotification();
 
         if (!validateFields()) {
             return;
         }
         String subscribers = "flanwithaplan0@gmail.com";
         //ArrayList<User> subscribers = subscriberEmails();
-        String fromEmail = sendNotification.getUsername();
-        String subject = subjectField.getText();
-        String body = bodyArea.getText();
-        int subscriberCount = SendNotification.getSubscriberCount();
+        String fromEmail = sendEmailNotification.getUsername();
+        String subject = emailSubjectField.getText();
+        String body = emailBodyArea.getText();
+        int subscriberCount = SendEmailNotification.getSubscriberCount();
         try {
-            SendNotification.sendNotification(subscribers, subject, body);
-            subjectField.setText("");
-            bodyArea.setText("");
+            SendEmailNotification.sendNotification(subscribers, subject, body);
+            emailSubjectField.setText("");
+            emailBodyArea.setText("");
             recordTime();
-            SendNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
+            SendEmailNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
             JOptionPane.showMessageDialog(this,
                     "The notification has been sent successfully!");
             System.exit(0);
@@ -75,18 +103,18 @@ public class SendNotificationGUI extends JFrame {
     }
     // Check that the subject and body are not empty
     private boolean validateFields() {
-        if (subjectField.getText().equals("")) {
+        if (emailSubjectField.getText().equals("")) {
             JOptionPane.showMessageDialog(this,
                     "Please enter a subject!" ,
                     "Error" , JOptionPane.ERROR_MESSAGE);
-            subjectField.requestFocus();
+            emailSubjectField.requestFocus();
             return false;
         }
-        if (bodyArea.getText().equals("")) {
+        if (emailBodyArea.getText().equals("")) {
             JOptionPane.showMessageDialog(this,
                     "Please enter a message!" ,
                     "Error" , JOptionPane.ERROR_MESSAGE);
-            bodyArea.requestFocus();
+            emailBodyArea.requestFocus();
             return false;
         }
 
@@ -100,9 +128,9 @@ public class SendNotificationGUI extends JFrame {
         System.out.println(result);
 
     }
-    //Only on subscriber is present for presentation purposes
+    //Only one subscriber is present for presentation purposes
     public ArrayList<User> subscriberEmails() {
-        ArrayList<User> subEmails = new SendNotification().subscriberEmails();
+        ArrayList<User> subEmails = new SendEmailNotification().subscriberEmails();
 
         return subEmails;
     }
