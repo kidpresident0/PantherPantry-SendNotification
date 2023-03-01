@@ -104,6 +104,9 @@ public class EditTemplate {
                 }
             }
         });
+        // refreshes a comboBox after creating a new template
+        // first it removes all existing template names
+        // a new list of templateNames will be added after the warning message
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
