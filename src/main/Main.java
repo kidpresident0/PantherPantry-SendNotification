@@ -56,8 +56,18 @@ Main {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         //logUI();
-        sendNotification();
+        //sendNotification();
+        launchGUI();
 
+    }
+
+    public static void launchGUI() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new launchGUI().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Notification System");
     }
 
     public static void logUI() {
