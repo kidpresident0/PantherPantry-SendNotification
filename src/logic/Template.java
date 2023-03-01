@@ -6,7 +6,8 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * This logic.Template.java file gets the text from the application form and creates a new template in the database.
+ * This logic.Template.java file gets the text from the application form as input
+ * and creates a new templates, updates and deletes templates from the database.
  * @author Kate White
  * @version 2023.15.02
  */
@@ -47,6 +48,17 @@ public class Template {
     public String getTemplateText() {
         return TemplateText;
     }
+
+    // update the template in the database
+    public void update(int id) {
+        Database.updateTemplate(id, Subject, TemplateText);
+    }
+
+    // deletes a row from the database
+    public static void delete(int id) {
+        Database.deleteTemplate(id);
+    }
+
 
 }
 
