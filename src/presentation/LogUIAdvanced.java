@@ -28,19 +28,34 @@ public class LogUIAdvanced {
     private JDatePicker endDatePicker;
     private JButton closeButton;
     private JTable logTable;
-    private JTextField staffText;
+    private JTextField staffTextInput;
+    private JButton staffSubmit;
+    private JButton staffCloseButton;
     private DefaultTableModel m_LogTableModel;
 
     public LogUIAdvanced() {
         startDatePicker.getModel().setDate(2023, 1, 1);
-        fetchData();
+        fetchDates();
+        fetchUser();
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                fetchData();
+                fetchDates();
+            }
+        });
+        staffSubmit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fetchUser();
             }
         });
         closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        staffCloseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -88,7 +103,7 @@ public class LogUIAdvanced {
         logTable.getColumnModel().getColumn(4).setMinWidth(50);
     }
 
-    private void fetchData() {
+    private void fetchDates() {
         setupTable();
         DateModel startCal = startDatePicker.getModel();
         String startDateString = (1 + startCal.getMonth()) + "/" + startCal.getDay() + "/" + startCal.getYear();
@@ -96,6 +111,21 @@ public class LogUIAdvanced {
         String endDateString = (1 + endCal.getMonth()) + "/" + endCal.getDay() + "/" + endCal.getYear();
         ArrayList<Log> logs = Log.findLogs(startDateString, endDateString);
         for (Log log: logs) {
+            m_LogTableModel.addRow(new Object[]{
+                    log.getSentBy(),
+                    log.getSentDateTime(),
+                    log.getSubject(),
+                    log.getMessageBody(),
+                    log.getSubscriberCount()
+            });
+        }
+    }
+
+    private void fetchUser() {
+        setupTable();
+        String staffText = String.valueOf(staffTextInput);
+        ArrayList<Log> users = Log.findUser(staffText);
+        for (Log log: users) {
             m_LogTableModel.addRow(new Object[]{
                     log.getSentBy(),
                     log.getSentDateTime(),

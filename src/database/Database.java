@@ -329,9 +329,10 @@ public class Database {
 
 
     /**
-     * Fetches the information for the ReviewNotificationLog
+     * Fetches the date information for the ReviewNotificationLog
      *
-     * @param date  The date to search for
+     * @param startDate  The start date to search for
+     * @param endDate  The end date to search for
      * @return The requested notification log query
      */
     public static ArrayList<Log> findDate(String startDate, String endDate) {
@@ -368,5 +369,46 @@ public class Database {
         }
         //Returns list of results
         return logs;
+    }
+
+    /**
+     * Fetches staff the information for the ReviewNotificationLog
+     *
+     * @param staffText  The staff member to search for
+     * @return The requested notification log query
+     */
+    public static ArrayList<Log> findUser(String staffText) {
+        ResultSet rs;
+        ArrayList<Log> users = new ArrayList<>();
+        PreparedStatement stmt;
+
+        try {
+            //Creates connection if not already created
+            connect();
+
+            //Prepare sql statement
+            stmt = conn.prepareStatement(GET_USER_SEARCH_QUERY);
+            stmt.setString(1, staffText);
+            //Execute the query
+            rs = stmt.executeQuery();
+
+            //For each row in the result set, create a new Notification object with the provided values
+            // and add it to the list of notifications
+            while (rs.next()) {
+                users.add(new Log(
+                        rs.getString("sentBy"),
+                        rs.getString("sentDateTime"),
+                        rs.getString("subject"),
+                        rs.getString("messageBody"),
+                        rs.getInt("subscriberCount")
+                ));
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: Your query is not working.");
+            e.printStackTrace();
+            return null;
+        }
+        //Returns list of results
+        return users;
     }
 }

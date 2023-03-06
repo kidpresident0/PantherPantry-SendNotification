@@ -30,6 +30,10 @@ public class Log {
         return Database.findDate(startDate, endDate);
     }
 
+    public static ArrayList<Log> findUser(String staffText) {
+        return Database.findUser(staffText);
+    }
+
     public String getSentBy() {
         return mSentBy;
     }
