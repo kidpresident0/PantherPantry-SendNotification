@@ -53,7 +53,7 @@ public class Main {
     public static void createGUI() {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        logUI();
+        logUIAdvanced();
     }
 
     public static void logUI() {
@@ -62,7 +62,16 @@ public class Main {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Panther Pantry Account Creation");
+        frame.setTitle("Review Notification Log");
+    }
+
+    public static void logUIAdvanced() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Review Notification Log");
     }
 
     public static void sendNotification() {
