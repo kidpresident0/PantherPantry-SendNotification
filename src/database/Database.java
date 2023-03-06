@@ -49,9 +49,12 @@ public class Database {
     private static final String GET_USERNAME = "SELECT username FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_USERNAME = "SELECT userPassword FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_EMAIL = "SELECT userPassword FROM USERS WHERE userEmail = ?";
-    private static final String FIND_REVIEW_NOTIFICATION_QUERY =
+    private static final String GET_DATE_SEARCH_QUERY =
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
                     "WHERE  sentDateTime BETWEEN ? AND ?;";
+    private static final String GET_USER_SEARCH_QUERY =
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
+                    "WHERE  sentBy = ?;";
 
     private static ArrayList<User> subscribers = null;
     private static Integer currentSubscriberCount = 0;
@@ -331,7 +334,7 @@ public class Database {
      * @param date  The date to search for
      * @return The requested notification log query
      */
-    public static ArrayList<Log> findLogs(String startDate, String endDate) {
+    public static ArrayList<Log> findDate(String startDate, String endDate) {
         ResultSet rs;
         ArrayList<Log> logs = new ArrayList<>();
         PreparedStatement stmt;
@@ -341,7 +344,7 @@ public class Database {
             connect();
 
             //Prepare sql statement
-            stmt = conn.prepareStatement(FIND_REVIEW_NOTIFICATION_QUERY);
+            stmt = conn.prepareStatement(GET_DATE_SEARCH_QUERY);
             stmt.setString(1, startDate + " 00:00:00");
             stmt.setString(2, endDate + " 23:59:59");
             //Execute the query

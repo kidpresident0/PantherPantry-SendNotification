@@ -27,7 +27,7 @@ public class Log {
     }
 
     public static ArrayList<Log> findLogs(String startDate, String endDate) {
-        return Database.findLogs(startDate, endDate);
+        return Database.findDate(startDate, endDate);
     }
 
     public String getSentBy() {

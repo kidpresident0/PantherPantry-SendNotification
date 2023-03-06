@@ -7,7 +7,7 @@ import javax.swing.*;
 
 /**
  * Main class for the Panther Pantry application
- * @author Sevin Webb, John Christian, Kate White
+ * @author Sevin Webb, John Christian, Kate White, Brandon King
  * @version 2023.02.18
  */
 
@@ -67,7 +67,8 @@ public class Main {
 
     public static void logUIAdvanced() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.getContentPane().add(new LogUIAdvanced().getRootPanel());
+        frame.getContentPane().add(new LogUIAdvanced().getTabbedPane());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

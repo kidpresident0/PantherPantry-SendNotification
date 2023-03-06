@@ -51,6 +51,7 @@ public class LogUIAdvanced {
     public JPanel getRootPanel() {
         return rootPanel;
     }
+    public JTabbedPane getTabbedPane() { return tabbedPane;}
 
     private void setupTable () {
         //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
