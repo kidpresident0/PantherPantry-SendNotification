@@ -34,6 +34,14 @@ public class Log {
         return Database.findUser(staffText);
     }
 
+    public static ArrayList<Log> findSubject(String subjectText) {
+        return Database.findSubject(subjectText);
+    }
+
+    public static ArrayList<Log> findMessage(String messageText) {
+        return Database.findMessage(messageText);
+    }
+
     public String getSentBy() {
         return mSentBy;
     }

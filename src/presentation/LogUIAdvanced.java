@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 
 /**
- * This is the ReviewNotificationLog Graphic User Interface Class that will launch its advanced search application.
+ * This is the ReviewNotificationLog's Graphic User Interface Class that will launch its advanced search application.
  * @author Brandon King
  * @version 2022.03.06
  */
@@ -29,24 +29,44 @@ public class LogUIAdvanced {
     private JButton closeButton;
     private JTable logTable;
     private JTextField staffTextInput;
-    private JButton staffSubmit;
+    private JButton staffSubmitButton;
     private JButton staffCloseButton;
+    private JButton subjectSubmitButton;
+    private JButton searchCloseButton;
+    private JTextField subjectTextInput;
+    private JButton messageSubmitButton;
+    private JTextField messageTextInput;
+    private JButton messageCloseButton;
     private DefaultTableModel m_LogTableModel;
 
     public LogUIAdvanced() {
         startDatePicker.getModel().setDate(2023, 1, 1);
         fetchDates();
         fetchUser();
+        fetchSubject();
+        fetchMessage();
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fetchDates();
             }
         });
-        staffSubmit.addActionListener(new ActionListener() {
+        staffSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fetchUser();
+            }
+        });
+        subjectSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fetchSubject();
+            }
+        });
+        messageSubmitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fetchMessage();
             }
         });
         closeButton.addActionListener(new ActionListener() {
@@ -126,6 +146,36 @@ public class LogUIAdvanced {
         String staffText = String.valueOf(staffTextInput);
         ArrayList<Log> users = Log.findUser(staffText);
         for (Log log: users) {
+            m_LogTableModel.addRow(new Object[]{
+                    log.getSentBy(),
+                    log.getSentDateTime(),
+                    log.getSubject(),
+                    log.getMessageBody(),
+                    log.getSubscriberCount()
+            });
+        }
+    }
+
+    private void fetchSubject() {
+        setupTable();
+        String subjectText = String.valueOf(subjectTextInput);
+        ArrayList<Log> subjects = Log.findSubject(subjectText);
+        for (Log log: subjects) {
+            m_LogTableModel.addRow(new Object[]{
+                    log.getSentBy(),
+                    log.getSentDateTime(),
+                    log.getSubject(),
+                    log.getMessageBody(),
+                    log.getSubscriberCount()
+            });
+        }
+    }
+
+    private void fetchMessage() {
+        setupTable();
+        String messageText = String.valueOf(messageTextInput);
+        ArrayList<Log> messages = Log.findMessage(messageText);
+        for (Log log: messages) {
             m_LogTableModel.addRow(new Object[]{
                     log.getSentBy(),
                     log.getSentDateTime(),

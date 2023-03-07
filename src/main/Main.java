@@ -56,15 +56,6 @@ public class Main {
         logUIAdvanced();
     }
 
-    public static void logUI() {
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(new LogUI().getRootPanel());
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        frame.setTitle("Review Notification Log");
-    }
-
     public static void logUIAdvanced() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new LogUIAdvanced().getRootPanel());
