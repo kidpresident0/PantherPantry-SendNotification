@@ -3,7 +3,9 @@ package logic;
 import database.Database;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This logic.Template.java file gets the text from the application form as input
@@ -59,7 +61,17 @@ public class Template {
         Database.deleteTemplate(id);
     }
 
+    public String createMessage(HashMap<String, String> tags) {
+        String str = TemplateText;
 
+        // iterate over all tags
+        for (Map.Entry<String, String> entry : tags.entrySet()) {
+            // for each tag, find it in TemplateText and replace it and returns a new string.
+            str = str.replace(entry.getKey(), entry.getValue());
+        }
+
+        return str;
+    }
 }
 
 

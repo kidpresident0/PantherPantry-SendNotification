@@ -2,6 +2,8 @@ package presentation;
 
 import database.Database;
 import logic.SendEmailNotification;
+import logic.Template;
+import logic.TemplateName;
 import logic.User;
 
 import javax.swing.*;
@@ -11,6 +13,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * This is the GUI class for the Send Notification story for the PCC Panther Pantry.
@@ -55,9 +59,29 @@ public class SendNotificationGUI extends JFrame {
     private JPanel smsMiddleRightPanel;
     private JScrollPane messageScrollPane;
     private JCheckBox emailSMSbothCheckBox;
-
+    private JComboBox templateNameComboBox;
+    private JLabel TemplateNameLabel;
+    private JButton previewButton;
+    private JTextField campusTextField;
+    private JTextField foodItemtextField;
+    private JTextField dateTextField;
+    private JTextField timeTextField;
+    private JTextField termTextField;
+    private JTextField staffNameTextField;
+    private JLabel CampusNameLabel;
+    private JLabel FoodItemLabel;
+    private JLabel DateLabel;
+    private JLabel TimeLabel;
+    private JLabel TermLabel;
+    private JLabel StaffNameLabel;
 
     public SendNotificationGUI() {
+        List<TemplateName> templates = TemplateName.list(1);
+        for (TemplateName template : templates) {
+            templateNameComboBox.addItem(template);
+        }
+        // shows the comboBox empty where there is no selection of templates
+        templateNameComboBox.setSelectedIndex(-1);
 
         emailSubCountField.setText(String.valueOf(Database.emailSubCount()));
 
@@ -70,6 +94,45 @@ public class SendNotificationGUI extends JFrame {
 
         });
 
+        previewButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TemplateName name = (TemplateName) templateNameComboBox.getSelectedItem();
+                if (name != null) {
+                    Template template = Template.getTemplate(name.getId());
+
+                    // Create an empty hash map by declaring object of string type
+                    HashMap<String, String> tags = new HashMap<>();
+                    // Adding elements to the tags
+                    tags.put("{campus}", campusTextField.getText());
+                    tags.put("{food items}", foodItemtextField.getText());
+                    tags.put("{date}", dateTextField.getText());
+                    tags.put("{time}", timeTextField.getText());
+                    tags.put("{term}", termTextField.getText());
+                    tags.put("{staff name}", staffNameTextField.getText());
+
+                    emailBodyArea.setText(template.createMessage(tags));
+                } else {
+                    // shows a warning message when the templateName in comboBox wasn't selected
+                    JOptionPane.showMessageDialog(
+                            rootPanel,
+                            "Please select a template.",
+                            "Warning", JOptionPane.WARNING_MESSAGE
+                    );
+                }
+            }
+        });
+        templateNameComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TemplateName name = (TemplateName) templateNameComboBox.getSelectedItem();
+                if (name != null) {
+                    Template template = Template.getTemplate(name.getId());
+                    String subject = template.getSubject();
+                    emailSubjectField.setText(subject);
+                }
+            }
+        });
     }
 
     // If the subject/body fields have content send the notification and pass its details along to the logic layer.
@@ -139,4 +202,7 @@ public class SendNotificationGUI extends JFrame {
         return rootPanel;
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
