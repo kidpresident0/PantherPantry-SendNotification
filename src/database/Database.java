@@ -34,9 +34,9 @@ public class Database {
 
     private static final String getTemplateSql = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
 
-    private static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber'";
+    private static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND userEmail IS NOT NULL";
 
-    private static String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber'";
+    private static String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber' AND userPhone IS NOT NULL";
 
     private static String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
@@ -293,8 +293,8 @@ public class Database {
             // Iterate through subscribers in the database and add their phone numbers to a list.
             while (rs.next()) {
                 User user = new User(
-                        rs.getString("userPhone"),
                         null,
+                        rs.getString("userPhone"),
                         null,
                         null,
                         null,
@@ -312,8 +312,8 @@ public class Database {
         }
 
         return subscriberPhones;
-
     }
+
 
     /**
      * Makes the subscriber phone numbers publicly available for other classes.

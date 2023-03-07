@@ -1,5 +1,6 @@
 package main;
 
+import logic.SendSMSNotification;
 import presentation.*;
 import javax.swing.*;
 
@@ -19,6 +20,9 @@ Main {
             @Override
             public void run() {
                 createGUI();
+                //new SendSMSNotification();
+                //SendSMSNotification.send("+19717108892", "sendSMSNotification Test message");
+
 
             }
         });
@@ -63,7 +67,7 @@ Main {
 
     public static void launchGUI() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(new launchGUI().getRootPanel());
+        frame.getContentPane().add(new LaunchGUI().getRootPanel());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

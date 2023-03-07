@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class launchGUI {
+public class LaunchGUI {
     private JPanel topSpacer;
     private JPanel topPanel;
     private JPanel middlePanel;
@@ -17,7 +17,7 @@ public class launchGUI {
     private JButton logButton;
     private JPanel rootPanel;
 
-    public launchGUI() {
+    public LaunchGUI() {
         templateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {

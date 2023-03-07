@@ -1,17 +1,25 @@
 --SELECT userID , username , firstName , lastName ,  userPassword, userEmail , userPhone , userRole FROM 234a_Null.dbo.USERS";
+DROP TABLE USERS;
+CREATE TABLE USERS (
+   userID INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+   firstName VARCHAR(255) NOT NULL,
+   lastName VARCHAR(255) NOT NULL,
+   userPassword VARCHAR(255)) NOT NULL,
+   userEmail VARCHAR(255) NOT NULL UNIQUE,
+   userPhone VARCHAR(10) NOT NULL UNIQUE
+    userRole VARCHAR(255) NOT NULL
+);
+INSERT INTO USERS (userID, username, firstName, lastName, userPassword, userEmail, userPhone, userRole) VALUES (6,'pantryFan1166','Hungry'
+                    , 'Joe,', 'P@ssw0rd', 'ImhungryJoe@whensdinner.com', '19712223456', 'subscriber');
 
---CREATE TABLE USERS (
---    userID INT PRIMARY KEY AUTO_INCREMENT,
---    username VARCHAR(255) NOT NULL,
---    firstName VARCHAR(255) NOT NULL,
---    lastName VARCHAR(255) NOT NULL,
---    userPassword VARCHAR(255)) NOT NULL,
---    userEmail VARCHAR(255) NOT NULL UNIQUE,
---    userPhone VARCHAR(10) NOT NULL UNIQUE
---    userRole VARCHAR(255) NOT NULL
---);
---INSERT INTO USERS (userID, username, firstName, lastName, userPassword, userEmail, userPhone, userRole) VALUES (6,'FirstSubscriber','Hungry'
---                    , 'Joe,', 'P@ssw0rd', 'ImhungryJoe@whensdinner.com', '9712223456 'SUBSCRIBER');
+ALTER TABLE [234a_Null].[dbo].[USERS]
+ADD userPhone  VARCHAR(15);
+
+SET IDENTITY_INSERT [234a_Null].[dbo].[USERS]  OFF;
+
+INSERT INTO [234a_Null].[dbo].[USERS] (username, firstName, lastName, userPassword, userEmail, userRole, userPhone) VALUES ('foodEater88','Jack'
+                    , 'Hungrymen', 'P@ssw0rd', 'hungrydude@whensdinner.com', 'subscriber', '19716667777');
 
 -- Delete Table --
   DROP TABLE NOTIFICATIONS;

@@ -60,6 +60,7 @@ public class SendNotificationGUI extends JFrame {
     public SendNotificationGUI() {
 
         emailSubCountField.setText(String.valueOf(Database.emailSubCount()));
+        smsSubCountField.setText(String.valueOf(Database.smsSubCount()));
 
         emailBottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
         emailSendButton.addActionListener(new ActionListener() {
