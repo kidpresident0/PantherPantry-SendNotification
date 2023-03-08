@@ -2,6 +2,7 @@ package presentation;
 
 import database.Database;
 import logic.SendEmailNotification;
+import logic.SendSMSNotification;
 import logic.User;
 
 import javax.swing.*;
@@ -21,24 +22,17 @@ import java.util.Calendar;
 public class SendNotificationGUI extends JFrame {
 
     private JPanel rootPanel;
+    private JTabbedPane notificationChoiceTabbedPane;
     JTextField emailSubjectField;
-
-    JLabel emailSubjectLabel;
+    private JScrollPane emailBodyScrollPane;
     JTextArea emailBodyArea;
     JLabel emailSubscriberCountLabel;
     private JTextField emailSubCountField;
     JButton emailSendButton;
     JPanel emailTopPanel;
     JPanel emailBottomPanel;
-    private JTabbedPane notificationChoiceTabbedPane;
     private JPanel emailTabPanel;
-    private JLabel subjectLabel;
-
-    private JTextArea bodyArea;
-
-    private JButton sendButton;
-
-    private JLabel subscriberLabel;
+    private JLabel emailSubjectLabel;
     private JPanel smsTabPanel;
     private JPanel smsTopPanel;
     private JLabel smsMessageLabel;
@@ -53,8 +47,8 @@ public class SendNotificationGUI extends JFrame {
     private JPanel smsBottomMiddlePanel;
     private JPanel smsMiddleLeftPanel;
     private JPanel smsMiddleRightPanel;
-    private JScrollPane messageScrollPane;
-    private JCheckBox emailSMSbothCheckBox;
+
+    private JCheckBox bothSMSAndEmailCheckbox;
 
 
     public SendNotificationGUI() {
@@ -66,18 +60,30 @@ public class SendNotificationGUI extends JFrame {
         emailSendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                buttonSendActionPerformed();
+                emailButtonSendActionPerformed();
             }
 
         });
 
+        smsSendButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) { smsButtonSendActionPerformed(); }
+        });
+        bothSMSAndEmailCheckbox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                emailButtonSendActionPerformed();
+                smsButtonSendActionPerformed();
+
+            }
+        });
     }
 
     // If the subject/body fields have content send the notification and pass its details along to the logic layer.
-    private void buttonSendActionPerformed() {
+    private void emailButtonSendActionPerformed() {
         SendEmailNotification sendEmailNotification = new SendEmailNotification();
 
-        if (!validateFields()) {
+        if (!validateEmailFields()) {
             return;
         }
         String subscribers = "flanwithaplan0@gmail.com";
@@ -102,8 +108,18 @@ public class SendNotificationGUI extends JFrame {
                     "Please try again" , JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    private void smsButtonSendActionPerformed() {
+        if (validateSMSFields()) {
+            ArrayList<String> subscriberNumbers = Database.getGetSubscriberPhone();
+            String messageBody = smsMessageArea.getText();
+            for (String phoneNumber : subscriberNumbers) {
+                SendSMSNotification.sendMessage(phoneNumber, messageBody);
+            }
+        }
+    }
     // Check that the subject and body are not empty
-    private boolean validateFields() {
+    private boolean validateEmailFields() {
         if (emailSubjectField.getText().equals("")) {
             JOptionPane.showMessageDialog(this,
                     "Please enter a subject!" ,
@@ -116,6 +132,19 @@ public class SendNotificationGUI extends JFrame {
                     "Please enter a message!" ,
                     "Error" , JOptionPane.ERROR_MESSAGE);
             emailBodyArea.requestFocus();
+            return false;
+        }
+
+        return true;
+    }
+
+    // Check that SMS message field is not empty
+    private boolean validateSMSFields() {
+        if (smsMessageArea.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter a message!" ,
+                    "Error" , JOptionPane.ERROR_MESSAGE);
+            smsMessageArea.requestFocus();
             return false;
         }
 

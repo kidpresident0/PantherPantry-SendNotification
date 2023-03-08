@@ -21,7 +21,7 @@ Main {
             public void run() {
                 createGUI();
                 //new SendSMSNotification();
-                //SendSMSNotification.send("+19717108892", "sendSMSNotification Test message");
+                //SendSMSNotification.sendMessage("+19717108892", "sendSMSNotification Test message");
 
 
             }

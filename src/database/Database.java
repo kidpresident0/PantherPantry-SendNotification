@@ -283,8 +283,8 @@ public class Database {
      *
      * @return a list of subscriber phone numbers.
      */
-    private static ArrayList<User> readSubscriberPhone() {
-        ArrayList<User> subscriberPhones = new ArrayList<>();
+    private static ArrayList<String> readSubscriberPhone() {
+        ArrayList<String> subscriberPhones = new ArrayList<>();
 
         connect();
         try (
@@ -303,7 +303,7 @@ public class Database {
                         null,
                         0
                 );
-                subscriberPhones.add(user);
+                subscriberPhones.add(String.valueOf(user));
             }
         } catch (SQLException e) {
             // Handle errors for JDBC
@@ -320,7 +320,7 @@ public class Database {
      *
      * @return the list of subscriber phone numbers.
      */
-    public static ArrayList<User> getGetSubscriberPhone() { return readSubscriberPhone(); }
+    public static ArrayList<String> getGetSubscriberPhone() { return readSubscriberPhone(); }
 
     /**
      * Counts the number of subscribers that will receive an SMS notification
