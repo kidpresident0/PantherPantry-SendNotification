@@ -25,7 +25,7 @@ public class SendSMSNotification {
     private static final String FROM_NUMBER = "+15673339882";
 
     //retrieve phone numbers from the database and proceed them with a + per Twilio requirements.
-    private static ArrayList<String> subscriberNumbers() {
+    public static ArrayList<String> subscriberNumbers() {
         ArrayList<String> rawPhoneNumbers = Database.getGetSubscriberPhone();
         ArrayList<String> formattedPhoneNumbers = new ArrayList<>();
         for (String phoneNumber : rawPhoneNumbers) {
