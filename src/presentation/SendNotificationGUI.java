@@ -129,6 +129,24 @@ public class SendNotificationGUI extends JFrame {
         }
     }
 
+    private void demoSMSSendButtonActionPerformed() {
+        if (validateSMSFields()) {
+            String phoneNumber = "19717108892";
+            String messageBody = smsMessageArea.getText();
+            try {
+                SendSMSNotification.sendMessage(phoneNumber, messageBody);
+                smsMessageArea.setText(" ");
+                JOptionPane.showMessageDialog(this,
+                        "The SMS message has been sent successfully!");
+                System.exit(0);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "Error sending SMS message.",
+                        "Please try again", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
     //Method for sending both an email and an SMS message containing the body of the email
     private void bothEmailAndSMSButtonActionPerformed() {
         SendEmailNotification sendEmailNotification = new SendEmailNotification();
@@ -165,23 +183,6 @@ public class SendNotificationGUI extends JFrame {
 
     }
 
-    private void demoSMSSendButtonActionPerformed() {
-        if (validateSMSFields()) {
-            String phoneNumber = "19717108892";
-            String messageBody = smsMessageArea.getText();
-            try {
-                SendSMSNotification.sendMessage(phoneNumber, messageBody);
-                smsMessageArea.setText(" ");
-                JOptionPane.showMessageDialog(this,
-                        "The SMS message has been sent successfully!");
-                System.exit(0);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this,
-                        "Error sending SMS message.",
-                        "Please try again", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }
     // Check that the subject and body are not empty
     private boolean validateEmailFields() {
         if (emailSubjectField.getText().equals("")) {

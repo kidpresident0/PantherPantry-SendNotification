@@ -32,15 +32,15 @@ public class Database {
 
     private static final String LIST_TEMPLATES_SQL = "SELECT ID, TemplateName FROM TEMPLATES";
 
-    private static final String getTemplateSql = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
+    private static final String GET_TEMPLATE_SQL = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
 
-    private static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND userEmail IS NOT NULL";
+    private static final String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND userEmail IS NOT NULL";
 
-    private static String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber' AND userPhone IS NOT NULL";
+    private static final String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber' AND userPhone IS NOT NULL";
 
-    private static String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
+    private static final String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
-    private static String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
+    private static final String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
             + "subscriberCount) VALUES (?,?,?,?,?)";
 
     private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
@@ -187,7 +187,7 @@ public class Database {
         connect();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(getTemplateSql);
+            PreparedStatement stmt = conn.prepareStatement(GET_TEMPLATE_SQL);
             stmt.setInt(1, id);
 
             ResultSet results = stmt.executeQuery();
