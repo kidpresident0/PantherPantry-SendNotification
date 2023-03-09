@@ -37,6 +37,9 @@ public class LogUIAdvanced {
     private JButton messageSubmitButton;
     private JTextField messageTextInput;
     private JButton messageCloseButton;
+    private JTable staffTable;
+    private JTable subjectTable;
+    private JTable messageTable;
     private DefaultTableModel m_LogTableModel;
 
     public LogUIAdvanced() {
@@ -76,6 +79,12 @@ public class LogUIAdvanced {
             }
         });
         staffCloseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        messageCloseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -123,6 +132,111 @@ public class LogUIAdvanced {
         logTable.getColumnModel().getColumn(4).setMinWidth(50);
     }
 
+    private void setupStaffTable () {
+        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        m_LogTableModel = new DefaultTableModel(
+                //initial date which is empty
+                new Object[][]{},
+                //initial columns
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+        ) {
+            //stops user from editing the table
+            @Override
+            public boolean isCellEditable(int row, int column) {return false;}
+        };
+
+        //applies the model to the table
+        staffTable.setModel(m_LogTableModel);
+
+        //centers the values in the columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        staffTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        staffTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        staffTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        staffTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        staffTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+
+        // center colum
+        ((DefaultTableCellRenderer)staffTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        //adjust column widths
+        staffTable.getColumnModel().getColumn(0).setMinWidth(50);
+        staffTable.getColumnModel().getColumn(1).setMinWidth(50);
+        staffTable.getColumnModel().getColumn(2).setMinWidth(50);
+        staffTable.getColumnModel().getColumn(3).setMinWidth(50);
+        staffTable.getColumnModel().getColumn(4).setMinWidth(50);
+    }
+
+    private void setupSubjectTable () {
+        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        m_LogTableModel = new DefaultTableModel(
+                //initial date which is empty
+                new Object[][]{},
+                //initial columns
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+        ) {
+            //stops user from editing the table
+            @Override
+            public boolean isCellEditable(int row, int column) {return false;}
+        };
+
+        //applies the model to the table
+        subjectTable.setModel(m_LogTableModel);
+
+        //centers the values in the columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        subjectTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        subjectTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        subjectTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        subjectTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        subjectTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+
+        // center colum
+        ((DefaultTableCellRenderer)subjectTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        //adjust column widths
+        subjectTable.getColumnModel().getColumn(0).setMinWidth(50);
+        subjectTable.getColumnModel().getColumn(1).setMinWidth(50);
+        subjectTable.getColumnModel().getColumn(2).setMinWidth(50);
+        subjectTable.getColumnModel().getColumn(3).setMinWidth(50);
+        subjectTable.getColumnModel().getColumn(4).setMinWidth(50);
+    }
+
+    private void setupMessageTable () {
+        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        m_LogTableModel = new DefaultTableModel(
+                //initial date which is empty
+                new Object[][]{},
+                //initial columns
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+        ) {
+            //stops user from editing the table
+            @Override
+            public boolean isCellEditable(int row, int column) {return false;}
+        };
+
+        //applies the model to the table
+        messageTable.setModel(m_LogTableModel);
+
+        //centers the values in the columns
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        messageTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        messageTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        messageTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        messageTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        messageTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+
+        // center colum
+        ((DefaultTableCellRenderer)messageTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        //adjust column widths
+        messageTable.getColumnModel().getColumn(0).setMinWidth(50);
+        messageTable.getColumnModel().getColumn(1).setMinWidth(50);
+        messageTable.getColumnModel().getColumn(2).setMinWidth(50);
+        messageTable.getColumnModel().getColumn(3).setMinWidth(50);
+        messageTable.getColumnModel().getColumn(4).setMinWidth(50);
+    }
+
     private void fetchDates() {
         setupTable();
         DateModel startCal = startDatePicker.getModel();
@@ -142,7 +256,7 @@ public class LogUIAdvanced {
     }
 
     private void fetchUser() {
-        setupTable();
+        setupStaffTable();
         String staffText = String.valueOf(staffTextInput);
         ArrayList<Log> users = Log.findUser(staffText);
         for (Log log: users) {
@@ -157,7 +271,7 @@ public class LogUIAdvanced {
     }
 
     private void fetchSubject() {
-        setupTable();
+        setupSubjectTable();
         String subjectText = String.valueOf(subjectTextInput);
         ArrayList<Log> subjects = Log.findSubject(subjectText);
         for (Log log: subjects) {
@@ -172,7 +286,7 @@ public class LogUIAdvanced {
     }
 
     private void fetchMessage() {
-        setupTable();
+        setupMessageTable();
         String messageText = String.valueOf(messageTextInput);
         ArrayList<Log> messages = Log.findMessage(messageText);
         for (Log log: messages) {

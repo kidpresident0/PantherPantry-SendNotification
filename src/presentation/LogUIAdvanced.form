@@ -302,7 +302,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="dae09" class="javax.swing.JTable">
+                      <component id="dae09" class="javax.swing.JTable" binding="staffTable">
                         <constraints/>
                         <properties>
                           <font name="SansSerif"/>
@@ -466,7 +466,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="474f8" class="javax.swing.JTable">
+                      <component id="474f8" class="javax.swing.JTable" binding="subjectTable">
                         <constraints/>
                         <properties>
                           <font name="SansSerif"/>
@@ -630,7 +630,7 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="46614" class="javax.swing.JTable">
+                      <component id="46614" class="javax.swing.JTable" binding="messageTable">
                         <constraints/>
                         <properties>
                           <font name="SansSerif"/>

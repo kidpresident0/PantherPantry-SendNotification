@@ -54,13 +54,13 @@ public class Database {
                     "WHERE  sentDateTime BETWEEN ? AND ?;";
     private static final String GET_USER_SEARCH_QUERY =
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
-                    "WHERE  sentBy = ?;";
+                    "WHERE  sentBy LIKE CONCAT( '%',?,'%');";
     private static final String GET_SUBJECT_SEARCH_QUERY =
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
-                    "WHERE  subject = ?;";
+                    "WHERE  subject LIKE CONCAT( '%',?,'%');";
     private static final String GET_MESSAGE_SEARCH_QUERY =
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
-                    "WHERE  messageBody = ?;";
+                    "WHERE  messageBody LIKE CONCAT( '%',?,'%');";
 
     private static ArrayList<User> subscribers = null;
     private static Integer currentSubscriberCount = 0;
