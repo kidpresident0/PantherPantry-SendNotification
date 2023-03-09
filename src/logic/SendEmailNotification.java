@@ -63,12 +63,21 @@ public class SendEmailNotification {
     }
 
     /**
-     * Pass along the current Panther Pantry subscriber account to the GUI
+     * Pass along the current Panther Pantry Email subscriber count to the GUI
      * @return subscriber count
      */
-    public static int getSubscriberCount() {
+    public static int getEmailSubscriberCount() {
 
-        return new Database().emailSubCount();
+        return Database.emailSubCount();
+    }
+
+    /**
+     * Pass along the current Panther Pantry subscriber count who want both types of notification to the GUI
+     * @return subscriber count
+     */
+    public static int getBothSubscriberCount() {
+
+        return Database.smsSubCount();
     }
 
     /**
@@ -88,7 +97,7 @@ public class SendEmailNotification {
      */
     public ArrayList<User> subscriberEmails() {
         Database subEmails = new Database();
-        ArrayList<User> subscribers = subEmails.getGetSubscriberEmail();
+        ArrayList<User> subscribers = subEmails.getSubscriberEmails();
         System.out.println(subscribers);
         for (User user : subscribers) {
             System.out.println(user.getEmail());

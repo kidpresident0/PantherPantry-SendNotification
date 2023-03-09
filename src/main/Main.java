@@ -1,5 +1,6 @@
 package main;
 
+import database.Database;
 import logic.SendSMSNotification;
 import presentation.*;
 import javax.swing.*;
@@ -22,6 +23,7 @@ Main {
                 createGUI();
                 //new SendSMSNotification();
                 //SendSMSNotification.sendMessage("+19717108892", "sendSMSNotification Test message");
+
 
 
             }

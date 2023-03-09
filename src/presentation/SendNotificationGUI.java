@@ -50,8 +50,8 @@ public class SendNotificationGUI extends JFrame {
 
     public SendNotificationGUI() {
 
-        emailSubCountField.setText(String.valueOf(Database.emailSubCount()));
-        smsSubCountField.setText(String.valueOf(Database.smsSubCount()));
+        emailSubCountField.setText(String.valueOf(SendEmailNotification.getEmailSubscriberCount()));
+        smsSubCountField.setText(String.valueOf(SendSMSNotification.getSMSSubscriberCount()));
 
         emailBottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
         emailSendButton.addActionListener(new ActionListener() {
@@ -74,6 +74,15 @@ public class SendNotificationGUI extends JFrame {
             //public void actionPerformed(ActionEvent actionEvent) { smsButtonSendActionPerformed(); }
         });
 
+        bothSMSAndEmailCheckbox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                if ( bothSMSAndEmailCheckbox.isSelected()) {
+                    emailSubCountField.setText(String.valueOf(SendSMSNotification.getSMSSubscriberCount()));
+                }
+                else { emailSubCountField.setText(String.valueOf(SendEmailNotification.getEmailSubscriberCount())); }
+            }
+        });
     }
 
     // If the subject/body fields have content send the notification and pass its details along to the logic layer.
@@ -87,7 +96,7 @@ public class SendNotificationGUI extends JFrame {
             String fromEmail = sendEmailNotification.getUsername();
             String subject = emailSubjectField.getText();
             String body = emailBodyArea.getText();
-            int subscriberCount = SendEmailNotification.getSubscriberCount();
+            int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
             try {
                 SendEmailNotification.sendNotification(subscribers, subject, body);
                 emailSubjectField.setText("");
@@ -162,7 +171,7 @@ public class SendNotificationGUI extends JFrame {
         //SMS details
         String phoneNumber = "19717108892";
         String messageBody = emailBodyArea.getText();
-        int subscriberCount = SendEmailNotification.getSubscriberCount();
+        int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
         try {
             SendEmailNotification.sendNotification(subscribers, subject, body);
             SendSMSNotification.sendMessage(phoneNumber, messageBody);

@@ -34,9 +34,13 @@ public class Database {
 
     private static final String GET_TEMPLATE_SQL = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
 
-    private static final String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND userEmail IS NOT NULL";
-
-    private static final String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber' AND userPhone IS NOT NULL";
+    private static final String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND"
+    + " userEmail IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'Email'";
+    private static final String GET_SUBSCRIBER_PHONE = "SELECT phoneNumber FROM USERS WHERE userRole = 'subscriber' AND"
+    + " phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'SMS'";
+    private static final String GET_SUBSCRIBER_BOTH = "SELECT userEmail,phoneNumber FROM USERS WHERE userRole = " +
+            " 'subscriber' AND userEmail IS NOT NULL AND phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND"
+        + " notificationType = 'Both'";
 
     private static final String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
@@ -268,14 +272,14 @@ public class Database {
      *
      * @return the list of subscriber email addresses
      */
-    public static ArrayList<User> getGetSubscriberEmail() { return readSubscribersEmail(); }
+    public static ArrayList<User> getSubscriberEmails() { return readSubscribersEmail(); }
 
     /**
      * Counts the number of subscribers that will receive an email notification
      *
      * @return a count for subscribers.
      */
-    public static int emailSubCount() { return getGetSubscriberEmail().size();}
+    public static int emailSubCount() { return (getSubscriberEmails()).size();}
 
     /**
      * Returns a list of subscriber phone numbers from the USERS database. If an error occurs, a stack
@@ -294,7 +298,7 @@ public class Database {
             while (rs.next()) {
                 User user = new User(
                         null,
-                        rs.getString("userPhone"),
+                        rs.getString("phoneNumber"),
                         null,
                         null,
                         null,
@@ -314,20 +318,66 @@ public class Database {
         return subscriberPhones;
     }
 
-
     /**
      * Makes the subscriber phone numbers publicly available for other classes.
      *
      * @return the list of subscriber phone numbers.
      */
-    public static ArrayList<String> getGetSubscriberPhone() { return readSubscriberPhone(); }
+    public static ArrayList<String> getSubscriberPhone() { return readSubscriberPhone(); }
 
     /**
      * Counts the number of subscribers that will receive an SMS notification
      *
      * @return a count for subscribers.
      */
-    public static int smsSubCount() { return getGetSubscriberPhone().size();}
+    public static int smsSubCount() { return getSubscriberPhone().size();}
+
+
+    /**
+     * Returns a list of subscribers who want to receive both types of  notifications from the USERS database.
+     * The only purpose of this method is to retrieve a count for subscribers who want both types of notifications.
+     * If an error occurs, a stack trace is printed to standard error and an empty list is returned.
+     *
+     * @return a list of users.
+     */
+    private static ArrayList<String> readSubscriberBoth() {
+        ArrayList<String> subscriberBoth = new ArrayList<>();
+
+        connect();
+        try (
+                PreparedStatement stmt = conn.prepareStatement(GET_SUBSCRIBER_BOTH);
+                ResultSet rs = stmt.executeQuery()) {
+            // Iterate through subscribers in the database and add their phone numbers and emails to a list.
+            while (rs.next()) {
+                User user = new User(
+                        rs.getString("userEmail"),
+                        rs.getString("phoneNumber"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0
+                );
+                subscriberBoth.add(String.valueOf(user));
+            }
+        } catch (SQLException e) {
+            // Handle errors for JDBC
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+        }
+        System.out.println(subscriberBoth);
+
+        return subscriberBoth;
+    }
+
+    /**
+     * Counts the number of subscribers that will receive both SMS and Email notifications
+     *
+     * @return a count for subscribers.
+     */
+    public static int bothSubCount() { return readSubscriberBoth().size();}
 
     /**
      * Writes the details of each notification to the notification log database.

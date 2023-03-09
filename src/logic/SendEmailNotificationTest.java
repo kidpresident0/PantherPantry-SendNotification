@@ -21,7 +21,7 @@ class SendEmailNotificationTest {
 
     @Test
     void GetSubscriberCountTest() {
-        int subscriberCount = SendEmailNotification.getSubscriberCount();
+        int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
         Assertions.assertTrue(subscriberCount >= 0);
     }
 

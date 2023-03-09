@@ -26,12 +26,21 @@ public class SendSMSNotification {
 
     //retrieve phone numbers from the database and proceed them with a + per Twilio requirements.
     public static ArrayList<String> subscriberNumbers() {
-        ArrayList<String> rawPhoneNumbers = Database.getGetSubscriberPhone();
+        ArrayList<String> rawPhoneNumbers = Database.getSubscriberPhone();
         ArrayList<String> formattedPhoneNumbers = new ArrayList<>();
         for (String phoneNumber : rawPhoneNumbers) {
             formattedPhoneNumbers.add("+" + phoneNumber);
         }
         return formattedPhoneNumbers;
+    }
+
+    /**
+     * Pass along the current Panther Pantry SMS subscriber count to the GUI
+     * @return subscriber count
+     */
+    public static int getSMSSubscriberCount() {
+
+        return Database.smsSubCount();
     }
 
 
