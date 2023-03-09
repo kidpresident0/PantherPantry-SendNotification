@@ -18,6 +18,11 @@ public class User {
     private String lastName;
     private String role;
     private Integer userID;
+    private String phoneNumber;
+    private String receiveNotifications;
+    private String notificationType;
+    private String activated;
+
 
     public User(String email, String username, String password, String subscriberName, String firstName, String lastName, String role, Integer userID) {
         this.email = email;
@@ -28,6 +33,18 @@ public class User {
         this.lastName = lastName;
         this.role = role;
         this.userID = userID;
+    }
+
+    public User(String email, String username, String password, String firstName, String lastName, Integer userID, String phoneNumber, String receiveNotifications, String notificationType) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userID = userID;
+        this.phoneNumber = phoneNumber;
+        this.receiveNotifications = receiveNotifications;
+        this.notificationType = notificationType;
     }
 
     /**
@@ -71,9 +88,54 @@ public class User {
         return Database.checkPasswordUsername(name);
     }
 
+    public static Integer getUserIDEmail(String name) {
+        return Database.getUserIDEmail(name);
+    }
+
+    public static Integer getUserIDUsername(String name) {
+        return Database.getUserIDUsername(name);
+    }
+
+    public static String getUsernameFromID(Integer userID) {
+        return Database.getUsernameFromID(userID);
+    }
+
+    public static String getEmailFromID(Integer userID) {
+        return Database.getEmailFromID(userID);
+    }
+
+    public static String getFirstNameFromID(Integer userID) {
+        return Database.getFirstNameFromID(userID);
+    }
+
+    public static String getLastNameFromID(Integer userID) {
+        return Database.getLastNameFromID(userID);
+    }
+
+    public static String getPasswordFromID(Integer userID) {
+        return Database.getPasswordFromID(userID);
+    }
+
+    public static String getPhoneNumberFromID(Integer userID) {
+        return Database.getPhoneNumberFromID(userID);
+    }
+
+    public static String getReceiveNotificationsFromID(Integer userID) {
+        return Database.getReceiveNotificationsFromId(userID);
+    }
+
+    public static String getNotificationTypeFromID(Integer userID) {
+        return Database.getNotificationTypeFromID(userID);
+    }
+
     public static void addUser(String firstName, String lastName, String password, String email, String username) {
         Database.addSubscriber(username, firstName, lastName, email, password);
     }
+
+    public static void updateUser(String username, String firstName, String lastName, String password, String email, String phoneNumber, String receiveNotifications, String notificationType, Integer userID) {
+        Database.updateSubscriber(username, firstName, lastName, email, password, phoneNumber, receiveNotifications, notificationType, userID);
+    }
+
 
     public Integer getUserID() {
         return userID;
@@ -113,5 +175,29 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getActualUsername() {
+        return username;
+    }
+
+    public String getReceiveNotifications() {
+        return receiveNotifications;
+    }
+
+    public String getNotificationType() {
+        return notificationType;
     }
 }

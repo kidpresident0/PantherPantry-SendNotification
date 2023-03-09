@@ -42,13 +42,30 @@ public class Database {
             + "subscriberCount) VALUES (?,?,?,?,?)";
 
     private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
-            "(username, firstName, lastName, userEmail, userPassword, userRole) " +
-            "VALUES (?, ?, ?, ?, ?, ?)";
+            "(username, firstName, lastName, userEmail, userPassword, userRole, receiveNotifications, notificationType) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    private static final String UPDATE_USER_ACCOUNT = "UPDATE USERS SET username = ?, firstName = ?, lastName = ?, userEmail = ?, userPassword = ?, phoneNumber = ?, receiveNotifications = ?, notificationType = ? WHERE userID = ?";
+
 
     private static final String GET_EMAIL = "SELECT userEmail FROM USERS WHERE userEmail = ?";
+    private static final String GET_USERID_EMAIL = "SELECT userID FROM USERS WHERE userEmail = ?";
+    private static final String GET_USERID_USERNAME = "SELECT userID FROM USERS WHERE username = ?";
     private static final String GET_USERNAME = "SELECT username FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_USERNAME = "SELECT userPassword FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_EMAIL = "SELECT userPassword FROM USERS WHERE userEmail = ?";
+
+    private static final String GET_USERNAME_FROM_ID = "SELECT username FROM USERS WHERE userID = ?";
+    private static final String GET_FIRST_NAME_FROM_ID = "SELECT firstName FROM USERS WHERE userID = ?";
+    private static final String GET_LAST_NAME_FROM_ID = "SELECT lastName FROM USERS WHERE userID = ?";
+    private static final String GET_EMAIL_FROM_ID = "SELECT userEmail FROM USERS WHERE userID = ?";
+    private static final String GET_PASSWORD_FROM_ID = "SELECT userPassword FROM USERS WHERE userID = ?";
+    private static final String GET_PHONE_NUMBER_FROM_ID = "SELECT phoneNumber FROM USERS WHERE userID = ?";
+    private static final String GET_RECEIVE_NOTIFICATIONS_FROM_ID = "SELECT receiveNotifications FROM USERS WHERE userID = ?";
+    private static final String GET_NOTIFICATION_TYPE_FROM_ID = "SELECT notificationType FROM USERS WHERE userID = ?";
+
+
+
     private static final String FIND_REVIEW_NOTIFICATION_QUERY =
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
                     "WHERE  sentDateTime BETWEEN ? AND ?;";
@@ -99,6 +116,29 @@ public class Database {
             stmt.setString(4, email);
             stmt.setString(5, password);
             stmt.setString(6, "subscriber");
+            stmt.setString(7, "Yes");
+            stmt.setString(8, "Email");
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Updates a row in the Users table with new information
+    public static void updateSubscriber(String username, String firstName, String lastName, String email, String password, String phoneNumber, String receiveNotifications, String notificationType, Integer userID ) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_ACCOUNT);
+            stmt.setString(1, username);
+            stmt.setString(2, firstName);
+            stmt.setString(3, lastName);
+            stmt.setString(4, email);
+            stmt.setString(5, password);
+            stmt.setString(6, phoneNumber);
+            stmt.setString(7, receiveNotifications);
+            stmt.setString(8, notificationType);
+            stmt.setInt(9, userID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -177,6 +217,186 @@ public class Database {
             e.printStackTrace();
         }
         return null;
+    }
+
+    // Retrieves the userID that belongs to the email address the user entered
+    public static Integer getUserIDEmail(String name) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_USERID_EMAIL);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String userID = rs.getString(1);
+                return Integer.valueOf(userID);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // Retrieves the userID that belongs to the username the user entered
+    public static Integer getUserIDUsername(String name) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_USERID_USERNAME);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String userID = rs.getString(1);
+                return Integer.valueOf(userID);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //returns the email from the database based on the userID
+    public static String getUsernameFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_USERNAME_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String username = rs.getString(1);
+                return username;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns the email from the database based on the userID
+    public static String getEmailFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_EMAIL_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String email = rs.getString(1);
+                return email;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns user's first name  from the database based on the userID
+    public static String getFirstNameFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_FIRST_NAME_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String firstName = rs.getString(1);
+                return firstName;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns user's last name from the database based on the userID
+    public static String getLastNameFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_LAST_NAME_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String lastName = rs.getString(1);
+                return lastName;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns the password from the database based on the userID
+    public static String getPasswordFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_PASSWORD_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String password = rs.getString(1);
+                return password;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns phone number from the database based on the userID
+    public static String getPhoneNumberFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_PHONE_NUMBER_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String phoneNumber = rs.getString(1);
+                return phoneNumber;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns phone number from the database based on the userID
+    public static String getReceiveNotificationsFromId(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_RECEIVE_NOTIFICATIONS_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String receiveNotifications = rs.getString(1);
+                return receiveNotifications;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns phone number from the database based on the userID
+    public static String getNotificationTypeFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_NOTIFICATION_TYPE_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String notificationType = rs.getString(1);
+                return notificationType;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     // sets the ID to the 1

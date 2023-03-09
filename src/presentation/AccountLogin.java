@@ -72,6 +72,19 @@ public class AccountLogin {
             String passwordErrorCorrect = "$2a" + passwordCheck.substring(3);
             if (BCrypt.checkpw(password, passwordErrorCorrect)) {
                 JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
+
+                Integer userID = User.getUserIDEmail(name);
+                String currentEmail = User.getEmailFromID(userID);
+                String currentUsername = User.getUsernameFromID(userID);
+                String currentFirstName = User.getFirstNameFromID(userID);
+                String currentLastName = User.getLastNameFromID(userID);
+                String currentPhoneNumber = User.getPhoneNumberFromID(userID);
+                String currentReceiveNotifications = User.getReceiveNotificationsFromID(userID);
+                String currentNotificationType = User.getNotificationTypeFromID(userID);
+
+                logic.User currentUser = new User(currentEmail, currentUsername, password, currentFirstName, currentLastName, userID, currentPhoneNumber, currentReceiveNotifications, currentNotificationType);
+                System.out.println(userID + " " + currentUsername);
+                Main.accountSettings(currentUser);
                 return;
             }
             JOptionPane.showMessageDialog(null, "Login failed, check information and try again.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
@@ -81,10 +94,25 @@ public class AccountLogin {
         String passwordErrorCorrect = "$2a" + passwordCheck.substring(3);
         if (BCrypt.checkpw(password, passwordErrorCorrect)) {
             JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
+
+            Integer userID = User.getUserIDUsername(name);
+            String currentEmail = User.getEmailFromID(userID);
+            String currentUsername = User.getUsernameFromID(userID);
+            String currentFirstName = User.getFirstNameFromID(userID);
+            String currentLastName = User.getLastNameFromID(userID);
+            String currentPhoneNumber = User.getPhoneNumberFromID(userID);
+            String currentReceiveNotifications = User.getReceiveNotificationsFromID(userID);
+            String currentNotificationType = User.getNotificationTypeFromID(userID);
+
+            logic.User currentUser = new User(currentEmail, currentUsername, password, currentFirstName, currentLastName, userID, currentPhoneNumber, currentReceiveNotifications, currentNotificationType);
+            System.out.println(userID + " " + currentUsername);
+            Main.accountSettings(currentUser);
+
             return;
         }
         JOptionPane.showMessageDialog(null, "Login failed, check information and try again.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
         return;
     }
+
 
 }

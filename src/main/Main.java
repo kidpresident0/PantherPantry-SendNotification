@@ -1,6 +1,7 @@
 package main;
 
 import presentation.*;
+import logic.*;
 import javax.swing.*;
 
 
@@ -52,7 +53,7 @@ public class Main {
     public static void createGUI() {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        logUI();
+        accountLogin();
     }
 
     public static void logUI() {
@@ -85,6 +86,15 @@ public class Main {
     public static void accountCreate() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new AccountCreation().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
+    public static void accountSettings(User currentUser) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new AccountSettings(currentUser).getRootPanel());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
