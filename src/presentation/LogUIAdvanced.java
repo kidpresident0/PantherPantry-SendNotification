@@ -27,7 +27,7 @@ public class LogUIAdvanced {
     private JDatePicker startDatePicker;
     private JDatePicker endDatePicker;
     private JButton closeButton;
-    private JTable logTable;
+    private JTable dateTable;
     private JTextField staffTextInput;
     private JButton staffSubmitButton;
     private JButton staffCloseButton;
@@ -40,6 +40,9 @@ public class LogUIAdvanced {
     private JTable staffTable;
     private JTable subjectTable;
     private JTable messageTable;
+    private DefaultTableModel d_LogTableModel;
+    private DefaultTableModel u_LogTableModel;
+    private DefaultTableModel s_LogTableModel;
     private DefaultTableModel m_LogTableModel;
 
     public LogUIAdvanced() {
@@ -97,9 +100,9 @@ public class LogUIAdvanced {
     }
     public JTabbedPane getTabbedPane() { return tabbedPane;}
 
-    private void setupTable () {
+    private void setupDateTable () {
         //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
-        m_LogTableModel = new DefaultTableModel(
+        d_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
@@ -111,30 +114,30 @@ public class LogUIAdvanced {
         };
 
         //applies the model to the table
-        logTable.setModel(m_LogTableModel);
+        dateTable.setModel(d_LogTableModel);
 
         //centers the values in the columns
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        logTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        logTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        logTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-        logTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
-        logTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        dateTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        dateTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        dateTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        dateTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        dateTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 
         // center colum
-        ((DefaultTableCellRenderer)logTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        ((DefaultTableCellRenderer)dateTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         //adjust column widths
-        logTable.getColumnModel().getColumn(0).setMinWidth(50);
-        logTable.getColumnModel().getColumn(1).setMinWidth(50);
-        logTable.getColumnModel().getColumn(2).setMinWidth(50);
-        logTable.getColumnModel().getColumn(3).setMinWidth(50);
-        logTable.getColumnModel().getColumn(4).setMinWidth(50);
+        dateTable.getColumnModel().getColumn(0).setMinWidth(50);
+        dateTable.getColumnModel().getColumn(1).setMinWidth(50);
+        dateTable.getColumnModel().getColumn(2).setMinWidth(50);
+        dateTable.getColumnModel().getColumn(3).setMinWidth(50);
+        dateTable.getColumnModel().getColumn(4).setMinWidth(50);
     }
 
     private void setupStaffTable () {
         //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
-        m_LogTableModel = new DefaultTableModel(
+        u_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
@@ -146,7 +149,7 @@ public class LogUIAdvanced {
         };
 
         //applies the model to the table
-        staffTable.setModel(m_LogTableModel);
+        staffTable.setModel(u_LogTableModel);
 
         //centers the values in the columns
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -169,7 +172,7 @@ public class LogUIAdvanced {
 
     private void setupSubjectTable () {
         //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
-        m_LogTableModel = new DefaultTableModel(
+        s_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
@@ -181,7 +184,7 @@ public class LogUIAdvanced {
         };
 
         //applies the model to the table
-        subjectTable.setModel(m_LogTableModel);
+        subjectTable.setModel(s_LogTableModel);
 
         //centers the values in the columns
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -238,14 +241,14 @@ public class LogUIAdvanced {
     }
 
     private void fetchDates() {
-        setupTable();
+        setupDateTable();
         DateModel startCal = startDatePicker.getModel();
         String startDateString = (1 + startCal.getMonth()) + "/" + startCal.getDay() + "/" + startCal.getYear();
         DateModel endCal = endDatePicker.getModel();
         String endDateString = (1 + endCal.getMonth()) + "/" + endCal.getDay() + "/" + endCal.getYear();
         ArrayList<Log> logs = Log.findLogs(startDateString, endDateString);
         for (Log log: logs) {
-            m_LogTableModel.addRow(new Object[]{
+            d_LogTableModel.addRow(new Object[]{
                     log.getSentBy(),
                     log.getSentDateTime(),
                     log.getSubject(),
@@ -257,10 +260,10 @@ public class LogUIAdvanced {
 
     private void fetchUser() {
         setupStaffTable();
-        String staffText = String.valueOf(staffTextInput);
+        String staffText = staffTextInput.getText();
         ArrayList<Log> users = Log.findUser(staffText);
         for (Log log: users) {
-            m_LogTableModel.addRow(new Object[]{
+            u_LogTableModel.addRow(new Object[]{
                     log.getSentBy(),
                     log.getSentDateTime(),
                     log.getSubject(),
@@ -272,10 +275,10 @@ public class LogUIAdvanced {
 
     private void fetchSubject() {
         setupSubjectTable();
-        String subjectText = String.valueOf(subjectTextInput);
+        String subjectText = subjectTextInput.getText();
         ArrayList<Log> subjects = Log.findSubject(subjectText);
         for (Log log: subjects) {
-            m_LogTableModel.addRow(new Object[]{
+            s_LogTableModel.addRow(new Object[]{
                     log.getSentBy(),
                     log.getSentDateTime(),
                     log.getSubject(),
@@ -287,7 +290,7 @@ public class LogUIAdvanced {
 
     private void fetchMessage() {
         setupMessageTable();
-        String messageText = String.valueOf(messageTextInput);
+        String messageText = messageTextInput.getText();
         ArrayList<Log> messages = Log.findMessage(messageText);
         for (Log log: messages) {
             m_LogTableModel.addRow(new Object[]{

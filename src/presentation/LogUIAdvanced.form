@@ -136,7 +136,7 @@
                         </properties>
                         <border type="none"/>
                         <children>
-                          <component id="9a11b" class="javax.swing.JTable" binding="logTable">
+                          <component id="9a11b" class="javax.swing.JTable" binding="dateTable">
                             <constraints/>
                             <properties>
                               <font name="SansSerif"/>
