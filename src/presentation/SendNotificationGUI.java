@@ -77,7 +77,7 @@ public class SendNotificationGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 if ( bothSMSAndEmailCheckbox.isSelected()) {
-                    emailSubCountField.setText(String.valueOf(SendSMSNotification.getSMSSubscriberCount()));
+                    emailSubCountField.setText(String.valueOf(SendEmailNotification.getBothSubscriberCount()));
                 }
                 else { emailSubCountField.setText(String.valueOf(SendEmailNotification.getEmailSubscriberCount())); }
             }
@@ -181,7 +181,7 @@ public class SendNotificationGUI extends JFrame {
         String messageBody = emailBodyArea.getText();
 
         String notificationType = "both";
-        int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
+        int subscriberCount = SendEmailNotification.getBothSubscriberCount();
         try {
             SendEmailNotification.sendEmailNotification(subscribers, subject, body);
             SendSMSNotification.sendMessage(phoneNumber, messageBody);

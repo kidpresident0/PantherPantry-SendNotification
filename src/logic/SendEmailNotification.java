@@ -77,7 +77,7 @@ public class SendEmailNotification {
      */
     public static int getBothSubscriberCount() {
 
-        return Database.smsSubCount();
+        return Database.bothSubCount();
     }
 
     /**

@@ -22,7 +22,7 @@ ADD userPhone  VARCHAR(15);
 SET IDENTITY_INSERT [234a_Null].[dbo].[USERS]  OFF;
 
 INSERT INTO [234a_Null].[dbo].[USERS] (username, firstName, lastName, userPassword, userEmail, userRole, phoneNumber) VALUES ('foodEater88','Jack'
-                    , 'Hungrymen', 'P@ssw0rd', 'hungrydude@whensdinner.com', 'subscriber', '19716667777');
+                    , 'Hungrymen', 'P@ssw0rd', 'hungrydude@whensdinner.com', 'subscriber', '19716667777','Yes','Both');
 
 -- Delete Table --
   DROP TABLE NOTIFICATIONS;

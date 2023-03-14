@@ -38,7 +38,7 @@ public class Database {
     + " userEmail IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'Email'";
     private static final String GET_SUBSCRIBER_PHONE = "SELECT phoneNumber FROM USERS WHERE userRole = 'subscriber' AND"
     + " phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'SMS'";
-    private static final String GET_SUBSCRIBER_BOTH = "SELECT userEmail,phoneNumber FROM USERS WHERE userRole = " +
+    private static final String GET_SUBSCRIBER_BOTH = "SELECT username FROM USERS WHERE userRole = " +
             " 'subscriber' AND userEmail IS NOT NULL AND phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND"
         + " notificationType = 'Both'";
 
@@ -347,12 +347,11 @@ public class Database {
         try (
                 PreparedStatement stmt = conn.prepareStatement(GET_SUBSCRIBER_BOTH);
                 ResultSet rs = stmt.executeQuery()) {
-            // Iterate through subscribers in the database and add their phone numbers and emails to a list.
             while (rs.next()) {
                 User user = new User(
-                        rs.getString("userEmail"),
-                        rs.getString("phoneNumber"),
                         null,
+                        null,
+                        rs.getString("username"),
                         null,
                         null,
                         null,
@@ -367,7 +366,6 @@ public class Database {
             System.err.println("ERROR: " + e.getMessage());
             e.printStackTrace();
         }
-        System.out.println(subscriberBoth);
 
         return subscriberBoth;
     }
