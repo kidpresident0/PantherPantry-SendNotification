@@ -4,6 +4,7 @@ import database.Database;
 import logic.SendSMSNotification;
 import presentation.*;
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -21,8 +22,7 @@ Main {
             @Override
             public void run() {
                 createGUI();
-                //new SendSMSNotification();
-                //SendSMSNotification.sendMessage("+19717108892", "sendSMSNotification Test message");
+
 
 
 
@@ -74,6 +74,9 @@ Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Notification System");
+        frame.setSize(250,200);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
+                "Sprint2\\Null\\src\\presentation\\Icon.png"));
     }
 
     public static void logUI() {
