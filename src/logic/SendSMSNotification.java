@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Panther Pantry subscribers who wish to receive them.
  *
  * @author Twilio, John Christian
- * @version 2023.02.27
+ * @version 2023.03.13
  *
  */
 
@@ -24,6 +24,8 @@ public class SendSMSNotification {
     // The phone number you're sending the SMS message from (Twilio phone number)
     private static final String FROM_NUMBER = "+15673339882";
 
+    String notificationType = "sms";
+
     //retrieve phone numbers from the database and proceed them with a + per Twilio requirements.
     public static ArrayList<String> subscriberNumbers() {
         ArrayList<String> rawPhoneNumbers = Database.getSubscriberPhone();
@@ -32,6 +34,16 @@ public class SendSMSNotification {
             formattedPhoneNumbers.add("+" + phoneNumber);
         }
         return formattedPhoneNumbers;
+    }
+
+    /**
+     * Get the username of the panther pantry staff sending the SMS. For demonstration purposes
+     * this value is currently hardcoded.
+     * @return sender's email address
+     */
+    public static String getUsername() {
+        String publicUsername = "PantherPantryAdmin";
+        return publicUsername;
     }
 
     /**
@@ -59,4 +71,19 @@ public class SendSMSNotification {
 
             System.out.println("Sent message to " + subscriberNumber + ": " + message.getSid());
         }
+    /**
+     * Pass the details of a single SMS notification along to the database.
+     * @param messageBody message body of the notification
+     * @param sentBy panther pantry staff member who sent the notification
+     * @param subscriberCount the number of subscribers that received the notification
+     */
+    public static void setSMSNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
+        Database db = new Database();
+        db.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount, notificationType);
+    }
+
+
 }
+
+

@@ -14,7 +14,7 @@ import java.util.Properties;
  * It uses the Javax.mail library to log in to Gmail and send email notifications to Panther Pantry subscribers.
  *
  * @author Marc Goodman, John Christian
- * @version 2023.02.06
+ * @version 2023.03.13
  */
 public class SendEmailNotification {
 
@@ -24,7 +24,7 @@ public class SendEmailNotification {
      * @param subject the subject of the notification
      * @param body the message body of the notification
      */
-    public static void sendNotification(String subscribers, String subject, String body) {
+    public static void sendEmailNotification(String subscribers, String subject, String body) {
 
         final String username = "TeamNullTest@gmail.com";
         final String password = "jpolvslgeuawbsum";
@@ -81,12 +81,12 @@ public class SendEmailNotification {
     }
 
     /**
-     * Get the email address of the panther pantry staff sending the email. For demonstration purposes
+     * Get the username of the panther pantry staff sending the email. For demonstration purposes
      * this value is currently hardcoded.
      * @return sender's email address
      */
     public String getUsername() {
-        String publicUsername = "TeamNullTest@gmail.com";
+        String publicUsername = "PantherPantryAdmin";
         return publicUsername;
     }
 
@@ -112,8 +112,9 @@ public class SendEmailNotification {
      * @param sentBy panther pantry staff member who sent the notification
      * @param subscriberCount the number of subscribers that received the notification
      */
-    public static void setNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
+    public static void setNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                           String type) {
         Database db = new Database();
-        db.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount);
+        db.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount, type);
     }
 }

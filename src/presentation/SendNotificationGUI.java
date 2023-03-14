@@ -1,6 +1,5 @@
 package presentation;
 
-import database.Database;
 import logic.SendEmailNotification;
 import logic.SendSMSNotification;
 import logic.User;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
  * This is the GUI class for the Send Notification story for the PCC Panther Pantry.
  *
  * @author John Christian
- * @version 2023.02.07
+ * @version 2023.03.13
  */
 public class SendNotificationGUI extends JFrame {
 
@@ -93,16 +92,17 @@ public class SendNotificationGUI extends JFrame {
         }
             String subscribers = "flanwithaplan0@gmail.com";
             //ArrayList<User> subscribers = subscriberEmails();
-            String fromEmail = sendEmailNotification.getUsername();
+            String sentBy = sendEmailNotification.getUsername();
+            String notificationType = "email";
             String subject = emailSubjectField.getText();
             String body = emailBodyArea.getText();
             int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
             try {
-                SendEmailNotification.sendNotification(subscribers, subject, body);
+                SendEmailNotification.sendEmailNotification(subscribers, subject, body);
                 emailSubjectField.setText("");
                 emailBodyArea.setText("");
 
-                SendEmailNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
+                SendEmailNotification.setNotificationInfo(subject, body, sentBy, subscriberCount, notificationType);
                 JOptionPane.showMessageDialog(this,
                         "The notification has been sent successfully!");
                 System.exit(0);
@@ -118,15 +118,19 @@ public class SendNotificationGUI extends JFrame {
 
 
     //This action listener would format an array list of subscriber numbers for Twilio and send them
-    //an SMS notification per the requirements of Sprint 2
+    //an SMS notification per the requirements of Sprint 2, then log the details.
     private void smsButtonSendActionPerformed() {
         if (validateSMSFields()) {
             ArrayList<String> subscriberNumbers = SendSMSNotification.subscriberNumbers();
+            int subscriberCount = SendSMSNotification.getSMSSubscriberCount();
             String messageBody = smsMessageArea.getText();
+            String notificationType = "sms";
+            String sentBy = SendSMSNotification.getUsername();
             try {
                 for (String phoneNumber : subscriberNumbers) {
                     SendSMSNotification.sendMessage(phoneNumber, messageBody);
                 }
+                SendSMSNotification.setSMSNotificationInfo(null, messageBody, sentBy, subscriberCount, notificationType);
                 JOptionPane.showMessageDialog(this,
                         "The SMS message has been sent successfully!");
                 //System.exit(0);
@@ -137,14 +141,18 @@ public class SendNotificationGUI extends JFrame {
             }
         }
     }
-
+    //This method sends an SMS notification to my phone for the demo and logs the details.
     private void demoSMSSendButtonActionPerformed() {
         if (validateSMSFields()) {
             String phoneNumber = "19717108892";
             String messageBody = smsMessageArea.getText();
+            String notificationType = "sms";
+            String sentBy = SendSMSNotification.getUsername();
+            int subscriberCount = SendSMSNotification.getSMSSubscriberCount();
             try {
                 SendSMSNotification.sendMessage(phoneNumber, messageBody);
                 smsMessageArea.setText(" ");
+                SendSMSNotification.setSMSNotificationInfo(null, messageBody, sentBy, subscriberCount, notificationType);
                 JOptionPane.showMessageDialog(this,
                         "The SMS message has been sent successfully!");
                 System.exit(0);
@@ -156,7 +164,7 @@ public class SendNotificationGUI extends JFrame {
         }
     }
 
-    //Method for sending both an email and an SMS message containing the body of the email
+    //Method for sending both an email and an SMS message containing the body of the email, then logging the details
     private void bothEmailAndSMSButtonActionPerformed() {
         SendEmailNotification sendEmailNotification = new SendEmailNotification();
         if (!validateEmailFields()) {
@@ -165,20 +173,22 @@ public class SendNotificationGUI extends JFrame {
         //email details
         String subscribers = "flanwithaplan0@gmail.com";
         //ArrayList<User> subscribers = subscriberEmails();
-        String fromEmail = sendEmailNotification.getUsername();
+        String sentBy = sendEmailNotification.getUsername();
         String subject = emailSubjectField.getText();
         String body = emailBodyArea.getText();
         //SMS details
         String phoneNumber = "19717108892";
         String messageBody = emailBodyArea.getText();
+
+        String notificationType = "both";
         int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
         try {
-            SendEmailNotification.sendNotification(subscribers, subject, body);
+            SendEmailNotification.sendEmailNotification(subscribers, subject, body);
             SendSMSNotification.sendMessage(phoneNumber, messageBody);
             emailSubjectField.setText("");
             emailBodyArea.setText("");
 
-            SendEmailNotification.setNotificationInfo(subject, body, fromEmail, subscriberCount);
+            SendEmailNotification.setNotificationInfo(subject, body, sentBy, subscriberCount, notificationType );
             JOptionPane.showMessageDialog(this,
                     "Both Email and SMS notifications have been sent successfully!");
             System.exit(0);

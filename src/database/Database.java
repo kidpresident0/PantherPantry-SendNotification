@@ -45,7 +45,7 @@ public class Database {
     private static final String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
     private static final String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
-            + "subscriberCount) VALUES (?,?,?,?,?)";
+            + "subscriberCount, type) VALUES (?,?,?,?,?,?)";
 
     private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
             "(username, firstName, lastName, userEmail, userPassword, userRole) " +
@@ -387,7 +387,8 @@ public class Database {
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
      */
-    private static void writeNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
+    private static void writeNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
         try {
             connect();
             PreparedStatement stmt = conn.prepareStatement(WRITE_NOTIFICATION_INFO);
@@ -397,6 +398,7 @@ public class Database {
             stmt.setString(3, sentBy);
             stmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
             stmt.setInt(5, subscriberCount);
+            stmt.setString(6, notificationType);
             // Execute the INSERT statement
             stmt.executeUpdate();
 
@@ -409,16 +411,18 @@ public class Database {
     }
 
     /**
-     * Public method to be called by the SendEmailNotification so that notification details
+     * Public method to be called by the SendEmailNotification and SendSMSNotification so that notification details
      * can be recorded in the database.
      *
      * @param subject         the subject of the notification
      * @param messageBody     the body of the notification
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
+     * @param notificationType the type of notification being recorded to the database(Email, SMS, Both)
      */
-    public static void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
-        writeNotificationInfo(subject, messageBody, sentBy, subscriberCount);
+    public static void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
+        writeNotificationInfo(subject, messageBody, sentBy, subscriberCount, notificationType);
     }
 
 
