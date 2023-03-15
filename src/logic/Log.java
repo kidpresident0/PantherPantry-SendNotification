@@ -17,13 +17,15 @@ public class Log {
     private String mSubject;
     private String mMessageBody;
     private Integer mSubscriberCount;
+    private String mType;
 
-    public Log(String sentBy, String sentDateTime, String subject, String messageBody, Integer subscriberCount) {
+    public Log(String sentBy, String sentDateTime, String subject, String messageBody, Integer subscriberCount, String type) {
         mSentBy = sentBy;
         mSentDateTime = sentDateTime;
         mSubject = subject;
         mMessageBody = messageBody;
         mSubscriberCount = subscriberCount;
+        mType = type;
     }
 
     public static ArrayList<Log> findLogs(String startDate, String endDate) {
@@ -59,6 +61,7 @@ public class Log {
     public Integer getSubscriberCount() {
         return mSubscriberCount;
     }
+    public String getType() {return mType;}
 }
 
 

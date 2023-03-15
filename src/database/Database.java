@@ -50,16 +50,16 @@ public class Database {
     private static final String GET_PASSWORD_USERNAME = "SELECT userPassword FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_EMAIL = "SELECT userPassword FROM USERS WHERE userEmail = ?";
     private static final String GET_DATE_SEARCH_QUERY =
-            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  sentDateTime BETWEEN ? AND ?;";
     private static final String GET_USER_SEARCH_QUERY =
-            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  sentBy LIKE CONCAT( '%',?,'%');";
     private static final String GET_SUBJECT_SEARCH_QUERY =
-            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  subject LIKE CONCAT( '%',?,'%');";
     private static final String GET_MESSAGE_SEARCH_QUERY =
-            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  messageBody LIKE CONCAT( '%',?,'%');";
 
     private static ArrayList<User> subscribers = null;
@@ -365,7 +365,8 @@ public class Database {
                         rs.getString("sentDateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
-                        rs.getInt("subscriberCount")
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
                 ));
             }
         } catch (Exception e) {
@@ -406,7 +407,8 @@ public class Database {
                         rs.getString("sentDateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
-                        rs.getInt("subscriberCount")
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
                 ));
             }
         } catch (Exception e) {
@@ -447,7 +449,8 @@ public class Database {
                         rs.getString("sentDateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
-                        rs.getInt("subscriberCount")
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
                 ));
             }
         } catch (Exception e) {
@@ -488,7 +491,8 @@ public class Database {
                         rs.getString("sentDateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
-                        rs.getInt("subscriberCount")
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
                 ));
             }
         } catch (Exception e) {

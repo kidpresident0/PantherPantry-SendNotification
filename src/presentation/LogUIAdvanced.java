@@ -101,12 +101,12 @@ public class LogUIAdvanced {
     public JTabbedPane getTabbedPane() { return tabbedPane;}
 
     private void setupDateTable () {
-        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        //Create a default table model with 6 columns named User, Date/Time, Subject, Message, Subscribers, Type
         d_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
-                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count", "Type"}
         ) {
             //stops user from editing the table
             @Override
@@ -124,6 +124,7 @@ public class LogUIAdvanced {
         dateTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         dateTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         dateTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        dateTable.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         // center colum
         ((DefaultTableCellRenderer)dateTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -133,15 +134,16 @@ public class LogUIAdvanced {
         dateTable.getColumnModel().getColumn(2).setMinWidth(50);
         dateTable.getColumnModel().getColumn(3).setMinWidth(50);
         dateTable.getColumnModel().getColumn(4).setMinWidth(50);
+        dateTable.getColumnModel().getColumn(5).setMinWidth(50);
     }
 
     private void setupStaffTable () {
-        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        //Create a default table model with 6 columns named User, Date/Time, Subject, Message, Subscribers, Type
         u_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
-                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count", "Type"}
         ) {
             //stops user from editing the table
             @Override
@@ -159,6 +161,7 @@ public class LogUIAdvanced {
         staffTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         staffTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         staffTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        staffTable.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         // center colum
         ((DefaultTableCellRenderer)staffTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -168,15 +171,16 @@ public class LogUIAdvanced {
         staffTable.getColumnModel().getColumn(2).setMinWidth(50);
         staffTable.getColumnModel().getColumn(3).setMinWidth(50);
         staffTable.getColumnModel().getColumn(4).setMinWidth(50);
+        staffTable.getColumnModel().getColumn(5).setMinWidth(50);
     }
 
     private void setupSubjectTable () {
-        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        //Create a default table model with 6 columns named User, Date/Time, Subject, Message, Subscribers, Type
         s_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
-                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count", "Type"}
         ) {
             //stops user from editing the table
             @Override
@@ -194,6 +198,8 @@ public class LogUIAdvanced {
         subjectTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         subjectTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         subjectTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        subjectTable.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+
 
         // center colum
         ((DefaultTableCellRenderer)subjectTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -203,15 +209,16 @@ public class LogUIAdvanced {
         subjectTable.getColumnModel().getColumn(2).setMinWidth(50);
         subjectTable.getColumnModel().getColumn(3).setMinWidth(50);
         subjectTable.getColumnModel().getColumn(4).setMinWidth(50);
+        subjectTable.getColumnModel().getColumn(5).setMinWidth(50);
     }
 
     private void setupMessageTable () {
-        //Create a default table model with 5 columns named User, Date/Time, Subject, Message, Subscribers
+        //Create a default table model with 6 columns named User, Date/Time, Subject, Message, Subscribers, Type
         m_LogTableModel = new DefaultTableModel(
                 //initial date which is empty
                 new Object[][]{},
                 //initial columns
-                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count"}
+                new Object[] {"User", "Date/Time", "Subject", "Message", "Subscriber Count", "Type"}
         ) {
             //stops user from editing the table
             @Override
@@ -229,6 +236,7 @@ public class LogUIAdvanced {
         messageTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
         messageTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         messageTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        messageTable.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 
         // center colum
         ((DefaultTableCellRenderer)messageTable.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
@@ -238,6 +246,7 @@ public class LogUIAdvanced {
         messageTable.getColumnModel().getColumn(2).setMinWidth(50);
         messageTable.getColumnModel().getColumn(3).setMinWidth(50);
         messageTable.getColumnModel().getColumn(4).setMinWidth(50);
+        messageTable.getColumnModel().getColumn(5).setMinWidth(50);
     }
 
     private void fetchDates() {
@@ -253,7 +262,8 @@ public class LogUIAdvanced {
                     log.getSentDateTime(),
                     log.getSubject(),
                     log.getMessageBody(),
-                    log.getSubscriberCount()
+                    log.getSubscriberCount(),
+                    log.getType()
             });
         }
     }
@@ -268,7 +278,8 @@ public class LogUIAdvanced {
                     log.getSentDateTime(),
                     log.getSubject(),
                     log.getMessageBody(),
-                    log.getSubscriberCount()
+                    log.getSubscriberCount(),
+                    log.getType()
             });
         }
     }
@@ -283,7 +294,8 @@ public class LogUIAdvanced {
                     log.getSentDateTime(),
                     log.getSubject(),
                     log.getMessageBody(),
-                    log.getSubscriberCount()
+                    log.getSubscriberCount(),
+                    log.getType()
             });
         }
     }
@@ -298,7 +310,8 @@ public class LogUIAdvanced {
                     log.getSentDateTime(),
                     log.getSubject(),
                     log.getMessageBody(),
-                    log.getSubscriberCount()
+                    log.getSubscriberCount(),
+                    log.getType()
             });
         }
     }
