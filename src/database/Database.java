@@ -38,14 +38,19 @@ public class Database {
 
     private static final String DELETE_TEMPLATE_SQL = "DELETE FROM TEMPLATES WHERE ID = ?";
 
-    private static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber'";
 
-    private static String GET_SUBSCRIBER_PHONE = "SELECT userPhone FROM USERS WHERE userRole = 'subscriber'";
+    private static final String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND"
+    + " userEmail IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'Email'";
+    private static final String GET_SUBSCRIBER_PHONE = "SELECT phoneNumber FROM USERS WHERE userRole = 'subscriber' AND"
+    + " phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'SMS'";
+    private static final String GET_SUBSCRIBER_BOTH = "SELECT username FROM USERS WHERE userRole = " +
+            " 'subscriber' AND userEmail IS NOT NULL AND phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND"
+        + " notificationType = 'Both'";
 
-    private static String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
+    private static final String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
-    private static String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
-            + "subscriberCount) VALUES (?,?,?,?,?)";
+    private static final String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
+            + "subscriberCount, type) VALUES (?,?,?,?,?,?)";
 
     private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
             "(username, firstName, lastName, userEmail, userPassword, userRole) " +
@@ -309,14 +314,14 @@ public class Database {
      *
      * @return the list of subscriber email addresses
      */
-    public static ArrayList<User> getGetSubscriberEmail() { return readSubscribersEmail(); }
+    public static ArrayList<User> getSubscriberEmails() { return readSubscribersEmail(); }
 
     /**
      * Counts the number of subscribers that will receive an email notification
      *
      * @return a count for subscribers.
      */
-    public static int emailSubCount() { return getGetSubscriberEmail().size();}
+    public static int emailSubCount() { return (getSubscriberEmails()).size();}
 
     /**
      * Returns a list of subscriber phone numbers from the USERS database. If an error occurs, a stack
@@ -324,8 +329,8 @@ public class Database {
      *
      * @return a list of subscriber phone numbers.
      */
-    private static ArrayList<User> readSubscriberPhone() {
-        ArrayList<User> subscriberPhones = new ArrayList<>();
+    private static ArrayList<String> readSubscriberPhone() {
+        ArrayList<String> subscriberPhones = new ArrayList<>();
 
         connect();
         try (
@@ -334,8 +339,8 @@ public class Database {
             // Iterate through subscribers in the database and add their phone numbers to a list.
             while (rs.next()) {
                 User user = new User(
-                        rs.getString("userPhone"),
                         null,
+                        rs.getString("phoneNumber"),
                         null,
                         null,
                         null,
@@ -344,7 +349,7 @@ public class Database {
                         null,
                         0
                 );
-                subscriberPhones.add(user);
+                subscriberPhones.add(String.valueOf(user));
             }
         } catch (SQLException e) {
             // Handle errors for JDBC
@@ -353,7 +358,6 @@ public class Database {
         }
 
         return subscriberPhones;
-
     }
 
     /**
@@ -361,14 +365,59 @@ public class Database {
      *
      * @return the list of subscriber phone numbers.
      */
-    public static ArrayList<User> getGetSubscriberPhone() { return readSubscriberPhone(); }
+    public static ArrayList<String> getSubscriberPhone() { return readSubscriberPhone(); }
 
     /**
      * Counts the number of subscribers that will receive an SMS notification
      *
      * @return a count for subscribers.
      */
-    public static int smsSubCount() { return getGetSubscriberPhone().size();}
+    public static int smsSubCount() { return getSubscriberPhone().size();}
+
+
+    /**
+     * Returns a list of subscribers who want to receive both types of  notifications from the USERS database.
+     * The only purpose of this method is to retrieve a count for subscribers who want both types of notifications.
+     * If an error occurs, a stack trace is printed to standard error and an empty list is returned.
+     *
+     * @return a list of users.
+     */
+    private static ArrayList<String> readSubscriberBoth() {
+        ArrayList<String> subscriberBoth = new ArrayList<>();
+
+        connect();
+        try (
+                PreparedStatement stmt = conn.prepareStatement(GET_SUBSCRIBER_BOTH);
+                ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                User user = new User(
+                        null,
+                        null,
+                        rs.getString("username"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0
+                );
+                subscriberBoth.add(String.valueOf(user));
+            }
+        } catch (SQLException e) {
+            // Handle errors for JDBC
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return subscriberBoth;
+    }
+
+    /**
+     * Counts the number of subscribers that will receive both SMS and Email notifications
+     *
+     * @return a count for subscribers.
+     */
+    public static int bothSubCount() { return readSubscriberBoth().size();}
 
     /**
      * Writes the details of each notification to the notification log database.
@@ -378,7 +427,8 @@ public class Database {
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
      */
-    private static void writeNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
+    private static void writeNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
         try {
             connect();
             PreparedStatement stmt = conn.prepareStatement(WRITE_NOTIFICATION_INFO);
@@ -388,6 +438,7 @@ public class Database {
             stmt.setString(3, sentBy);
             stmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
             stmt.setInt(5, subscriberCount);
+            stmt.setString(6, notificationType);
             // Execute the INSERT statement
             stmt.executeUpdate();
 
@@ -400,16 +451,18 @@ public class Database {
     }
 
     /**
-     * Public method to be called by the SendEmailNotification so that notification details
+     * Public method to be called by the SendEmailNotification and SendSMSNotification so that notification details
      * can be recorded in the database.
      *
      * @param subject         the subject of the notification
      * @param messageBody     the body of the notification
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
+     * @param notificationType the type of notification being recorded to the database(Email, SMS, Both)
      */
-    public static void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
-        writeNotificationInfo(subject, messageBody, sentBy, subscriberCount);
+    public static void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
+        writeNotificationInfo(subject, messageBody, sentBy, subscriberCount, notificationType);
     }
 
 

@@ -2,6 +2,7 @@ package main;
 
 import presentation.*;
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -20,6 +21,9 @@ Main {
             public void run() {
                 createGUI();
 
+
+
+
             }
         });
 
@@ -36,11 +40,14 @@ Main {
 
     public static void launchGUI() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(new launchGUI().getRootPanel());
+        frame.getContentPane().add(new LaunchGUI().getRootPanel());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Notification System");
+        frame.setSize(250,200);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
+                "Sprint2\\Null\\src\\presentation\\Icon.png"));
     }
 
     public static void logUI() {
