@@ -115,6 +115,6 @@ public class SendEmailNotification {
     public static void setNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
                                            String type) {
         Database db = new Database();
-        db.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount, type);
+        Database.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount, type);
     }
 }

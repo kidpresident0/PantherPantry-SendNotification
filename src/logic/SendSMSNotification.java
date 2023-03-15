@@ -24,8 +24,6 @@ public class SendSMSNotification {
     // The phone number you're sending the SMS message from (Twilio phone number)
     private static final String FROM_NUMBER = "+15673339882";
 
-    String notificationType = "sms";
-
     //retrieve phone numbers from the database and proceed them with a + per Twilio requirements.
     public static ArrayList<String> subscriberNumbers() {
         ArrayList<String> rawPhoneNumbers = Database.getSubscriberPhone();
@@ -80,7 +78,7 @@ public class SendSMSNotification {
     public static void setSMSNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
                                               String notificationType) {
         Database db = new Database();
-        db.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount, notificationType);
+        Database.recordNotificationInfo(subject, messageBody, sentBy, subscriberCount, notificationType);
     }
 
 

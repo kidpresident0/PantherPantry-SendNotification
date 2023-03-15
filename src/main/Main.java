@@ -1,7 +1,5 @@
 package main;
 
-import database.Database;
-import logic.SendSMSNotification;
 import presentation.*;
 import javax.swing.*;
 import java.awt.*;
