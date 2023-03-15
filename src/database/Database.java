@@ -34,6 +34,11 @@ public class Database {
 
     private static final String GET_TEMPLATE_SQL = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
 
+    private static final String UPDATE_TEMPLATE_SQL = "UPDATE TEMPLATES SET TemplateText = ?, Subject = ? WHERE ID = ?";
+
+    private static final String DELETE_TEMPLATE_SQL = "DELETE FROM TEMPLATES WHERE ID = ?";
+
+
     private static final String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND"
     + " userEmail IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'Email'";
     private static final String GET_SUBSCRIBER_PHONE = "SELECT phoneNumber FROM USERS WHERE userRole = 'subscriber' AND"
@@ -195,7 +200,10 @@ public class Database {
             stmt.setInt(1, id);
 
             ResultSet results = stmt.executeQuery();
-            results.next();    // starts reading from the first assigned column in the database
+
+            // starts reading from the first assigned column in the database
+            if (!results.next())
+                return null;
 
             Template template = new Template(
                     results.getInt(1),
@@ -209,6 +217,40 @@ public class Database {
             e.printStackTrace();
         }
         return null;  // if the object doesn't exist in the database
+    }
+
+    // takes a TemplateName as input
+    // updates the subject and text of the template in the database corresponding to a passed TemplateName
+    public static void updateTemplate(int id, String subject, String templateText) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_TEMPLATE_SQL);
+            stmt.setString(1, templateText);
+            stmt.setString(2, subject);
+            stmt.setInt(3, id);
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // takes a TemplateName as input
+    // removes the subject, template text, and selected templateName from the database
+    public static void deleteTemplate(int id) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(DELETE_TEMPLATE_SQL);
+            stmt.setInt(1, id);
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // Retrieves the password that belongs to the username the user entered
