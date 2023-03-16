@@ -58,8 +58,8 @@ public class Main {
 
     public static void logUIAdvanced() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(new LogUIAdvanced().getRootPanel());
-        frame.getContentPane().add(new LogUIAdvanced().getTabbedPane());
+        frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.getContentPane().add(new LogUI().getTabbedPane());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

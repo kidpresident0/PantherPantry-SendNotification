@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @version 2022.03.06
  */
 
-public class LogUIAdvanced {
+public class LogUI {
     private JPanel rootPanel;
     private JTabbedPane tabbedPane;
     private JLabel endLabel;
@@ -45,7 +45,7 @@ public class LogUIAdvanced {
     private DefaultTableModel s_LogTableModel;
     private DefaultTableModel m_LogTableModel;
 
-    public LogUIAdvanced() {
+    public LogUI() {
         startDatePicker.getModel().setDate(2023, 1, 1);
         fetchDates();
         fetchUser();
