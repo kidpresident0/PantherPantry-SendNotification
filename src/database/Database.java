@@ -42,10 +42,12 @@ public class Database {
             + "subscriberCount) VALUES (?,?,?,?,?)";
 
     private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
-            "(username, firstName, lastName, userEmail, userPassword, userRole, receiveNotifications, notificationType) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            "(username, firstName, lastName, userEmail, userPassword, userRole, receiveNotifications, notificationType, verified, verifyCode) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String UPDATE_USER_ACCOUNT = "UPDATE USERS SET username = ?, firstName = ?, lastName = ?, userEmail = ?, userPassword = ?, phoneNumber = ?, receiveNotifications = ?, notificationType = ? WHERE userID = ?";
+
+    private static final String DELETE_USER_ACCOUNT = "DELETE FROM USERS WHERE userID = ?";
 
 
     private static final String GET_EMAIL = "SELECT userEmail FROM USERS WHERE userEmail = ?";
@@ -105,7 +107,7 @@ public class Database {
     }
 
     // Adds a new subscriber to the Users table.
-    public static void addSubscriber(String username, String firstName, String lastName, String email, String password) {
+    public static void addSubscriber(String username, String firstName, String lastName, String email, String password, String verifyCode) {
         connect();
 
         try {
@@ -118,6 +120,8 @@ public class Database {
             stmt.setString(6, "subscriber");
             stmt.setString(7, "Yes");
             stmt.setString(8, "Email");
+            stmt.setString(9, "false");
+            stmt.setString(10, verifyCode);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -139,6 +143,19 @@ public class Database {
             stmt.setString(7, receiveNotifications);
             stmt.setString(8, notificationType);
             stmt.setInt(9, userID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Updates a row in the Users table with new information
+    public static void deleteSubscriber(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(DELETE_USER_ACCOUNT);
+            stmt.setInt(1, userID);
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -255,7 +272,7 @@ public class Database {
         return null;
     }
 
-    //returns the email from the database based on the userID
+    //returns the username from the database based on the userID
     public static String getUsernameFromID(Integer userID) {
         connect();
 
@@ -363,7 +380,7 @@ public class Database {
         return "";
     }
 
-    //returns phone number from the database based on the userID
+    //returns teh receive notification setting from the database based on the userID
     public static String getReceiveNotificationsFromId(Integer userID) {
         connect();
 
@@ -381,7 +398,7 @@ public class Database {
         return "";
     }
 
-    //returns phone number from the database based on the userID
+    //returns the notification type settings from the database based on the userID
     public static String getNotificationTypeFromID(Integer userID) {
         connect();
 

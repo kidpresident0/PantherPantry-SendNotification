@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 /**
  * GUI class for displaying the account login screen as well as functionality needed to move data throughout the application.
  * @author Sevin Webb
- * @version 2023.02.13
+ * @version 2023.03.14
  */
 
 public class AccountLogin {
@@ -93,19 +93,18 @@ public class AccountLogin {
         passwordCheck = User.getPasswordUsername(name);
         String passwordErrorCorrect = "$2a" + passwordCheck.substring(3);
         if (BCrypt.checkpw(password, passwordErrorCorrect)) {
-            JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
 
             Integer userID = User.getUserIDUsername(name);
             String currentEmail = User.getEmailFromID(userID);
             String currentUsername = User.getUsernameFromID(userID);
+            String currentPassword = User.getPasswordFromID(userID);
             String currentFirstName = User.getFirstNameFromID(userID);
             String currentLastName = User.getLastNameFromID(userID);
             String currentPhoneNumber = User.getPhoneNumberFromID(userID);
             String currentReceiveNotifications = User.getReceiveNotificationsFromID(userID);
             String currentNotificationType = User.getNotificationTypeFromID(userID);
 
-            logic.User currentUser = new User(currentEmail, currentUsername, password, currentFirstName, currentLastName, userID, currentPhoneNumber, currentReceiveNotifications, currentNotificationType);
-            System.out.println(userID + " " + currentUsername);
+            logic.User currentUser = new User(currentEmail, currentUsername, currentPassword, currentFirstName, currentLastName, userID, currentPhoneNumber, currentReceiveNotifications, currentNotificationType);
             Main.accountSettings(currentUser);
 
             return;

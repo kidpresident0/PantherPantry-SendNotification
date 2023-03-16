@@ -128,12 +128,16 @@ public class User {
         return Database.getNotificationTypeFromID(userID);
     }
 
-    public static void addUser(String firstName, String lastName, String password, String email, String username) {
-        Database.addSubscriber(username, firstName, lastName, email, password);
+    public static void addUser(String firstName, String lastName, String password, String email, String username, String verifyCode) {
+        Database.addSubscriber(username, firstName, lastName, email, password, verifyCode);
     }
 
     public static void updateUser(String username, String firstName, String lastName, String password, String email, String phoneNumber, String receiveNotifications, String notificationType, Integer userID) {
         Database.updateSubscriber(username, firstName, lastName, email, password, phoneNumber, receiveNotifications, notificationType, userID);
+    }
+
+    public static void deleteUser(Integer userID) {
+        Database.deleteSubscriber(userID);
     }
 
 

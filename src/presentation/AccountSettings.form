@@ -98,14 +98,6 @@
               <text value="New Password:"/>
             </properties>
           </component>
-          <component id="228f2" class="javax.swing.JPasswordField" binding="passwordInput">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
           <component id="c1730" class="javax.swing.JLabel" binding="confirmPassword">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -113,14 +105,6 @@
             <properties>
               <text value="Confirm Password:"/>
             </properties>
-          </component>
-          <component id="838b4" class="javax.swing.JPasswordField" binding="confirmInput">
-            <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
           </component>
           <component id="2fc51" class="javax.swing.JLabel" binding="phone">
             <constraints>
@@ -141,6 +125,22 @@
           <component id="9635e" class="javax.swing.JTextField" binding="usernameInput">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="858ae" class="javax.swing.JTextField" binding="passwordInput">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="e20ae" class="javax.swing.JTextField" binding="confirmInput">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -202,11 +202,12 @@
               <text value="To delete your account click"/>
             </properties>
           </component>
-          <component id="edd9a" class="javax.swing.JLabel" binding="DeleteButton">
+          <component id="edd9a" class="javax.swing.JLabel" binding="deleteButton">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-16776961"/>
               <text value="here. "/>
             </properties>
           </component>
