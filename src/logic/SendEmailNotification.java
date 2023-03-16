@@ -47,9 +47,9 @@ public class SendEmailNotification {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("TeamNullTest@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("flanwithaplan0@gmail.com"));
+                    InternetAddress.parse("jumbo86smile@gmail.com"));
             message.setSubject(subject);
-            message.setContent(body, "text/html");
+            message.setContent(body, "text/plain");
 
             Transport.send(message);
 

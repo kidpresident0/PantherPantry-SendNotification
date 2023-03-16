@@ -62,11 +62,6 @@ Main {
     }
 
     public static void createTemplate() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new TabbedPaneFrame().getRootPanel());
         frame.pack();

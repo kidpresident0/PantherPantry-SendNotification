@@ -10,6 +10,7 @@ package presentation;
  */
 
 import logic.Template;
+import main.Main;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -29,6 +30,7 @@ public class CreateTemplate {
     private JLabel TextLabel;
     private JPanel bottomPanel;
     private JScrollPane ScrollPane;
+    private JButton backButton;
 
     public CreateTemplate() {
         createButton.addActionListener(new ActionListener() {
@@ -38,6 +40,12 @@ public class CreateTemplate {
                 template.create();
 
                 JOptionPane.showMessageDialog(rootPanel, "The template has been created");
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.launchGUI();
             }
         });
     }

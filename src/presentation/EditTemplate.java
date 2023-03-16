@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import logic.TemplateName;
 import logic.Template;
+import main.Main;
 
 import java.awt.event.*;
 import java.util.List;
@@ -20,6 +21,7 @@ public class EditTemplate {
     private JButton deleteButton;
     private JLabel temp;
     private JButton refreshButton;
+    private JButton backButton;
 
 
     public EditTemplate() {
@@ -125,6 +127,12 @@ public class EditTemplate {
                     }
                     templateNameComboBox.setSelectedIndex(-1);
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.launchGUI();
             }
         });
     }

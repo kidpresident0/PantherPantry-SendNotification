@@ -66,7 +66,8 @@ public class Template {
 
         // iterate over all tags
         for (Map.Entry<String, String> entry : tags.entrySet()) {
-            // for each tag, find it in TemplateText and replace it and returns a new string.
+            // for each tag, find it in TemplateText and replace it
+            // returns a new string.
             str = str.replace(entry.getKey(), entry.getValue());
         }
 

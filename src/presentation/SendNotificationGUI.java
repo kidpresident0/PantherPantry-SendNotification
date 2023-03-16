@@ -5,6 +5,7 @@ import logic.SendEmailNotification;
 import logic.Template;
 import logic.TemplateName;
 import logic.User;
+import main.Main;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+
+import static main.Main.launchGUI;
 
 /**
  * This is the GUI class for the Send Notification story for the PCC Panther Pantry.
@@ -74,6 +77,7 @@ public class SendNotificationGUI extends JFrame {
     private JLabel TimeLabel;
     private JLabel TermLabel;
     private JLabel StaffNameLabel;
+    private JButton backButton;
 
     public SendNotificationGUI() {
         List<TemplateName> templates = TemplateName.list(1);
@@ -101,7 +105,7 @@ public class SendNotificationGUI extends JFrame {
                 if (name != null) {
                     Template template = Template.getTemplate(name.getId());
 
-                    // Create an empty hash map by declaring object of string type
+                    // Create an empty hashmap by declaring object of string type
                     HashMap<String, String> tags = new HashMap<>();
                     // Adding elements to the tags
                     tags.put("{campus}", campusTextField.getText());
@@ -131,6 +135,12 @@ public class SendNotificationGUI extends JFrame {
                     String subject = template.getSubject();
                     emailSubjectField.setText(subject);
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.launchGUI();
             }
         });
     }

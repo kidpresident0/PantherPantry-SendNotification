@@ -3,11 +3,9 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
     <margin top="10" left="0" bottom="10" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="540" height="473"/>
+      <xy x="20" y="20" width="690" height="499"/>
     </constraints>
-    <properties>
-      <background color="-4473925"/>
-    </properties>
+    <properties/>
     <border type="line"/>
     <children>
       <grid id="e4300" binding="topPanel" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -18,7 +16,6 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-4473925"/>
           <enabled value="true"/>
         </properties>
         <border type="none"/>
@@ -51,9 +48,7 @@
                 <preferred-size width="150" height="26"/>
               </grid>
             </constraints>
-            <properties>
-              <font name="Fira Code" size="12" style="1"/>
-            </properties>
+            <properties/>
           </component>
           <grid id="8c6c6" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
@@ -63,23 +58,21 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="e21a3" class="javax.swing.JComboBox" binding="templateNameComboBox">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-12236470"/>
-                  <editable value="false"/>
-                  <font name="Fira Code" size="12" style="1"/>
-                  <model/>
-                </properties>
-              </component>
               <component id="50151" class="javax.swing.JButton" binding="refreshButton">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Refresh"/>
+                </properties>
+              </component>
+              <component id="e21a3" class="javax.swing.JComboBox" binding="templateNameComboBox">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-460801"/>
+                  <editable value="false"/>
                 </properties>
               </component>
             </children>
@@ -122,7 +115,6 @@
               <component id="2c460" class="javax.swing.JTextArea" binding="textArea">
                 <constraints/>
                 <properties>
-                  <background color="-2500135"/>
                   <font name="SansSerif" size="14" style="0"/>
                   <lineWrap value="true"/>
                 </properties>
@@ -141,8 +133,8 @@
           </component>
         </children>
       </grid>
-      <grid id="52896" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="52896" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="10" bottom="0" right="10"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -151,10 +143,9 @@
         <children>
           <component id="a2ce5" class="javax.swing.JButton" binding="saveButton" default-binding="true">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-4473925"/>
               <font name="SansSerif" size="14" style="1"/>
               <foreground color="-16777216"/>
               <text value="Save"/>
@@ -162,13 +153,24 @@
           </component>
           <component id="b006a" class="javax.swing.JButton" binding="deleteButton">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-4473925"/>
               <font name="SansSerif" size="14" style="1"/>
               <foreground color="-16777216"/>
               <text value="Delete"/>
+            </properties>
+          </component>
+          <component id="e0f19" class="javax.swing.JButton" binding="backButton">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+              <font name="SansSerif" size="14" style="1"/>
+              <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <text value="Back"/>
             </properties>
           </component>
         </children>
