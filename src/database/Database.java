@@ -91,9 +91,6 @@ public class Database {
     
     private static final String GET_ROLE_FROM_ID = "SELECT userRole FROM USERS WHERE userID = ?";
 
-    private static final String FIND_REVIEW_NOTIFICATION_QUERY =
-            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
-
     private static final String GET_DATE_SEARCH_QUERY =
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  sentDateTime BETWEEN ? AND ?;";

@@ -22,7 +22,7 @@ public class AccountLogin {
      JPanel rootPanel;
      JTextArea loginIntroText;
      JTextField emailOrUsername;
-     JTextField loginPasswordField;
+     JPasswordField loginPasswordField;
      JButton loginButton;
      JTextArea loginBottomText;
      JLabel loginToCreateButton;
