@@ -64,13 +64,6 @@ public class SendNotificationGUI extends JFrame {
     private JComboBox templateNameComboBox;
     private JLabel TemplateNameLabel;
     private JButton previewButton;
-    private JTextField campusTextField;
-    private JTextField foodItemtextField;
-    private JTextField dateTextField;
-    private JTextField timeTextField;
-    private JTextField termTextField;
-    private JTextField staffNameTextField;
-    private JLabel CampusNameLabel;
     private JButton backButton;
     private JPanel tagsPanel;
 
