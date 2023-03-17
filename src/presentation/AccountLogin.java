@@ -71,7 +71,6 @@ public class AccountLogin {
             passwordCheck = User.getPasswordEmail(name);
             String passwordErrorCorrect = "$2a" + passwordCheck.substring(3);
             if (BCrypt.checkpw(password, passwordErrorCorrect)) {
-                JOptionPane.showMessageDialog(null, "You have successfully logged in.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);
 
                 Integer userID = User.getUserIDEmail(name);
                 String currentEmail = User.getEmailFromID(userID);
@@ -82,8 +81,13 @@ public class AccountLogin {
                 String currentReceiveNotifications = User.getReceiveNotificationsFromID(userID);
                 String currentNotificationType = User.getNotificationTypeFromID(userID);
 
+                String role = User.getRoleFromID(userID);
+                if (role.equals("admin")) {
+                    Main.launchGUI();
+                    return;
+                }
+
                 logic.User currentUser = new User(currentEmail, currentUsername, password, currentFirstName, currentLastName, userID, currentPhoneNumber, currentReceiveNotifications, currentNotificationType);
-                System.out.println(userID + " " + currentUsername);
                 Main.accountSettings(currentUser);
                 return;
             }
@@ -104,9 +108,14 @@ public class AccountLogin {
             String currentReceiveNotifications = User.getReceiveNotificationsFromID(userID);
             String currentNotificationType = User.getNotificationTypeFromID(userID);
 
+            String role = User.getRoleFromID(userID);
+            if (role.equals("admin")) {
+                Main.launchGUI();
+                return;
+            }
+
             logic.User currentUser = new User(currentEmail, currentUsername, currentPassword, currentFirstName, currentLastName, userID, currentPhoneNumber, currentReceiveNotifications, currentNotificationType);
             Main.accountSettings(currentUser);
-
             return;
         }
         JOptionPane.showMessageDialog(null, "Login failed, check information and try again.", "Panther Pantry", JOptionPane.INFORMATION_MESSAGE);

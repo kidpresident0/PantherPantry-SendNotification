@@ -65,6 +65,7 @@ public class Database {
     private static final String GET_PHONE_NUMBER_FROM_ID = "SELECT phoneNumber FROM USERS WHERE userID = ?";
     private static final String GET_RECEIVE_NOTIFICATIONS_FROM_ID = "SELECT receiveNotifications FROM USERS WHERE userID = ?";
     private static final String GET_NOTIFICATION_TYPE_FROM_ID = "SELECT notificationType FROM USERS WHERE userID = ?";
+    private static final String GET_ROLE_FROM_ID = "SELECT userRole FROM USERS WHERE userID = ?";
 
 
 
@@ -409,6 +410,24 @@ public class Database {
             if (rs.next()) {
                 String notificationType = rs.getString(1);
                 return notificationType;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    //returns the notification type settings from the database based on the userID
+    public static String getRoleFromID(Integer userID) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(GET_ROLE_FROM_ID);
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String role = rs.getString(1);
+                return role;
             }
         } catch (SQLException e) {
             e.printStackTrace();

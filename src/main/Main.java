@@ -3,6 +3,7 @@ package main;
 import presentation.*;
 import logic.*;
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -109,5 +110,17 @@ public class Main {
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Login");
     }
+
+    public static void launchGUI() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new LaunchGUI().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Notification System");
+        frame.setSize(250,200);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("presentation\\Icon.png"));
+    }
+
 }
 

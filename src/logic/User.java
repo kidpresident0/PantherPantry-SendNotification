@@ -120,6 +120,10 @@ public class User {
         return Database.getPhoneNumberFromID(userID);
     }
 
+    public static String getRoleFromID(Integer userID) {
+        return Database.getRoleFromID(userID);
+    }
+
     public static String getReceiveNotificationsFromID(Integer userID) {
         return Database.getReceiveNotificationsFromId(userID);
     }
