@@ -32,14 +32,25 @@ public class Database {
 
     private static final String LIST_TEMPLATES_SQL = "SELECT ID, TemplateName FROM TEMPLATES";
 
-    private static final String getTemplateSql = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
+    private static final String GET_TEMPLATE_SQL = "SELECT UserID, TemplateName, Subject, TemplateText FROM TEMPLATES WHERE ID = ?";
 
-    private static String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber'";
+    private static final String UPDATE_TEMPLATE_SQL = "UPDATE TEMPLATES SET TemplateText = ?, Subject = ? WHERE ID = ?";
 
-    private static String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
+    private static final String DELETE_TEMPLATE_SQL = "DELETE FROM TEMPLATES WHERE ID = ?";
+
+
+    private static final String GET_SUBSCRIBER_EMAIL = "SELECT userEmail FROM USERS WHERE userRole = 'subscriber' AND"
+    + " userEmail IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'Email'";
+    private static final String GET_SUBSCRIBER_PHONE = "SELECT phoneNumber FROM USERS WHERE userRole = 'subscriber' AND"
+    + " phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND notificationType = 'SMS'";
+    private static final String GET_SUBSCRIBER_BOTH = "SELECT username FROM USERS WHERE userRole = " +
+            " 'subscriber' AND userEmail IS NOT NULL AND phoneNumber IS NOT NULL AND receiveNotifications = 'Yes' AND"
+        + " notificationType = 'Both'";
+
+    private static final String GET_ALL_SUBSCRIBER_INFO = "SELECT userID , username , firstName , lastName , userEmail , userPassword"
             + ", salt , userRole FROM 234a_Null.dbo.USERS";
-    private static String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
-            + "subscriberCount) VALUES (?,?,?,?,?)";
+    private static final String WRITE_NOTIFICATION_INFO = "INSERT INTO NOTIFICATIONS (subject, messageBody, sentBy, sentDateTime,"
+            + "subscriberCount, type) VALUES (?,?,?,?,?,?)";
 
     private static final String CREATE_USER_ACCOUNT = "INSERT INTO USERS " +
             "(username, firstName, lastName, userEmail, userPassword, userRole) " +
@@ -62,7 +73,7 @@ public class Database {
             "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  messageBody LIKE CONCAT( '%',?,'%');";
 
-    private static ArrayList<User> subscribers = null;
+    private static ArrayList<User> subscribersEmails = null;
     private static Integer currentSubscriberCount = 0;
 
     // The one and only connection object
@@ -194,11 +205,14 @@ public class Database {
         connect();
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(getTemplateSql);
+            PreparedStatement stmt = conn.prepareStatement(GET_TEMPLATE_SQL);
             stmt.setInt(1, id);
 
             ResultSet results = stmt.executeQuery();
-            results.next();    // starts reading from the first assigned column in the database
+
+            // starts reading from the first assigned column in the database
+            if (!results.next())
+                return null;
 
             Template template = new Template(
                     results.getInt(1),
@@ -212,6 +226,40 @@ public class Database {
             e.printStackTrace();
         }
         return null;  // if the object doesn't exist in the database
+    }
+
+    // takes a TemplateName as input
+    // updates the subject and text of the template in the database corresponding to a passed TemplateName
+    public static void updateTemplate(int id, String subject, String templateText) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(UPDATE_TEMPLATE_SQL);
+            stmt.setString(1, templateText);
+            stmt.setString(2, subject);
+            stmt.setInt(3, id);
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // takes a TemplateName as input
+    // removes the subject, template text, and selected templateName from the database
+    public static void deleteTemplate(int id) {
+        connect();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(DELETE_TEMPLATE_SQL);
+            stmt.setInt(1, id);
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // Retrieves the password that belongs to the username the user entered
@@ -239,7 +287,7 @@ public class Database {
      * @return a list of subscriber email addresses.
      */
     private static ArrayList<User> readSubscribersEmail() {
-        ArrayList<User> subscribers = new ArrayList<>();
+        ArrayList<User> subscriberEmails = new ArrayList<>();
 
         connect();
         try (
@@ -255,9 +303,10 @@ public class Database {
                         null,
                         null,
                         null,
+                        null,
                         0
                 );
-                subscribers.add(user);
+                subscriberEmails.add(user);
             }
         } catch (SQLException e) {
             // Handle errors for JDBC
@@ -265,7 +314,7 @@ public class Database {
             e.printStackTrace();
         }
 
-        return subscribers;
+        return subscriberEmails;
 
     }
 
@@ -274,21 +323,110 @@ public class Database {
      *
      * @return the list of subscriber email addresses
      */
-    public static ArrayList<User> getGetSubscriberEmail() {
-        subscribers = readSubscribersEmail();
-        currentSubscriberCount = subscribers.size();
-        return subscribers;
-    }
+    public static ArrayList<User> getSubscriberEmails() { return readSubscribersEmail(); }
 
     /**
-     * Counts the number of subscribers that will receive a notification
+     * Counts the number of subscribers that will receive an email notification
      *
      * @return a count for subscribers.
      */
-    public static int subCount() {
-        getGetSubscriberEmail();
-        return currentSubscriberCount;
+    public static int emailSubCount() { return (getSubscriberEmails()).size();}
+
+    /**
+     * Returns a list of subscriber phone numbers from the USERS database. If an error occurs, a stack
+     * trace is printed to standard error and an empty list is returned.
+     *
+     * @return a list of subscriber phone numbers.
+     */
+    private static ArrayList<String> readSubscriberPhone() {
+        ArrayList<String> subscriberPhones = new ArrayList<>();
+
+        connect();
+        try (
+                PreparedStatement stmt = conn.prepareStatement(GET_SUBSCRIBER_PHONE);
+                ResultSet rs = stmt.executeQuery()) {
+            // Iterate through subscribers in the database and add their phone numbers to a list.
+            while (rs.next()) {
+                User user = new User(
+                        null,
+                        rs.getString("phoneNumber"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0
+                );
+                subscriberPhones.add(String.valueOf(user));
+            }
+        } catch (SQLException e) {
+            // Handle errors for JDBC
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return subscriberPhones;
     }
+
+    /**
+     * Makes the subscriber phone numbers publicly available for other classes.
+     *
+     * @return the list of subscriber phone numbers.
+     */
+    public static ArrayList<String> getSubscriberPhone() { return readSubscriberPhone(); }
+
+    /**
+     * Counts the number of subscribers that will receive an SMS notification
+     *
+     * @return a count for subscribers.
+     */
+    public static int smsSubCount() { return getSubscriberPhone().size();}
+
+
+    /**
+     * Returns a list of subscribers who want to receive both types of  notifications from the USERS database.
+     * The only purpose of this method is to retrieve a count for subscribers who want both types of notifications.
+     * If an error occurs, a stack trace is printed to standard error and an empty list is returned.
+     *
+     * @return a list of users.
+     */
+    private static ArrayList<String> readSubscriberBoth() {
+        ArrayList<String> subscriberBoth = new ArrayList<>();
+
+        connect();
+        try (
+                PreparedStatement stmt = conn.prepareStatement(GET_SUBSCRIBER_BOTH);
+                ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                User user = new User(
+                        null,
+                        null,
+                        rs.getString("username"),
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0
+                );
+                subscriberBoth.add(String.valueOf(user));
+            }
+        } catch (SQLException e) {
+            // Handle errors for JDBC
+            System.err.println("ERROR: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return subscriberBoth;
+    }
+
+    /**
+     * Counts the number of subscribers that will receive both SMS and Email notifications
+     *
+     * @return a count for subscribers.
+     */
+    public static int bothSubCount() { return readSubscriberBoth().size();}
 
     /**
      * Writes the details of each notification to the notification log database.
@@ -298,7 +436,8 @@ public class Database {
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
      */
-    private static void writeNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
+    private static void writeNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
         try {
             connect();
             PreparedStatement stmt = conn.prepareStatement(WRITE_NOTIFICATION_INFO);
@@ -308,6 +447,7 @@ public class Database {
             stmt.setString(3, sentBy);
             stmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
             stmt.setInt(5, subscriberCount);
+            stmt.setString(6, notificationType);
             // Execute the INSERT statement
             stmt.executeUpdate();
 
@@ -319,18 +459,19 @@ public class Database {
         }
     }
 
-
     /**
-     * Public method to be called by the SendNotification so that notification details
+     * Public method to be called by the SendEmailNotification and SendSMSNotification so that notification details
      * can be recorded in the database.
      *
      * @param subject         the subject of the notification
      * @param messageBody     the body of the notification
      * @param sentBy          pantry staff that sent the notification
      * @param subscriberCount the number of subscribers that received the notification
+     * @param notificationType the type of notification being recorded to the database(Email, SMS, Both)
      */
-    public static void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount) {
-        writeNotificationInfo(subject, messageBody, sentBy, subscriberCount);
+    public static void recordNotificationInfo(String subject, String messageBody, String sentBy, int subscriberCount,
+                                              String notificationType) {
+        writeNotificationInfo(subject, messageBody, sentBy, subscriberCount, notificationType);
     }
 
 
@@ -338,7 +479,9 @@ public class Database {
      * Fetches the date information for the ReviewNotificationLog
      *
      * @param startDate  The start date to search for
+
      * @param endDate  The end date to search for
+
      * @return The requested notification log query
      */
     public static ArrayList<Log> findDate(String startDate, String endDate) {

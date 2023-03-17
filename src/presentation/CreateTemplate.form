@@ -25,7 +25,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Cooper Black" size="14" style="0"/>
+              <font name="SansSerif" size="14" style="1"/>
               <foreground color="-16777216"/>
               <text value="Template Name "/>
             </properties>
@@ -43,7 +43,7 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Cooper Black" size="14" style="0"/>
+              <font name="SansSerif" size="14" style="1"/>
               <foreground color="-16777216"/>
               <text value="Subject"/>
             </properties>
@@ -61,7 +61,7 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <font name="Cooper Black" size="14" style="0"/>
+              <font name="SansSerif" size="14" style="1"/>
               <foreground color="-16777216"/>
               <text value="Announcement Message"/>
             </properties>
@@ -72,7 +72,7 @@
             </constraints>
             <properties>
               <enabled value="true"/>
-              <font name="Cooper Black" size="16" style="0"/>
+              <font name="SansSerif" size="18" style="1"/>
               <foreground color="-16777216"/>
               <text value="Food Pantry Announcement"/>
             </properties>
@@ -98,7 +98,7 @@
                 <constraints/>
                 <properties>
                   <background color="-2500135"/>
-                  <font name="Constantia" size="14" style="0"/>
+                  <font name="SansSerif" size="14" style="0"/>
                   <foreground color="-16777216"/>
                   <lineWrap value="true"/>
                   <text value="Dear {campus} Panther Pantry Subscriber,  &#10;&#10;Our mission is to develop healthy eating habits in you!&#10;&#10;Let's we meet your at {campus} pantry between {start time} and {end time} and you  can try to eat a variety of {food items} instead of the same thing all the time.&#10;&#10;Please don't forget your ID, along with proof of enrollment in {term} classes.&#10;&#10;Sincerely,&#10;{staff name}&#10;{campus}&#10;Panther Pantry "/>
@@ -124,7 +124,7 @@
             <properties>
               <background color="-6579301"/>
               <enabled value="true"/>
-              <font name="Cooper Black" size="14" style="0"/>
+              <font name="SansSerif" size="14" style="1"/>
               <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>
               <text value="Create"/>
