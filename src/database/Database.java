@@ -60,9 +60,18 @@ public class Database {
     private static final String GET_USERNAME = "SELECT username FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_USERNAME = "SELECT userPassword FROM USERS WHERE username = ?";
     private static final String GET_PASSWORD_EMAIL = "SELECT userPassword FROM USERS WHERE userEmail = ?";
-    private static final String FIND_REVIEW_NOTIFICATION_QUERY =
-            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount " + "FROM NOTIFICATIONS " +
+    private static final String GET_DATE_SEARCH_QUERY =
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
                     "WHERE  sentDateTime BETWEEN ? AND ?;";
+    private static final String GET_USER_SEARCH_QUERY =
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
+                    "WHERE  sentBy LIKE CONCAT( '%',?,'%');";
+    private static final String GET_SUBJECT_SEARCH_QUERY =
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
+                    "WHERE  subject LIKE CONCAT( '%',?,'%');";
+    private static final String GET_MESSAGE_SEARCH_QUERY =
+            "SELECT sentBy,  sentDateTime, subject, messageBody, subscriberCount, type " + "FROM NOTIFICATIONS " +
+                    "WHERE  messageBody LIKE CONCAT( '%',?,'%');";
 
     private static ArrayList<User> subscribersEmails = null;
     private static Integer currentSubscriberCount = 0;
@@ -467,13 +476,15 @@ public class Database {
 
 
     /**
-     * Fetches the information for the ReviewNotificationLog
+     * Fetches the date information for the ReviewNotificationLog
      *
      * @param startDate  The start date to search for
-     * @param endDate The end date to search for
+
+     * @param endDate  The end date to search for
+
      * @return The requested notification log query
      */
-    public static ArrayList<Log> findLogs(String startDate, String endDate) {
+    public static ArrayList<Log> findDate(String startDate, String endDate) {
         ResultSet rs;
         ArrayList<Log> logs = new ArrayList<>();
         PreparedStatement stmt;
@@ -483,7 +494,7 @@ public class Database {
             connect();
 
             //Prepare sql statement
-            stmt = conn.prepareStatement(FIND_REVIEW_NOTIFICATION_QUERY);
+            stmt = conn.prepareStatement(GET_DATE_SEARCH_QUERY);
             stmt.setString(1, startDate + " 00:00:00");
             stmt.setString(2, endDate + " 23:59:59");
             //Execute the query
@@ -497,7 +508,8 @@ public class Database {
                         rs.getString("sentDateTime"),
                         rs.getString("subject"),
                         rs.getString("messageBody"),
-                        rs.getInt("subscriberCount")
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
                 ));
             }
         } catch (Exception e) {
@@ -508,4 +520,132 @@ public class Database {
         //Returns list of results
         return logs;
     }
+
+    /**
+     * Fetches staff the information for the ReviewNotificationLog
+     *
+     * @param staffText  The staff member to search for
+     * @return The requested notification log query
+     */
+    public static ArrayList<Log> findUser(String staffText) {
+        ResultSet rs;
+        ArrayList<Log> users = new ArrayList<>();
+        PreparedStatement stmt;
+
+        try {
+            //Creates connection if not already created
+            connect();
+
+            //Prepare sql statement
+            stmt = conn.prepareStatement(GET_USER_SEARCH_QUERY);
+            stmt.setString(1, staffText);
+            //Execute the query
+            rs = stmt.executeQuery();
+
+            //For each row in the result set, create a new Notification object with the provided values
+            // and add it to the list of notifications
+            while (rs.next()) {
+                users.add(new Log(
+                        rs.getString("sentBy"),
+                        rs.getString("sentDateTime"),
+                        rs.getString("subject"),
+                        rs.getString("messageBody"),
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
+                ));
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: Your query is not working.");
+            e.printStackTrace();
+            return null;
+        }
+        //Returns list of results
+        return users;
+    }
+
+    /**
+     * Fetches staff the information for the ReviewNotificationLog
+     *
+     * @param subjectText  The subject member to search for
+     * @return The requested notification log query
+     */
+    public static ArrayList<Log> findSubject(String subjectText) {
+        ResultSet rs;
+        ArrayList<Log> subjects = new ArrayList<>();
+        PreparedStatement stmt;
+
+        try {
+            //Creates connection if not already created
+            connect();
+
+            //Prepare sql statement
+            stmt = conn.prepareStatement(GET_SUBJECT_SEARCH_QUERY);
+            stmt.setString(1, subjectText);
+            //Execute the query
+            rs = stmt.executeQuery();
+
+            //For each row in the result set, create a new Notification object with the provided values
+            // and add it to the list of notifications
+            while (rs.next()) {
+                subjects.add(new Log(
+                        rs.getString("sentBy"),
+                        rs.getString("sentDateTime"),
+                        rs.getString("subject"),
+                        rs.getString("messageBody"),
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
+                ));
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: Your query is not working.");
+            e.printStackTrace();
+            return null;
+        }
+        //Returns list of results
+        return subjects;
+    }
+
+    /**
+     * Fetches staff the information for the ReviewNotificationLog
+     *
+     * @param messageText  The message to search for
+     * @return The requested notification log query
+     */
+    public static ArrayList<Log> findMessage(String messageText) {
+        ResultSet rs;
+        ArrayList<Log> messages = new ArrayList<>();
+        PreparedStatement stmt;
+
+        try {
+            //Creates connection if not already created
+            connect();
+
+            //Prepare sql statement
+            stmt = conn.prepareStatement(GET_MESSAGE_SEARCH_QUERY);
+            stmt.setString(1, messageText);
+            //Execute the query
+            rs = stmt.executeQuery();
+
+            //For each row in the result set, create a new Notification object with the provided values
+            // and add it to the list of notifications
+            while (rs.next()) {
+                messages.add(new Log(
+                        rs.getString("sentBy"),
+                        rs.getString("sentDateTime"),
+                        rs.getString("subject"),
+                        rs.getString("messageBody"),
+                        rs.getInt("subscriberCount"),
+                        rs.getString("type")
+                ));
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR: Your query is not working.");
+            e.printStackTrace();
+            return null;
+        }
+        //Returns list of results
+        return messages;
+    }
+
+
 }

@@ -1,13 +1,14 @@
 package main;
 
 import presentation.*;
+
 import javax.swing.*;
 import java.awt.*;
 
 
 /**
  * Main class for the Panther Pantry application
- * @author Sevin Webb, John Christian, Kate White
+ * @author Sevin Webb, John Christian, Kate White, Brandon King
  * @version 2023.02.18
  */
 
@@ -32,6 +33,7 @@ Main {
     public static void createGUI() {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+
         //logUI();
         //sendNotification();
         launchGUI();
@@ -48,15 +50,17 @@ Main {
         frame.setSize(250,200);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
                 "Sprint2\\Null\\src\\presentation\\Icon.png"));
+
     }
 
-    public static void logUI() {
+    public static void logUIAdvanced() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.getContentPane().add(new LogUI().getTabbedPane());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Panther Pantry Account Creation");
+        frame.setTitle("Review Notification Log");
     }
 
     public static void sendNotification() {
