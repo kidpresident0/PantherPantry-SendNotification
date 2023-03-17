@@ -8,13 +8,12 @@ import logic.User;
 import main.Main;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 import static main.Main.launchGUI;
@@ -72,14 +71,14 @@ public class SendNotificationGUI extends JFrame {
     private JTextField termTextField;
     private JTextField staffNameTextField;
     private JLabel CampusNameLabel;
-    private JLabel FoodItemLabel;
-    private JLabel DateLabel;
-    private JLabel TimeLabel;
-    private JLabel TermLabel;
-    private JLabel StaffNameLabel;
     private JButton backButton;
+    private JPanel tagsPanel;
+
+    private HashMap<String, JTextField> tagTextFields;
 
     public SendNotificationGUI() {
+        tagTextFields = new HashMap<String, JTextField>();
+
         List<TemplateName> templates = TemplateName.list(1);
         for (TemplateName template : templates) {
             templateNameComboBox.addItem(template);
@@ -106,14 +105,11 @@ public class SendNotificationGUI extends JFrame {
                     Template template = Template.getTemplate(name.getId());
 
                     // Create an empty hashmap by declaring object of string type
-                    HashMap<String, String> tags = new HashMap<>();
-                    // Adding elements to the tags
-                    tags.put("{campus}", campusTextField.getText());
-                    tags.put("{food items}", foodItemtextField.getText());
-                    tags.put("{date}", dateTextField.getText());
-                    tags.put("{time}", timeTextField.getText());
-                    tags.put("{term}", termTextField.getText());
-                    tags.put("{staff name}", staffNameTextField.getText());
+                    HashMap<String, String> tags = new HashMap<String, String>();
+                    for (Map.Entry<String, JTextField> entry : tagTextFields.entrySet()) {
+                        // Adding elements to the tags
+                        tags.put("{" + entry.getKey() + "}", entry.getValue().getText());
+                    }
 
                     emailBodyArea.setText(template.createMessage(tags));
                 } else {
@@ -134,6 +130,36 @@ public class SendNotificationGUI extends JFrame {
                     Template template = Template.getTemplate(name.getId());
                     String subject = template.getSubject();
                     emailSubjectField.setText(subject);
+
+                    // cleans all textfields and JLabels
+                    tagsPanel.removeAll();
+                    tagTextFields.clear();
+
+                    Font font = new Font("SansSerif", Font.BOLD, 14);
+
+                    // gets the tags that have been found in the templateText
+                    HashSet<String> tags = template.getTags();
+                    tagsPanel.setLayout(new GridLayout(tags.size(), 2, 5, 5));
+
+                    // loop through the all the tags that have been found in the templateText
+                    // adds the Jlabel for the tag name
+                    // adds a textField next to created label
+                    for(String tag: tags) {
+                        JLabel label = new JLabel(tag);
+                        label.setFont(font);
+                        label.setHorizontalAlignment(JTextField.RIGHT);
+
+                        JTextField textField = new JTextField();
+                        textField.setHorizontalAlignment(JTextField.LEFT);
+
+                        tagsPanel.add(label);
+                        tagsPanel.add(textField);
+                        tagTextFields.put(tag, textField);
+                    }
+
+                    rootPanel.revalidate();
+                    tagsPanel.revalidate();
+                    tagsPanel.repaint();
                 }
             }
         });

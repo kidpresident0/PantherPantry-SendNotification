@@ -3,9 +3,10 @@ package logic;
 import database.Database;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This logic.Template.java file gets the text from the application form as input
@@ -70,8 +71,20 @@ public class Template {
             // returns a new string.
             str = str.replace(entry.getKey(), entry.getValue());
         }
-
         return str;
+    }
+
+    // Search for the tags in the templateText and add the matching text to the list
+    public HashSet<String> getTags() {
+        Pattern pattern = Pattern.compile("\\{([a-zA-z ]+)\\}");
+
+        Matcher matcher = pattern.matcher(TemplateText);
+        HashSet<String> tags = new HashSet<String>();
+
+        while(matcher.find()) {
+            tags.add(matcher.group(1));
+        }
+        return tags;
     }
 }
 

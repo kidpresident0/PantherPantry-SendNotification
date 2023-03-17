@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="997" height="617"/>
+      <xy x="20" y="20" width="1557" height="617"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -17,7 +17,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="f4d49" binding="emailTabPanel" layout-manager="GridLayoutManager" row-count="3" column-count="22" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="f4d49" binding="emailTabPanel" layout-manager="GridLayoutManager" row-count="4" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="1" left="1" bottom="1" right="1"/>
             <constraints>
               <tabbedpane title="Email"/>
@@ -25,10 +25,10 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="5f97e" binding="emailTopPanel" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="5f97e" binding="emailTopPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="5" left="5" bottom="5" right="5"/>
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="22" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="8" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
@@ -74,116 +74,12 @@
                       <text value="Template"/>
                     </properties>
                   </component>
-                  <component id="4da53" class="javax.swing.JLabel" binding="CampusNameLabel">
-                    <constraints>
-                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="SansSerif" size="14"/>
-                      <horizontalAlignment value="2"/>
-                      <horizontalTextPosition value="2"/>
-                      <text value="Campus"/>
-                    </properties>
-                  </component>
-                  <component id="ea100" class="javax.swing.JTextField" binding="campusTextField">
-                    <constraints>
-                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="f9c71" class="javax.swing.JLabel" binding="FoodItemLabel">
-                    <constraints>
-                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="SansSerif" size="14"/>
-                      <text value="Food Item"/>
-                    </properties>
-                  </component>
-                  <component id="3b126" class="javax.swing.JTextField" binding="foodItemtextField">
-                    <constraints>
-                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="e83fd" class="javax.swing.JLabel" binding="DateLabel">
-                    <constraints>
-                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="3" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="SansSerif" size="14"/>
-                      <text value="Date"/>
-                    </properties>
-                  </component>
-                  <component id="48351" class="javax.swing.JTextField" binding="dateTextField">
-                    <constraints>
-                      <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="964dd" class="javax.swing.JLabel" binding="TimeLabel">
-                    <constraints>
-                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="3" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="SansSerif" size="14"/>
-                      <text value="Time"/>
-                    </properties>
-                  </component>
-                  <component id="c7a44" class="javax.swing.JTextField" binding="timeTextField">
-                    <constraints>
-                      <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="2dc4e" class="javax.swing.JLabel" binding="TermLabel">
-                    <constraints>
-                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="3" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="SansSerif" size="14"/>
-                      <text value="Term"/>
-                    </properties>
-                  </component>
-                  <component id="7b966" class="javax.swing.JTextField" binding="termTextField">
-                    <constraints>
-                      <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
-                  <component id="24e95" class="javax.swing.JLabel" binding="StaffNameLabel">
-                    <constraints>
-                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                    </constraints>
-                    <properties>
-                      <font name="SansSerif" size="14"/>
-                      <text value="Staff Name"/>
-                    </properties>
-                  </component>
-                  <component id="5018a" class="javax.swing.JTextField" binding="staffNameTextField">
-                    <constraints>
-                      <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                        <preferred-size width="150" height="-1"/>
-                      </grid>
-                    </constraints>
-                    <properties/>
-                  </component>
                 </children>
               </grid>
               <grid id="24b1c" binding="emailBottomPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="1" left="1" bottom="1" right="1"/>
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="22" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
+                  <grid row="2" column="0" row-span="1" col-span="8" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
@@ -211,7 +107,7 @@
               </grid>
               <component id="53e09" class="javax.swing.JButton" binding="emailSendButton">
                 <constraints>
-                  <grid row="2" column="21" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="SansSerif" size="14"/>
@@ -223,7 +119,7 @@
               </component>
               <component id="becae" class="javax.swing.JLabel" binding="emailSubscriberCountLabel">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="SansSerif" size="14"/>
@@ -233,9 +129,7 @@
               </component>
               <component id="b4324" class="javax.swing.JTextField" binding="emailSubCountField">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-                    <preferred-size width="35" height="-1"/>
-                  </grid>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <editable value="false"/>
@@ -245,16 +139,54 @@
               </component>
               <component id="b691d" class="javax.swing.JButton" binding="previewButton">
                 <constraints>
-                  <grid row="2" column="20" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="SansSerif" size="14"/>
                   <text value="Preview"/>
                 </properties>
               </component>
+              <component id="eb63e" class="javax.swing.JButton" binding="backButton">
+                <constraints>
+                  <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="SansSerif" size="14"/>
+                  <text value="Back"/>
+                </properties>
+              </component>
+              <grid id="78bc8" binding="tagsPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="5" left="5" bottom="5" right="5"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="8" vsize-policy="3" hsize-policy="7" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="4da53" class="javax.swing.JLabel" binding="CampusNameLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="SansSerif" size="14"/>
+                      <horizontalAlignment value="2"/>
+                      <horizontalTextPosition value="2"/>
+                      <text value="Campus"/>
+                    </properties>
+                  </component>
+                  <component id="ea100" class="javax.swing.JTextField" binding="campusTextField">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                </children>
+              </grid>
               <component id="734a1" class="javax.swing.JCheckBox" binding="emailSMSbothCheckBox">
                 <constraints>
-                  <grid row="2" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="SMS Message"/>
@@ -262,15 +194,11 @@
                   <verticalTextPosition value="1"/>
                 </properties>
               </component>
-              <component id="eb63e" class="javax.swing.JButton" binding="backButton">
+              <hspacer id="511b5">
                 <constraints>
-                  <grid row="2" column="19" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="4" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties>
-                  <font name="SansSerif" size="14"/>
-                  <text value="Back"/>
-                </properties>
-              </component>
+              </hspacer>
             </children>
           </grid>
           <grid id="98c9f" binding="smsTabPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
