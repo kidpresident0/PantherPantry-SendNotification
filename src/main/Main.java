@@ -1,18 +1,21 @@
 package main;
 
 import presentation.*;
+
 import logic.*;
+
 import javax.swing.*;
 import java.awt.*;
 
 
 /**
  * Main class for the Panther Pantry application
- * @author Sevin Webb, John Christian, Kate White
+ * @author Sevin Webb, John Christian, Kate White, Brandon King
  * @version 2023.02.18
  */
 
-public class Main {
+public class
+Main {
     private static JFrame frame = null;
 
     public static void main(String[] args) {
@@ -20,50 +23,40 @@ public class Main {
             @Override
             public void run() {
                 createGUI();
+
             }
         });
+
     }
 
-    /*
-    public static void createGUI() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        // Create a JFrame to show our form in, and display the UsersTableGUI form.
-        JFrame frame = new JFrame("Template");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Makes the application close when the window goes away.
-        TabbedPaneFrame app = new TabbedPaneFrame();
-
-        JPanel root = app.getRootPanel();
-
+    public static void launchGUI() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(root);
+        frame.getContentPane().add(new LaunchGUI().getRootPanel());
         frame.pack();
-        frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Notification System");
+        frame.setSize(250,200);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
+                "Sprint2\\Null\\src\\presentation\\Icon.png"));
         ImageIcon image = new ImageIcon("Logo.png");
         frame.setIconImage(image.getImage());
     }
-     */
-
+    
     public static void createGUI() {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         accountLogin();
     }
 
-    public static void logUI() {
+    public static void logUIAdvanced() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.getContentPane().add(new LogUI().getTabbedPane());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Panther Pantry Account Creation");
+        frame.setTitle("Review Notification Log");
     }
 
     public static void sendNotification() {
@@ -72,16 +65,23 @@ public class Main {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Panther Pantry Account Creation");
+        frame.setTitle("Send Notification");
     }
 
     public static void createTemplate() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(new CreateTemplate().getRootPanel());
+        frame.getContentPane().add(new TabbedPaneFrame().getRootPanel());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Account Creation");
+        ImageIcon image = new ImageIcon("Logo.png");
+        frame.setIconImage(image.getImage());
     }
 
     public static void accountCreate() {

@@ -35,7 +35,7 @@ public class LaunchGUI {
         logButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                Main.logUI();
+                Main.logUIAdvanced();
 
             }
         });

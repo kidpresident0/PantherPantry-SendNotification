@@ -1,8 +1,12 @@
 package logic;
 
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserTest {
 
@@ -41,4 +45,14 @@ public class UserTest {
     public void checkEmail() {
         assertEquals(true, User.checkEmail("instrumentaldad@nerv.org"));
     }
+
+    @Test
+    void getEmailTest() {
+        User user = new User("thisemail@place.com", "5551234567", "fakeuser", "abc123!", "Fakemen"
+        ,"Fake","Guy","User", 1);
+        String expectedEmail = "thisemail@place.com";
+        String actualEmail = user.getEmail();
+        assertEquals(expectedEmail, actualEmail);
+    }
+
 }
