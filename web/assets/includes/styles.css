@@ -61,7 +61,8 @@ input::placeholder {
 
 /*login + register result page*/
 #loginResult, 
-#registerResult {
+#registerResult,
+#settingsResult {
     background-color: white;
     border: black solid 2px;
     border-radius: 3px;
@@ -74,18 +75,27 @@ input::placeholder {
     transform: translate(-50%, -65%);
     padding-bottom: 20px;
 }
+#registerResult,
+#settingsResult {
+    width: 500px;
+}
 #loginResult h1, 
-#registerResult h1 {
+#registerResult h1,
+#settingsResult h1 {
     text-align: center;
     margin: 5px 10px;
 }
 #loginResult p, 
-#registerResult p {
+#registerResult p,
+#settingsResult p {
     text-align: center;
     margin: 5px 10px;
 }
 #loginResult #returnLink, 
-#registerResult #returnLink {
+#registerResult #returnLink,
+#settingsResult #returnLink,
+#notifsForm #returnLink,
+#notifsForm #notifsSubmit {
     margin: 10px;
     text-align: left;
     background-color: #d9d9d9;
@@ -96,14 +106,23 @@ input::placeholder {
     cursor: pointer;
 }
 #loginResult #returnLink:hover, 
-#registerResult #returnLink:hover {
+#registerResult #returnLink:hover,
+#settingsResult #returnLink:hover,
+#notifsForm #returnLink:hover,
+#notifsForm #notifsSubmit:hover {
     background-color: darkgray;
 }
 #loginResult #returnLink a, 
-#registerResult #returnLink a {
+#registerResult #returnLink a,
+#settingsResult #returnLink a,
+#notifsForm #returnLink a,
+#notifsForm #notifsSubmit a {
     text-decoration: none;
 }
 #loginResult #returnLink a:visited, 
-#registerResult #returnLink a:visited {
+#registerResult #returnLink a:visited,
+#settingsResult #returnLink a:visited,
+#notifsForm #returnLink a:visited,
+#notifsForm #notifsSubmit a:visited {
     color: black;
 }

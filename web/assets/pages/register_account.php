@@ -12,6 +12,7 @@
         
         <?php
             require_once("../php_includes/Database.php");
+            require_once("../php_includes/Mail.php");
             define('FNAME', $_POST['fName']);
             define('LNAME', $_POST['lName']);
             define('EMAIL', $_POST['email']);
@@ -141,6 +142,7 @@
                 Database::create_user($username, $fName, $lName, $email, $password);
                 echo "<p>Account created successfully!</p>\n";
                 echo "<h1>Welcome, " . $fName . "!</h1>";
+                Mail::send_verify($email);
             }
         
             detectErrors(); // calls function
