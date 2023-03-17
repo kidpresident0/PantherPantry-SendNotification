@@ -1,5 +1,6 @@
 package presentation;
 
+import logic.SendVerification;
 import main.Main;
 import logic.User;
 import logic.BCrypt;
@@ -10,12 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
+import java.util.Random.*;
 
 
 /**
  * GUI class for displaying the account creation screen as well as functionality needed to move data throughout the application.
  * @author Sevin Webb
- * @version 2023.02.13
+ * @version 2023.03.14
  */
 
 public class AccountCreation {
@@ -109,9 +112,19 @@ public class AccountCreation {
                 } else {
                     lastName = "";
                 }
-                //only writes to the database if both checks pass, password is not encrypted
+                //only writes to the database if both checks pass, password is encrypted
                 encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
-                User.addUser(firstName, lastName, encryptedPassword, email, username);
+                //generates the email verification code
+                Random rand = new Random();
+                Integer code = (rand.nextInt(900000000) + 999999999);
+                String verifyCode = code.toString();
+                // preps the URL and email information to send for verification
+                String emailURL = "http://www.glassgirder.com/web/assets/pages/verify.php?email=" + email + "&code=" + verifyCode;
+                System.out.println(emailURL);
+                String subject = "Click the link to confirm your Panther Pantry account";
+                SendVerification.sendVerification(email, subject, emailURL);
+
+                User.addUser(firstName, lastName, encryptedPassword, email, username, verifyCode);
                 return;
             }
             //confirmation with no entry in the database for user privacy

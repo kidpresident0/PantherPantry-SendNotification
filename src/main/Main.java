@@ -2,6 +2,8 @@ package main;
 
 import presentation.*;
 
+import logic.*;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,21 +24,8 @@ Main {
             public void run() {
                 createGUI();
 
-
-
-
             }
         });
-
-    }
-
-    public static void createGUI() {
-        frame = new JFrame("Panther Pantry Account Creation");
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-
-        //logUI();
-        //sendNotification();
-        launchGUI();
 
     }
 
@@ -50,7 +39,14 @@ Main {
         frame.setSize(250,200);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
                 "Sprint2\\Null\\src\\presentation\\Icon.png"));
-
+        ImageIcon image = new ImageIcon("Logo.png");
+        frame.setIconImage(image.getImage());
+    }
+    
+    public static void createGUI() {
+        frame = new JFrame("Panther Pantry Account Creation");
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        accountLogin();
     }
 
     public static void logUIAdvanced() {
@@ -97,6 +93,15 @@ Main {
         frame.setTitle("Panther Pantry Account Creation");
     }
 
+    public static void accountSettings(User currentUser) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new AccountSettings(currentUser).getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
     public static void accountLogin() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new AccountLogin().getRootPanel());
@@ -105,5 +110,17 @@ Main {
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Login");
     }
+
+    public static void launchGUI() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new LaunchGUI().getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Notification System");
+        frame.setSize(250,200);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("presentation\\Icon.png"));
+    }
+
 }
 
