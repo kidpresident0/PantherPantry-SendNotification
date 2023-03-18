@@ -1,12 +1,16 @@
 package main;
 
 import presentation.*;
+
+import logic.*;
+
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
  * Main class for the Panther Pantry application
- * @author Sevin Webb, John Christian, Kate White
+ * @author Sevin Webb, John Christian, Kate White, Brandon King
  * @version 2023.02.18
  */
 
@@ -25,31 +29,34 @@ Main {
 
     }
 
-    public static void createGUI() {
-        frame = new JFrame("Panther Pantry Account Creation");
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-        //logUI();
-        //sendNotification();
-        launchGUI();
-
-    }
-
     public static void launchGUI() {
         frame.getContentPane().removeAll();
-        frame.getContentPane().add(new launchGUI().getRootPanel());
+        frame.getContentPane().add(new LaunchGUI().getRootPanel());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Notification System");
+        frame.setSize(250,200);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
+                "Sprint2\\Null\\src\\presentation\\Icon.png"));
+        ImageIcon image = new ImageIcon("Logo.png");
+        frame.setIconImage(image.getImage());
+    }
+    
+    public static void createGUI() {
+        frame = new JFrame("Panther Pantry Account Creation");
+        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        accountLogin();
     }
 
-    public static void logUI() {
+    public static void logUIAdvanced() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new LogUI().getRootPanel());
+        frame.getContentPane().add(new LogUI().getTabbedPane());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        frame.setTitle("Panther Pantry Account Creation");
+        frame.setTitle("Review Notification Log");
     }
 
     public static void sendNotification() {
@@ -81,6 +88,15 @@ Main {
         frame.setTitle("Panther Pantry Account Creation");
     }
 
+    public static void accountSettings(User currentUser) {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().add(new AccountSettings(currentUser).getRootPanel());
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setTitle("Panther Pantry Account Creation");
+    }
+
     public static void accountLogin() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new AccountLogin().getRootPanel());
@@ -89,5 +105,6 @@ Main {
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Login");
     }
+
 }
 

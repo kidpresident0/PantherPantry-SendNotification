@@ -17,17 +17,31 @@ public class Log {
     private String mSubject;
     private String mMessageBody;
     private Integer mSubscriberCount;
+    private String mType;
 
-    public Log(String sentBy, String sentDateTime, String subject, String messageBody, Integer subscriberCount) {
+    public Log(String sentBy, String sentDateTime, String subject, String messageBody, Integer subscriberCount, String type) {
         mSentBy = sentBy;
         mSentDateTime = sentDateTime;
         mSubject = subject;
         mMessageBody = messageBody;
         mSubscriberCount = subscriberCount;
+        mType = type;
     }
 
     public static ArrayList<Log> findLogs(String startDate, String endDate) {
-        return Database.findLogs(startDate, endDate);
+        return Database.findDate(startDate, endDate);
+    }
+
+    public static ArrayList<Log> findUser(String staffText) {
+        return Database.findUser(staffText);
+    }
+
+    public static ArrayList<Log> findSubject(String subjectText) {
+        return Database.findSubject(subjectText);
+    }
+
+    public static ArrayList<Log> findMessage(String messageText) {
+        return Database.findMessage(messageText);
     }
 
     public String getSentBy() {
@@ -47,6 +61,7 @@ public class Log {
     public Integer getSubscriberCount() {
         return mSubscriberCount;
     }
+    public String getType() {return mType;}
 }
 
 

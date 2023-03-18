@@ -16,12 +16,12 @@ class SendEmailNotificationTest {
             String subscribers = "test@example.com";
             String subject = "Test Subject";
             String body = "Test Body";
-            Assertions.assertDoesNotThrow(() -> SendEmailNotification.sendNotification(subscribers, subject, body));
+            Assertions.assertDoesNotThrow(() -> SendEmailNotification.sendEmailNotification(subscribers, subject, body));
     }
 
     @Test
     void GetSubscriberCountTest() {
-        int subscriberCount = SendEmailNotification.getSubscriberCount();
+        int subscriberCount = SendEmailNotification.getEmailSubscriberCount();
         Assertions.assertTrue(subscriberCount >= 0);
     }
 
