@@ -36,7 +36,6 @@ Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("Panther Pantry Notification System");
-        frame.setSize(250,200);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
                 "Sprint2\\Null\\src\\presentation\\Icon.png"));
         ImageIcon image = new ImageIcon("Logo.png");
