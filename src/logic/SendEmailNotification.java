@@ -27,7 +27,7 @@ public class SendEmailNotification {
     public static void sendEmailNotification(String subscribers, String subject, String body) {
 
         final String username = "TeamNullTest@gmail.com";
-        final String password = "jpolvslgeuawbsum";
+        final String password = "";
 
         Properties props = new Properties();
 
@@ -47,7 +47,7 @@ public class SendEmailNotification {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("TeamNullTest@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("jumbo86smile@gmail.com"));
+                    InternetAddress.parse("exampleEmail@example.com"));
             message.setSubject(subject);
             message.setContent(body, "text/plain");
 

@@ -34,10 +34,11 @@ public class SendNotificationGUI extends JFrame {
     JTextArea emailBodyArea;
     JLabel emailSubscriberCountLabel;
     private JTextField emailSubCountField;
-    JButton emailSendButton;
-    JPanel emailTopPanel;
-    JPanel emailBottomPanel;
+    private JButton emailSendButton;
+    private JPanel emailTopPanel;
+    private JPanel emailBottomPanel;
     private JPanel emailTabPanel;
+
     private JLabel emailSubjectLabel;
     private JPanel smsTabPanel;
     private JPanel smsTopPanel;
@@ -53,6 +54,7 @@ public class SendNotificationGUI extends JFrame {
     private JPanel smsBottomMiddlePanel;
     private JPanel smsMiddleLeftPanel;
     private JPanel smsMiddleRightPanel;
+
     private JScrollPane messageScrollPane;
     private JComboBox templateNameComboBox;
     private JLabel TemplateNameLabel;
@@ -60,12 +62,13 @@ public class SendNotificationGUI extends JFrame {
     private JButton backButton;
     private JPanel tagsPanel;
     private JLabel subjectLabel;
-
     private JCheckBox bothSMSAndEmailCheckbox;
 
     private HashMap<String, JTextField> tagTextFields;
 
     public SendNotificationGUI() {
+        emailBodyArea.setWrapStyleWord(true);
+        smsMessageArea.setWrapStyleWord(true);
         tagTextFields = new HashMap<String, JTextField>();
 
         List<TemplateName> templates = TemplateName.list(1);
@@ -189,7 +192,7 @@ public class SendNotificationGUI extends JFrame {
         if (!validateEmailFields()) {
                 return;
         }
-            String subscribers = "flanwithaplan0@gmail.com";
+            String subscribers = "exampleaddress@example.com";
             //ArrayList<User> subscribers = subscriberEmails();
             String sentBy = sendEmailNotification.getUsername();
             String notificationType = "email";
@@ -216,7 +219,7 @@ public class SendNotificationGUI extends JFrame {
         }
 
 
-    //This action listener would format an array list of subscriber numbers for Twilio and send them
+        //This action listener would format an array list of subscriber numbers for Twilio and send them
     //an SMS notification per the requirements of Sprint 2, then log the details.
     private void smsButtonSendActionPerformed() {
         if (validateSMSFields()) {
@@ -243,7 +246,7 @@ public class SendNotificationGUI extends JFrame {
     //This method sends an SMS notification to my phone for the demo and logs the details.
     private void demoSMSSendButtonActionPerformed() {
         if (validateSMSFields()) {
-            String phoneNumber = "19717108892";
+            String phoneNumber = "15556667777";
             String messageBody = smsMessageArea.getText();
             String notificationType = "sms";
             String sentBy = SendSMSNotification.getUsername();
@@ -270,7 +273,7 @@ public class SendNotificationGUI extends JFrame {
             return;
         }
         //email details
-        String subscribers = "flanwithaplan0@gmail.com";
+        String subscribers = "exampleaddress@example.com";
         //ArrayList<User> subscribers = subscriberEmails();
         String sentBy = sendEmailNotification.getUsername();
         String subject = emailSubjectField.getText();

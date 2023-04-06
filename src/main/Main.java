@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
+
 /**
  * Main class for the Panther Pantry application
  * @author Sevin Webb, John Christian, Kate White, Brandon King
@@ -28,7 +29,6 @@ Main {
         });
 
     }
-
     public static void launchGUI() {
         frame.getContentPane().removeAll();
         frame.getContentPane().add(new LaunchGUI().getRootPanel());
@@ -38,10 +38,8 @@ Main {
         frame.setTitle("Panther Pantry Notification System");
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\PCC\\CIS234A.RealWorldProgramming\\Projects\\" +
                 "Sprint2\\Null\\src\\presentation\\Icon.png"));
-        ImageIcon image = new ImageIcon("Logo.png");
-        frame.setIconImage(image.getImage());
     }
-    
+
     public static void createGUI() {
         frame = new JFrame("Panther Pantry Account Creation");
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
