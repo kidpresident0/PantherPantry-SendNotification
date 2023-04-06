@@ -18,8 +18,8 @@ import java.util.ArrayList;
 
 public class SendSMSNotification {
     // Your Twilio account SID and auth token
-    private static final String ACCOUNT_SID = "AC02ab8364891650bfb13c9f20c2a63a63";
-    private static final String AUTH_TOKEN = "93711ea02317821b7b03855c917bc050";
+    private static final String ACCOUNT_SID = "0000000";
+    private static final String AUTH_TOKEN = "000000";
 
     // The phone number you're sending the SMS message from (Twilio phone number)
     private static final String FROM_NUMBER = "+15673339882";
